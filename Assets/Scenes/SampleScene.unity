@@ -605,13 +605,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d76723a8be69414984ce30e4c9cc9fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pInput: {fileID: 518050543}
   p_bullet: {fileID: 8672037326236726222, guid: 0c01828cbf27a31408c3447fbf5bcec0, type: 3}
   p_point: {fileID: 1680389915370838166, guid: 4157fd56d43b77b40915b1481886de66, type: 3}
   shootPoint_parent: {fileID: 771716074}
   bulletSpawnPos: []
   bulletSpeed: 20
   radius: 0.5
-  a: 45
+  startAngle: 67.5
+  angleSpread: 20
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
