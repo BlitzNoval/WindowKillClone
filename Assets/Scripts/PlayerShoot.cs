@@ -6,8 +6,9 @@ using UnityEngine;
 public class PlayerShoot : MonoBehaviour
 {
     public GameObject p_bullet;
+    public GameObject p_point;
     public Transform shootPoint_parent;
-    public GameObject[] bulletSpawn;
+    public List<GameObject> bulletSpawnPos;
 
     public float bulletSpeed;
     public float radius = 0.5f;
@@ -15,56 +16,84 @@ public class PlayerShoot : MonoBehaviour
 
     private void Start()
     {
+        GetShootPositions();
         SortShootPos();
 
-        foreach (GameObject p in bulletSpawn)
+        foreach (GameObject p in bulletSpawnPos)
         {
-            GetShootAngle(p);
+            GetShootPointAngle(p);
         }
     }
     private void Update()
     {
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            for (int i = 0; i < bulletSpawn.Length; i++)
-            {
-                GameObject bullet = Instantiate(p_bullet, bulletSpawn[i].transform.position, Quaternion.identity);
-                bullet.GetComponent<Rigidbody2D>().velocity = GetShootAngle(bulletSpawn[i]) * bulletSpeed;
-            }
-        }
-
+        if (Input.GetMouseButtonDown(0)) Shoot();
+        if (Input.GetKeyDown(KeyCode.P)) Upgrade_MulltiShot();
         AimDirection();
     }
 
-    public void ShootPointPos(GameObject point, float angle)
+    public void Upgrade_MulltiShot()
+    {
+        GameObject newPos = Instantiate(p_point, shootPoint_parent);
+        bulletSpawnPos.Add(newPos);
+        SortShootPos();
+
+        Debug.Log("Multi Shot: " + bulletSpawnPos.Count);
+    }
+
+    //shoot function
+    private void Shoot()
+    {
+        for (int i = 0; i < bulletSpawnPos.Count; i++)
+        {
+            GameObject bullet = Instantiate(p_bullet, bulletSpawnPos[i].transform.position, Quaternion.identity);
+            bullet.GetComponent<Rigidbody2D>().velocity = GetShootPointAngle(bulletSpawnPos[i]) * bulletSpeed;
+        }
+    }
+
+    //gets active shoot positions
+    private void GetShootPositions()
+    {
+        List<GameObject> newShotPos = new List<GameObject>(); 
+        for (int i = 0;i < shootPoint_parent.childCount; i++)
+        {
+            newShotPos.Add(shootPoint_parent.GetChild(i).gameObject);
+        }
+
+        bulletSpawnPos = newShotPos;
+    }
+
+    //finds position around a radius
+    private void ShootPointPos(GameObject point, float angle)
     {
         Vector2 newPos;
         newPos.x = shootPoint_parent.position.x + (radius * Mathf.Cos(angle / (180f / Mathf.PI)));
         newPos.y = shootPoint_parent.position.y + (radius * Mathf.Sin(angle / (180f / Mathf.PI)));
 
-        point.transform.position = newPos;
+        point.transform.localPosition = newPos;
 
     }
-    public void SortShootPos()
-    {
-        float angle = 90 / (bulletSpawn.Length + 1);
-        for (int i = 0; i < bulletSpawn.Length; i++)
-        {
-            ShootPointPos(bulletSpawn[i], (angle * (i + 1)) + a);
 
-            Debug.Log((angle * (i + 1)) + a);
+    //sorts each shooting position evenly
+    private void SortShootPos()
+    {
+        float angle = 90 / (bulletSpawnPos.Count + 1);
+        for (int i = 0; i < bulletSpawnPos.Count; i++)
+        {
+            ShootPointPos(bulletSpawnPos[i], (angle * (i + 1)) + a);
+
         }
     }
 
-    public Vector2 GetShootAngle(GameObject point)
+    //gets the shooting angle by subtracting the parents position (Vector.zero) from the shootingPoint
+    private Vector2 GetShootPointAngle(GameObject point)
     {
         Vector3 angle = point.transform.position - shootPoint_parent.position;
         Debug.DrawLine(shootPoint_parent.position, point.transform.position * 2);
         return Vector2.ClampMagnitude(angle, 1);
     }
 
-    public void AimDirection()
+    //lets the player aim in the direction of thier mouse
+    private void AimDirection()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 lookDir = mousePos - (Vector2)shootPoint_parent.position;
