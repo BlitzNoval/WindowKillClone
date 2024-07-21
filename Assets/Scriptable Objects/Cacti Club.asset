@@ -12,4 +12,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3c544a4b1167744599cfafb61d150f3, type: 3}
   m_Name: Cacti Club
   m_EditorClassIdentifier: 
+  weaponType: 0
+  weaponClass: 2112
   weaponTier: 0
+  damagePerTier:
+  - 10
+  - 20
+  - 30
+  - 50
+  scalingPerTier:
+  - scalings:
+    - scalingAmount: 0.8
+      scalingType: 4
+  - scalings:
+    - scalingAmount: 0.8
+      scalingType: 4
+  - scalings:
+    - scalingAmount: 0.8
+      scalingType: 4
+  - scalings:
+    - scalingAmount: 0.8
+      scalingType: 4
+  attackSpeedPerTier:
+  - 1.66
+  - 1.58
+  - 1.51
+  - 1.36
+  critDamagePerTier:
+  - 2
+  - 2
+  - 2
+  - 2
+  critChancePerTier:
+  - 0.03
+  - 0.03
+  - 0.03
+  - 0.03
+  rangePerTier:
+  - 200
+  - 200
+  - 200
+  - 200
+  knockbackPerTier:
+  - 8
+  - 8
+  - 8
+  - 8
+  lifestealPerTier:
+  - 0
+  - 0
+  - 0
+  - 0
+  basePricePerTier: 14000000270000004a00000095000000
