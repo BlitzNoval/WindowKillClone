@@ -460,6 +460,7 @@ GameObject:
   - component: {fileID: 518050547}
   - component: {fileID: 518050546}
   - component: {fileID: 518050548}
+  - component: {fileID: 518050549}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -642,6 +643,50 @@ MonoBehaviour:
   rb: {fileID: 518050546}
   currentMovement: {x: 0, y: 0}
   moveSpeed: 25
+--- !u!114 &518050549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518050542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca9275431b1bb51479a326f8a911e6f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 0
+  HPRegen: 0
+  lifeSteal: 0
+  damage: 0
+  meleeDamage: 0
+  rangedDamage: 0
+  elementalDamage: 0
+  attackSpeed: 0
+  critChance: 0
+  engineering: 0
+  range: 0
+  armor: 0
+  dodge: 0
+  speed: 0
+  luck: 0
+  harvesting: 0
+  c_maxHP: 0
+  c_HPRegen: 0
+  c_lifeSteal: 0
+  c_damage: 0
+  c_meleeDamage: 0
+  c_rangedDamage: 0
+  c_elementalDamage: 0
+  c_attackSpeed: 0
+  c_critChance: 0
+  c_engineering: 0
+  c_range: 0
+  c_armor: 0
+  c_dodge: 0
+  c_speed: 0
+  c_luck: 0
+  c_harvesting: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,7 +818,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.062959194, y: -0.031481028, z: -10}
+  m_LocalPosition: {x: -0.06439352, y: -0.031481028, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1280,7 +1325,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1277340748}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.062959194, y: -0.031481028, z: -10}
+  m_LocalPosition: {x: -0.06439352, y: -0.031481028, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
