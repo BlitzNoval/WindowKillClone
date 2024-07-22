@@ -13,13 +13,13 @@ public class Weapon : ScriptableObject
     {
         //Using the multiplier value. ie: 0.8 = 80% scaling
         [SerializeField] private float scalingAmount;
-        [SerializeField] private PlayerStats scalingType;
+        [SerializeField] private Stats scalingType;
         public float ScalingAmount
         {
             get => scalingAmount;
             set => scalingAmount = value;
         }
-        public PlayerStats ScalingType
+        public Stats ScalingType
         {
             get => scalingType;
             set => scalingType = value;

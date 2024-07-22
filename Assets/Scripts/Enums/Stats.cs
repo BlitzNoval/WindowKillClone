@@ -1,6 +1,6 @@
 namespace Enums
 {
-    public enum PlayerStats
+    public enum Stats
     {
         MaxHP,
         HPRegen,
