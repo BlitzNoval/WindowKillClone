@@ -7,6 +7,10 @@ public class UpgradeManager : MonoBehaviour
 {
     public static UpgradeManager Instance { get; private set; }
 
+    public GameObject[] upgradePanels;
+
+    [Space(10)]
+
     public Upgrades[] Heart;
     public Upgrades[] Lungs;
     public Upgrades[] Teeth;
@@ -24,9 +28,15 @@ public class UpgradeManager : MonoBehaviour
     public Upgrades[] Nose;
     public Upgrades[] Hands;
 
+
     /// <summary>
     /// Applys the upgrade to the player
     /// </summary>
     /// <param name="upgrade"> the selected upgrade</param>
     public void ApplyUpgrade(Upgrades upgrade) => PlayerBase.Instance.UpdateStat(upgrade.stats, upgrade.amount);
+
+    public void ChooseUpgrades()
+    {
+
+    }
 }
