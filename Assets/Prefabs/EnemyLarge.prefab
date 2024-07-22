@@ -143,5 +143,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cce6594f1e97d0b4192005c0a04ab8e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
-  health: 0
+  enemyData:
+    size: 2
+    maxHealth: 0
+    speed: 0
+    damage: 0
+    attackRange: 0
+    attackCooldown: 0
+    behavior: 2
+    chargeDelay: 0
+    chargeRange: 0
+    chargeSpeed: 0
+    chargeDuration: 0
+    patrolRadius: 0
+    patrolSpeed: 0
