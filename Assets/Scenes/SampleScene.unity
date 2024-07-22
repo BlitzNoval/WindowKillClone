@@ -174,7 +174,7 @@ MonoBehaviour:
   - {fileID: 2045365572302486287, guid: 5ca5989d3387d034e9fff47cca3377ce, type: 3}
   spawnSpeed: 1
   spawnAmount: 2
-  enemyMapSize: 10
+  playableAreaSpriteRenderer: {fileID: 792576775}
 --- !u!1 &99802554
 GameObject:
   m_ObjectHideFlags: 0
