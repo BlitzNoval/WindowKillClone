@@ -1,10 +1,11 @@
+using Enums;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerUpgrades : MonoBehaviour
+public class UpgradeManager : MonoBehaviour
 {
-    public static PlayerUpgrades Instance { get; private set; }
+    public static UpgradeManager Instance { get; private set; }
 
     public Upgrades[] Heart;
     public Upgrades[] Lungs;
@@ -21,4 +22,11 @@ public class PlayerUpgrades : MonoBehaviour
     public Upgrades[] Back;
     public Upgrades[] Legs;
     public Upgrades[] Nose;
+    public Upgrades[] Hands;
+
+    /// <summary>
+    /// Applys the upgrade to the player
+    /// </summary>
+    /// <param name="upgrade"> the selected upgrade</param>
+    public void ApplyUpgrade(Upgrades upgrade) => PlayerBase.Instance.UpdateStat(upgrade.stats, upgrade.amount);
 }

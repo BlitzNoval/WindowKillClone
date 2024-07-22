@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class Upgrades : ScriptableObject
 {
-    [SerializeField] private Stats stats;
-    [SerializeField] private WeaponTier tier;
-    [SerializeField] private int amount;
+    public Stats stats;
+    public WeaponTier tier;
+    public int amount;
 }

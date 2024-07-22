@@ -818,7 +818,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.06439352, y: -0.031481028, z: -10}
+  m_LocalPosition: {x: -0.095256805, y: -0.031481028, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1018,6 +1018,130 @@ Transform:
   m_Father: {fileID: 1987212742}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &620107170
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 620107171}
+  - component: {fileID: 620107172}
+  m_Layer: 0
+  m_Name: Upgrades
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &620107171
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620107170}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1960471159}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &620107172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620107170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49972aaa05696994980f2fdc939b5a58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Heart:
+  - {fileID: 11400000, guid: 875d82d15038f3d4a9af6c125532ea32, type: 2}
+  - {fileID: 11400000, guid: 08716f87e464b234b8f0c685cdceea0f, type: 2}
+  - {fileID: 11400000, guid: 4534a24f10cb0cd44840f95072edb3a4, type: 2}
+  - {fileID: 11400000, guid: fd0f8a1b3e8603f4490b51a2a14607cf, type: 2}
+  Lungs:
+  - {fileID: 11400000, guid: 6ca133ff58d30ce4ebf2946c8851b226, type: 2}
+  - {fileID: 11400000, guid: a3ce9a9d34faf8f43920bc96d2ae1455, type: 2}
+  - {fileID: 11400000, guid: b9508fb3fd703024ab555bf180a8b131, type: 2}
+  - {fileID: 11400000, guid: 89768d38726c270458bf43d64568eacb, type: 2}
+  Teeth:
+  - {fileID: 11400000, guid: 0ce0f3f2b6fffb64aab74263c58a42dc, type: 2}
+  - {fileID: 11400000, guid: 7cef35ff95f7c004aad45cab717998ef, type: 2}
+  - {fileID: 11400000, guid: 3c0a7b0de62a1304a9eda20cd4593803, type: 2}
+  - {fileID: 11400000, guid: 1771fc526b05a3f42aad5e2d1ff77f87, type: 2}
+  Triceps:
+  - {fileID: 11400000, guid: 6ee7c2b35e1fad04297483681895a9b2, type: 2}
+  - {fileID: 11400000, guid: f8fbdabbf7d2e88438180830d954099f, type: 2}
+  - {fileID: 11400000, guid: 1ba869da8d5a05942a382d3edd7fc9a9, type: 2}
+  - {fileID: 11400000, guid: f0a0652b16b554c4e87bc81bb22b3d60, type: 2}
+  Forearms:
+  - {fileID: 11400000, guid: e993655d1ae56d0458a98138dc688b49, type: 2}
+  - {fileID: 11400000, guid: 1e3255148211552499ead5c1a07cbc08, type: 2}
+  - {fileID: 11400000, guid: 972bc1a94bac2574ca5f1588e30060a4, type: 2}
+  - {fileID: 11400000, guid: f180d932a13a8c940bd4abf63e9ef43e, type: 2}
+  Shoulders:
+  - {fileID: 11400000, guid: c44cba6c69588b5449412c27a73b8975, type: 2}
+  - {fileID: 11400000, guid: 99e1320291cb47b4b8c8ab73e28e4162, type: 2}
+  - {fileID: 11400000, guid: 8eb2f7951084a6e4286542f38df1de45, type: 2}
+  - {fileID: 11400000, guid: 8a50af2afab0ca247905cc31838a44c7, type: 2}
+  Brain:
+  - {fileID: 11400000, guid: 7214f573a2c956c4799996175f76a936, type: 2}
+  - {fileID: 11400000, guid: 82b67a527b4ed694f91d7207947f41ef, type: 2}
+  - {fileID: 11400000, guid: 0732379172622f248abe623cfe66329a, type: 2}
+  - {fileID: 11400000, guid: 2bd59c25b2ddd48469349e7a4981c4eb, type: 2}
+  Reflexes:
+  - {fileID: 11400000, guid: 3a888d8b40658d742b2a068a1217520d, type: 2}
+  - {fileID: 11400000, guid: 01b10f9f19a97b94ab12a7166abe3d86, type: 2}
+  - {fileID: 11400000, guid: 6f5106d29505a6445894915dd1df3977, type: 2}
+  - {fileID: 11400000, guid: c200f25163ad4d443b64be3393df3ec8, type: 2}
+  Fingers:
+  - {fileID: 11400000, guid: ee824df2a661bfe41b7b917fceb404c3, type: 2}
+  - {fileID: 11400000, guid: a43e8db55770fc645ae48a5c67e55f95, type: 2}
+  - {fileID: 11400000, guid: 337edd607cbb4804c917fc365ab5e927, type: 2}
+  - {fileID: 11400000, guid: 3ebc99ea9418e014ab43e787643444b4, type: 2}
+  Skull:
+  - {fileID: 11400000, guid: eac6bb1a00d36bd43b1d83d4cd845a03, type: 2}
+  - {fileID: 11400000, guid: 64a2f0e60b9a6d34b9587b9eda4d228c, type: 2}
+  - {fileID: 11400000, guid: ed973ff310e13f04bbc16d6921de06b5, type: 2}
+  - {fileID: 11400000, guid: 087b9b867f6414e47801e2834bcaaf89, type: 2}
+  Eyes:
+  - {fileID: 11400000, guid: c84a5e0a47b3b2e49be48bec83805deb, type: 2}
+  - {fileID: 11400000, guid: a3c1d9ef398e93c4881cdd858eeb3329, type: 2}
+  - {fileID: 11400000, guid: 98911b0644913f943915c7464d60fd39, type: 2}
+  - {fileID: 11400000, guid: 9ecb059e48e9219479a3eb30e13a6e8b, type: 2}
+  Chest:
+  - {fileID: 11400000, guid: 1e36b021fec24ed40b559f38f3b4560c, type: 2}
+  - {fileID: 11400000, guid: 15dc7dca95214f849af3ebee46108082, type: 2}
+  - {fileID: 11400000, guid: 2a8cda29edb5c8d4eb07f8715ff617eb, type: 2}
+  - {fileID: 11400000, guid: c510c1ee1c4c6ff4f97221dec82a4e71, type: 2}
+  Back:
+  - {fileID: 11400000, guid: ca748543e9fe3214eab993de87dc5f6f, type: 2}
+  - {fileID: 11400000, guid: 3ffeed28c2176a741bde14a9cccde173, type: 2}
+  - {fileID: 11400000, guid: 6a41a0a74f76d214490af6a9e51ddd8a, type: 2}
+  - {fileID: 11400000, guid: 27b9653cd6555bd46b013b4e1328572c, type: 2}
+  Legs:
+  - {fileID: 11400000, guid: bfa9ec93e7e75fb4889efdb9a1d93655, type: 2}
+  - {fileID: 11400000, guid: 24c8cafbfd43dee43a58383437516dff, type: 2}
+  - {fileID: 11400000, guid: 08da702f1a0942b4cbfc3e00afe283b2, type: 2}
+  - {fileID: 11400000, guid: cadb480cab490eb4eb4d11154f71cfa8, type: 2}
+  Nose:
+  - {fileID: 11400000, guid: 394d809ce87ebc940a5b4574be15029d, type: 2}
+  - {fileID: 11400000, guid: 827502b4436087c4e9a73f0f622c5771, type: 2}
+  - {fileID: 11400000, guid: 0559fa5330519124a8be0c657412be4d, type: 2}
+  - {fileID: 11400000, guid: 494e92d1f45a56742866fa546694facf, type: 2}
+  Hands:
+  - {fileID: 11400000, guid: 3debaa244b5813042aa0b31d441502c2, type: 2}
+  - {fileID: 11400000, guid: 7657f804fcc04ba44a329981e026da4f, type: 2}
+  - {fileID: 11400000, guid: 2fd8997ca1dea384e97f110b42ee1843, type: 2}
+  - {fileID: 11400000, guid: e649557b3677da0468400218d136b6a3, type: 2}
 --- !u!1 &792576773
 GameObject:
   m_ObjectHideFlags: 0
@@ -1325,7 +1449,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1277340748}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.06439352, y: -0.031481028, z: -10}
+  m_LocalPosition: {x: -0.095256805, y: -0.031481028, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2131,7 +2255,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 620107171}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
