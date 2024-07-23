@@ -13,6 +13,8 @@ public class WeaponBehaviour : MonoBehaviour
     [Header("Watchers")] 
     [SerializeField] private WeaponTier currentTier;
 
+    [SerializeField] private bool canAttack;
+
     public WeaponTier CurrentTier
     {
         get => currentTier;
@@ -41,6 +43,7 @@ public class WeaponBehaviour : MonoBehaviour
     void Start()
     {
         playerStats = GameObject.FindWithTag("Player").GetComponent<PlayerBase>();
+        canAttack = true;
     }
     
     void Update()
@@ -64,9 +67,16 @@ public class WeaponBehaviour : MonoBehaviour
     private float CalculateDamage()
     {
         float result = 0;
+        //pulling damage percentile modifier from the player stats
         float damageStat = playerStats.c_damage;
+        
+        //pulling weapon damage from the attached scriptableObject
         float weaponDamage = weaponData.DamagePerTier[(int)currentTier];
+        
+        //scaling calculations
         float scaleValue = 0;
+        
+        //iterating through each scaling value for the current weapon tier
         foreach (var scaleInstance in weaponData.ScalingPerTier[(int)currentTier].Scalings)
         {
             switch (scaleInstance.ScalingType)
@@ -121,6 +131,31 @@ public class WeaponBehaviour : MonoBehaviour
                     break;
             }
         }
+
+        weaponDamage += scaleValue;
+        
+        //multiplying weapon damage by the percentage of the damage stat
+        result = weaponDamage * (1 + damageStat/100);
         return result;
+    }
+
+    /// <summary>
+    /// Cooldown timer method
+    /// </summary>
+    private IEnumerator DoWeaponCooldown()
+    {
+        float waitTime = 0;
+        //This is a value in seconds
+        float weaponSpeed = weaponData.AttackSpeedPerTier[(int)currentTier];
+        //percentage modifier of base speed
+        float attackSpeedStat = playerStats.c_attackSpeed;
+        // There are some exceptions with changes to certain weapons etc, but because I couldn't find a sheet of which
+        // weapons get what effects, they will be ignored for now
+        
+        //cooldown = baseTime/modifiedSpeed
+        float modifiedSpeed = (100 + attackSpeedStat)/100;
+        waitTime = weaponSpeed / modifiedSpeed;
+        yield return new WaitForSeconds(waitTime);
+        canAttack = true;
     }
 }

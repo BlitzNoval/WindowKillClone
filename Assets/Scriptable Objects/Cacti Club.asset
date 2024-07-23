@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 0
   weaponClass: 2112
-  weaponTier: 0
+  attackType: 1
   damagePerTier:
   - 10
   - 20
