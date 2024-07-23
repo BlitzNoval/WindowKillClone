@@ -50,7 +50,6 @@ public class UpgradeManager : MonoBehaviour
                 //generate a random number and check if it is above the rarity threshold
                 float randNum = Random.Range(0, 1f);
 
-
                 if (randNum > chanceThresholds[1])
                 {
                     upgradePanels[i].GetComponent<UpgradePanel>().SetUpgradePanel(0);
@@ -67,39 +66,37 @@ public class UpgradeManager : MonoBehaviour
                 {
                     upgradePanels[i].GetComponent<UpgradePanel>().SetUpgradePanel(3);
                 }
-
             }
-
         }
         else
         {
             if (PlayerBase.Instance.level / 5 == 1)
             {
-                for (int i = 0; i < upgradePanels.Length; i++)
-                {
-                    Upgrades newUpgrade = selectedUpgrades[i];
-                    upgradePanels[i].GetComponent<UpgradePanel>().upgrade = newUpgrade;
-                    upgradePanels[i].GetComponent<UpgradePanel>().SetUpgradePanel(1);
-                }
+                SetUpgradesToSameRarity(selectedUpgrades, 1);
             }
             else if (PlayerBase.Instance.level / 5 <= 4)
             {
-                for (int i = 0; i < upgradePanels.Length; i++)
-                {
-                    Upgrades newUpgrade = selectedUpgrades[i];
-                    upgradePanels[i].GetComponent<UpgradePanel>().upgrade = newUpgrade;
-                    upgradePanels[i].GetComponent<UpgradePanel>().SetUpgradePanel(2);
-                }
+                SetUpgradesToSameRarity(selectedUpgrades, 2);
             }
             else if (PlayerBase.Instance.level / 5 >= 5)
             {
-                for (int i = 0; i < upgradePanels.Length; i++)
-                {
-                    Upgrades newUpgrade = selectedUpgrades[i];
-                    upgradePanels[i].GetComponent<UpgradePanel>().upgrade = newUpgrade;
-                    upgradePanels[i].GetComponent<UpgradePanel>().SetUpgradePanel(3);
-                }
+                SetUpgradesToSameRarity(selectedUpgrades, 3);
             }
+        }
+    }
+
+    /// <summary>
+    /// sets all the upgrades to the smae tier to match the games rarity guarentee table
+    /// </summary>
+    /// <param name="selectedUpgrades"> the array of selects upgrades </param>
+    /// <param name="tier"> the tier you want the upgrades to be -1 </param>
+    private void SetUpgradesToSameRarity(Upgrades[] selectedUpgrades, int tier)
+    {
+        for (int i = 0; i < upgradePanels.Length; i++)
+        {
+            Upgrades newUpgrade = selectedUpgrades[i];
+            upgradePanels[i].GetComponent<UpgradePanel>().upgrade = newUpgrade;
+            upgradePanels[i].GetComponent<UpgradePanel>().SetUpgradePanel(tier);
         }
     }
 
