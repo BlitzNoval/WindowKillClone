@@ -6,6 +6,7 @@ using Enums;
 using UnityEngine;
 
 [CreateAssetMenu]
+[Serializable]
 public class Weapon : ScriptableObject
 {
     [Serializable]
