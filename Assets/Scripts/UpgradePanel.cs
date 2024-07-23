@@ -1,0 +1,33 @@
+using Enums;
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class UpgradePanel : MonoBehaviour
+{
+    public Upgrades upgrade;
+
+    public TextMeshProUGUI itemname;
+    public Image icon;
+    public TextMeshProUGUI statDescription;
+    public int upgradeTier;
+
+    /// <summary>
+    /// call this funciton when upgrade has been set
+    /// </summary>
+    public void SetUpgradePanel(int tier)
+    {
+        itemname.text = $"{upgrade.name} {tier + 1}";
+        statDescription.text = $"+{upgrade.amount[tier]} {upgrade.stats}";
+        upgradeTier = tier ;
+        //make icon the same
+    }
+    public void ChooseUpgrade()
+    {
+        PlayerBase.Instance.UpdateStat(upgrade.stats, upgrade.amount[upgradeTier]);
+        PlayerBase.Instance.CalculateStat(upgrade.stats);
+        // go to next upgrade panel or to item store;
+    }
+}
