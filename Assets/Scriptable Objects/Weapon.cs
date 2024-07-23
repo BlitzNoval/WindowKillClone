@@ -6,6 +6,7 @@ using Enums;
 using UnityEngine;
 
 [CreateAssetMenu]
+[Serializable]
 public class Weapon : ScriptableObject
 {
     [Serializable]
@@ -38,7 +39,8 @@ public class Weapon : ScriptableObject
     }
     [SerializeField] private WeaponType weaponType;
     [SerializeField] private WeaponClass weaponClass;
-    [SerializeField] private WeaponTier weaponTier;
+    [SerializeField] private AttackType attackType;
+    //[SerializeField] private WeaponTier weaponTier;
     [SerializeField] private float[] damagePerTier;
     [SerializeField] private StatScalingTier[] scalingPerTier;
     [SerializeField] private float[] attackSpeedPerTier;
@@ -48,4 +50,30 @@ public class Weapon : ScriptableObject
     [SerializeField] private float[] knockbackPerTier;
     [SerializeField] private float[] lifestealPerTier;
     [SerializeField] private int[] basePricePerTier;
+
+    public WeaponType WeaponType => weaponType;
+
+    public WeaponClass WeaponClass => weaponClass;
+
+    public AttackType AttackType => attackType;
+
+    //public WeaponTier WeaponTier => weaponTier;
+
+    public float[] DamagePerTier => damagePerTier;
+
+    public StatScalingTier[] ScalingPerTier => scalingPerTier;
+
+    public float[] AttackSpeedPerTier => attackSpeedPerTier;
+
+    public float[] CritDamagePerTier => critDamagePerTier;
+
+    public float[] CritChancePerTier => critChancePerTier;
+
+    public float[] RangePerTier => rangePerTier;
+
+    public float[] KnockbackPerTier => knockbackPerTier;
+
+    public float[] LifestealPerTier => lifestealPerTier;
+
+    public int[] BasePricePerTier => basePricePerTier;
 }
