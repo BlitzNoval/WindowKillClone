@@ -12,19 +12,22 @@ public class UpgradePanel : MonoBehaviour
     public TextMeshProUGUI itemname;
     public Image icon;
     public TextMeshProUGUI statDescription;
+    public int upgradeTier;
 
     /// <summary>
     /// call this funciton when upgrade has been set
     /// </summary>
-    public void SetUpgradePanel()
+    public void SetUpgradePanel(int tier)
     {
-        itemname.text = upgrade.name;
-        statDescription.text = $"+{upgrade.amount} {upgrade.stats}";
+        itemname.text = $"{upgrade.name} {tier + 1}";
+        statDescription.text = $"+{upgrade.amount[tier]} {upgrade.stats}";
+        upgradeTier = tier ;
         //make icon the same
     }
     public void ChooseUpgrade()
     {
-        UpgradeManager.Instance.ApplyUpgrade(upgrade);
+        PlayerBase.Instance.UpdateStat(upgrade.stats, upgrade.amount[upgradeTier]);
+        PlayerBase.Instance.CalculateStat(upgrade.stats);
         // go to next upgrade panel or to item store;
     }
 }

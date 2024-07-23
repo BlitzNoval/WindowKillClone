@@ -8,6 +8,10 @@ public class PlayerBase : MonoBehaviour
     //singleton for stat logic
     public static PlayerBase Instance { get; private set; }
 
+    public int level;
+
+    [Space(10)]
+
     #region Displayed Stats
     [Header("Displayed Stats")]
     public int maxHP;

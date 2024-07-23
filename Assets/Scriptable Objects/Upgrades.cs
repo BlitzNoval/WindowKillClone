@@ -7,6 +7,5 @@ using UnityEngine;
 public class Upgrades : ScriptableObject
 {
     public Stats stats;
-    public WeaponTier tier;
-    public int amount;
+    public int[] amount = new int[4];
 }
