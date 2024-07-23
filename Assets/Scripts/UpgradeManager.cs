@@ -39,31 +39,67 @@ public class UpgradeManager : MonoBehaviour
     {
         Upgrades[] selectedUpgrades = RandomUpgrades();
 
-        for (int i = 0; i < upgradePanels.Length; i++)
+        if (PlayerBase.Instance.level % 5 != 0)
         {
-            Upgrades newUpgrade = selectedUpgrades[i];
-
-            upgradePanels[i].GetComponent<UpgradePanel>().upgrade = newUpgrade;
-
-            float randNum = Random.Range(0, 1f);
-
-            if (randNum > chanceThresholds[1])
+            for (int i = 0; i < upgradePanels.Length; i++)
             {
-                upgradePanels[i].GetComponent<UpgradePanel>().SetUpgradePanel(0);
-            }
-            else if (randNum > chanceThresholds[2])
-            {
-                upgradePanels[i].GetComponent<UpgradePanel>().SetUpgradePanel(1);
-            }
-            else if (randNum > chanceThresholds[3])
-            {
-                upgradePanels[i].GetComponent<UpgradePanel>().SetUpgradePanel(2);
-            }
-            else
-            {
-                upgradePanels[i].GetComponent<UpgradePanel>().SetUpgradePanel(3);
+                Upgrades newUpgrade = selectedUpgrades[i];
+
+                upgradePanels[i].GetComponent<UpgradePanel>().upgrade = newUpgrade;
+
+                //generate a random number and check if it is above the rarity threshold
+                float randNum = Random.Range(0, 1f);
+
+
+                if (randNum > chanceThresholds[1])
+                {
+                    upgradePanels[i].GetComponent<UpgradePanel>().SetUpgradePanel(0);
+                }
+                else if (randNum > chanceThresholds[2])
+                {
+                    upgradePanels[i].GetComponent<UpgradePanel>().SetUpgradePanel(1);
+                }
+                else if (randNum > chanceThresholds[3])
+                {
+                    upgradePanels[i].GetComponent<UpgradePanel>().SetUpgradePanel(2);
+                }
+                else
+                {
+                    upgradePanels[i].GetComponent<UpgradePanel>().SetUpgradePanel(3);
+                }
+
             }
 
+        }
+        else
+        {
+            if (PlayerBase.Instance.level / 5 == 1)
+            {
+                for (int i = 0; i < upgradePanels.Length; i++)
+                {
+                    Upgrades newUpgrade = selectedUpgrades[i];
+                    upgradePanels[i].GetComponent<UpgradePanel>().upgrade = newUpgrade;
+                    upgradePanels[i].GetComponent<UpgradePanel>().SetUpgradePanel(1);
+                }
+            }
+            else if (PlayerBase.Instance.level / 5 <= 4)
+            {
+                for (int i = 0; i < upgradePanels.Length; i++)
+                {
+                    Upgrades newUpgrade = selectedUpgrades[i];
+                    upgradePanels[i].GetComponent<UpgradePanel>().upgrade = newUpgrade;
+                    upgradePanels[i].GetComponent<UpgradePanel>().SetUpgradePanel(2);
+                }
+            }
+            else if (PlayerBase.Instance.level / 5 >= 5)
+            {
+                for (int i = 0; i < upgradePanels.Length; i++)
+                {
+                    Upgrades newUpgrade = selectedUpgrades[i];
+                    upgradePanels[i].GetComponent<UpgradePanel>().upgrade = newUpgrade;
+                    upgradePanels[i].GetComponent<UpgradePanel>().SetUpgradePanel(3);
+                }
+            }
         }
     }
 
