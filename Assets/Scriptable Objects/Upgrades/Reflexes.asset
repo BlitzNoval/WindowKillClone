@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: 7
   amount: 050000000a0000000f00000014000000
+  icon: {fileID: 21300000, guid: 32701fbc2f542df468a0a7cace1007e9, type: 3}

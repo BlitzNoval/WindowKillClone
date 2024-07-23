@@ -24,6 +24,7 @@ public class UpgradePanel : MonoBehaviour
         statDescription.text = $"+{upgrade.amount[tier]} {upgrade.stats}";
         upgradeTier = tier ;
         GetComponent<Image>().color = tierColors[tier];
+        icon.sprite = upgrade.icon;
         //make icon the same
     }
     public void ChooseUpgrade()
