@@ -815,7 +815,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.5764706, g: 0.5764706, b: 0.5764706, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -849,3 +849,8 @@ MonoBehaviour:
   icon: {fileID: 2610923325117771587}
   statDescription: {fileID: 7694521142530261035}
   upgradeTier: 0
+  tierColors:
+  - {r: 0.5764706, g: 0.5764706, b: 0.5764706, a: 0.78431374}
+  - {r: 0.011764706, g: 0.4, b: 0.5372549, a: 0.78431374}
+  - {r: 0.3254902, g: 0.011764706, b: 0.5372549, a: 0.78431374}
+  - {r: 0.5372549, g: 0.023529412, b: 0.011764706, a: 0.78431374}

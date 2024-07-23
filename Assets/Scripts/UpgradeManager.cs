@@ -29,17 +29,13 @@ public class UpgradeManager : MonoBehaviour
 
     private void Start()
     {
-        CalcChanceThresholds();
-        ChooseUpgrades();
+        OpenUpgradePanel();
     }
 
-
     /// <summary>
-    /// Applys the upgrade to the player
+    /// chooses 4 upgrades when the player levels up
     /// </summary>
-    /// <param name="upgrade"> the selected upgrade</param>
-
-    public void ChooseUpgrades()
+    private void ChooseUpgrades()
     {
         Upgrades[] selectedUpgrades = RandomUpgrades();
 
@@ -102,5 +98,24 @@ public class UpgradeManager : MonoBehaviour
 
             chanceThresholds[i] = newThreshold;
         }
+    }
+
+    /// <summary>
+    /// rerolls the current upgrades
+    /// </summary>
+    /// <param name="rerollPrice"> cost of the reroll </param>
+    public void Reroll(int rerollPrice)
+    {
+        //use currency here
+        ChooseUpgrades();
+    }
+
+    /// <summary>
+    /// call this function when opening the upgrades panel
+    /// </summary>
+    public void OpenUpgradePanel()
+    {
+        CalcChanceThresholds();
+        ChooseUpgrades();
     }
 }

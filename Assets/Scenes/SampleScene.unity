@@ -1044,7 +1044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca9275431b1bb51479a326f8a911e6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 19
+  level: 10
   maxHP: 0
   HPRegen: 0
   lifeSteal: 0
@@ -1208,7 +1208,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.094735, y: -0.04736972, z: -10}
+  m_LocalPosition: {x: -6.1010838, y: -0.04736972, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1584,7 +1584,7 @@ MonoBehaviour:
   - minLevel: 7
     baseChance: 0
     chancePerLevel: 0.023
-    maxChance: 0.8
+    maxChance: 0.08
   upgrades:
   - {fileID: 11400000, guid: ca748543e9fe3214eab993de87dc5f6f, type: 2}
   - {fileID: 11400000, guid: 7214f573a2c956c4799996175f76a936, type: 2}
@@ -1607,6 +1607,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  upgradeUI: {fileID: 205289892}
 --- !u!1 &792576773
 GameObject:
   m_ObjectHideFlags: 0
@@ -1914,7 +1915,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1277340748}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.094735, y: -0.04736972, z: -10}
+  m_LocalPosition: {x: -6.1010838, y: -0.04736972, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2129,7 +2130,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1300797230}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 620107172}
+        m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
+        m_MethodName: Reroll
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1300797230
 MonoBehaviour:
   m_ObjectHideFlags: 0

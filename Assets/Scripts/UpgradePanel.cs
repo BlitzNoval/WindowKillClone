@@ -13,6 +13,7 @@ public class UpgradePanel : MonoBehaviour
     public Image icon;
     public TextMeshProUGUI statDescription;
     public int upgradeTier;
+    public Color[] tierColors = new Color[4];
 
     /// <summary>
     /// call this funciton when upgrade has been set
@@ -22,6 +23,7 @@ public class UpgradePanel : MonoBehaviour
         itemname.text = $"{upgrade.name} {tier + 1}";
         statDescription.text = $"+{upgrade.amount[tier]} {upgrade.stats}";
         upgradeTier = tier ;
+        GetComponent<Image>().color = tierColors[tier];
         //make icon the same
     }
     public void ChooseUpgrade()
