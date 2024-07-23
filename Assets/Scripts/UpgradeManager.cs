@@ -12,6 +12,19 @@ public class UpgradeManager : MonoBehaviour
     public UpgradeScale[] upgradeScales;
     public Upgrades[] upgrades;
     public float[] chanceThresholds = new float[4];
+    public GameObject upgradeUI;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
 
 
     private void Start()

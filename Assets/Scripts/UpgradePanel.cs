@@ -28,6 +28,7 @@ public class UpgradePanel : MonoBehaviour
     {
         PlayerBase.Instance.UpdateStat(upgrade.stats, upgrade.amount[upgradeTier]);
         PlayerBase.Instance.CalculateStat(upgrade.stats);
+        UpgradeManager.Instance.upgradeUI.SetActive(false);
         // go to next upgrade panel or to item store;
     }
 }
