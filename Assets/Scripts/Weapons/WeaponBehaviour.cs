@@ -68,7 +68,7 @@ public class WeaponBehaviour : MonoBehaviour
     {
         float result = 0;
         //pulling damage percentile modifier from the player stats
-        float damageStat = playerStats.c_damage;
+        float damageStat = playerStats.calcPrimaryStats.damage;
         
         //pulling weapon damage from the attached scriptableObject
         float weaponDamage = weaponData.DamagePerTier[(int)currentTier];
@@ -82,52 +82,52 @@ public class WeaponBehaviour : MonoBehaviour
             switch (scaleInstance.ScalingType)
             {
                 case Stats.MaxHP:
-                    scaleValue += playerStats.c_maxHP * scaleInstance.ScalingAmount;
+                    scaleValue += playerStats.calcPrimaryStats.maxHP * scaleInstance.ScalingAmount;
                     break;
                 case Stats.HPRegen:
-                    scaleValue += playerStats.c_HPRegen * scaleInstance.ScalingAmount;
+                    scaleValue += playerStats.calcPrimaryStats.HPRegen * scaleInstance.ScalingAmount;
                     break;
                 case Stats.LifeSteal:
-                    scaleValue += playerStats.c_lifeSteal * scaleInstance.ScalingAmount;
+                    scaleValue += playerStats.calcPrimaryStats.lifeSteal * scaleInstance.ScalingAmount;
                     break;
                 case Stats.Damage:
-                    scaleValue += playerStats.c_damage * scaleInstance.ScalingAmount;
+                    scaleValue += playerStats.calcPrimaryStats.damage * scaleInstance.ScalingAmount;
                     break;
                 case Stats.MeleeDamage:
-                    scaleValue += playerStats.c_meleeDamage * scaleInstance.ScalingAmount;
+                    scaleValue += playerStats.calcPrimaryStats.meleeDamage * scaleInstance.ScalingAmount;
                     break;
                 case Stats.RangedDamage:
-                    scaleValue += playerStats.c_rangedDamage * scaleInstance.ScalingAmount;
+                    scaleValue += playerStats.calcPrimaryStats.rangedDamage * scaleInstance.ScalingAmount;
                     break;
                 case Stats.ElementalDamage:
-                    scaleValue += playerStats.c_elementalDamage * scaleInstance.ScalingAmount;
+                    scaleValue += playerStats.calcPrimaryStats.elementalDamage * scaleInstance.ScalingAmount;
                     break;
                 case Stats.AttackSpeed:
-                    scaleValue += playerStats.c_attackSpeed * scaleInstance.ScalingAmount;
+                    scaleValue += playerStats.calcPrimaryStats.attackSpeed * scaleInstance.ScalingAmount;
                     break;
                 case Stats.CritChance:
-                    scaleValue += playerStats.c_critChance * scaleInstance.ScalingAmount;
+                    scaleValue += playerStats.calcPrimaryStats.critChance * scaleInstance.ScalingAmount;
                     break;
                 case Stats.Engineering:
-                    scaleValue += playerStats.c_engineering * scaleInstance.ScalingAmount;
+                    scaleValue += playerStats.calcPrimaryStats.engineering * scaleInstance.ScalingAmount;
                     break;
                 case Stats.Range:
-                    scaleValue += playerStats.c_range * scaleInstance.ScalingAmount;
+                    scaleValue += playerStats.calcPrimaryStats.range * scaleInstance.ScalingAmount;
                     break;
                 case Stats.Armor:
-                    scaleValue += playerStats.c_armor * scaleInstance.ScalingAmount;
+                    scaleValue += playerStats.calcPrimaryStats.armor * scaleInstance.ScalingAmount;
                     break;
                 case Stats.Dodge:
-                    scaleValue += playerStats.c_dodge * scaleInstance.ScalingAmount;
+                    scaleValue += playerStats.calcPrimaryStats.dodge * scaleInstance.ScalingAmount;
                     break;
                 case Stats.Speed:
-                    scaleValue += playerStats.c_speed * scaleInstance.ScalingAmount;
+                    scaleValue += playerStats.calcPrimaryStats.speed * scaleInstance.ScalingAmount;
                     break;
                 case Stats.Luck:
-                    scaleValue += playerStats.c_luck * scaleInstance.ScalingAmount;
+                    scaleValue += playerStats.calcPrimaryStats.luck * scaleInstance.ScalingAmount;
                     break;
                 case Stats.Harvesting:
-                    scaleValue += playerStats.c_harvesting * scaleInstance.ScalingAmount;
+                    scaleValue += playerStats.calcPrimaryStats.harvesting * scaleInstance.ScalingAmount;
                     break;
             }
         }
@@ -148,7 +148,7 @@ public class WeaponBehaviour : MonoBehaviour
         //This is a value in seconds
         float weaponSpeed = weaponData.AttackSpeedPerTier[(int)currentTier];
         //percentage modifier of base speed
-        float attackSpeedStat = playerStats.c_attackSpeed;
+        float attackSpeedStat = playerStats.calcPrimaryStats.attackSpeed;
         // There are some exceptions with changes to certain weapons etc, but because I couldn't find a sheet of which
         // weapons get what effects, they will be ignored for now
         

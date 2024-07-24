@@ -19,23 +19,11 @@ public class PlayerBase : MonoBehaviour
 
     #region Displayed Stats
     [Header("Displayed Stats")]
-    public int maxHP;
-    public int HPRegen;       //restores 1HP in n seconds
-    public int lifeSteal;     //attacks have % chance to heal 1HP (each weapon individually)
-    public int damage;          //increases all damage by 1% per damage point
-    public int meleeDamage;     //modifies base attack of melee weapons
-    public int rangedDamage;    //modifies base attack of ranged weapons
-    public int elementalDamage; //modifies base attack of elemental weapons
-    public int attackSpeed;   //attack x% faster [not to engineering turrents or mines]
-    public int critChance;    //x% increased chance to deal crit hit
-    public int engineering;     //increase the power of structures (not clear how)
-    public int range;           //max range increased by x (also increases cooldown of melee)
-    public int armor;         //reduce incoming damage by x%
-    public int dodge;         //have x% chance to dodge attacks
-    public int speed;         //move x% faster
-    public int luck;          //have x% more chance to find items/consumables on kill and increase upgrade/shop rarity
-    public int harvesting;    //You earn x materials and XP at the end of a wave. Increased by 5% every time it activates. (Rounded up
-    
+
+    public PrimaryStats primaryStats = new PrimaryStats();
+    public PrimaryStats calcPrimaryStats = new PrimaryStats();
+
+
     //Secondary Stats
     public int pierce;
     public int bounces;
@@ -43,22 +31,22 @@ public class PlayerBase : MonoBehaviour
 
     #region Calculated Stats
     [Header("Calculated Stats")]
-    public int c_maxHP;
-    public float c_HPRegen;       
-    public float c_lifeSteal;     
-    public float c_damage;          
-    public int c_meleeDamage;     
-    public int c_rangedDamage;    
-    public int c_elementalDamage; 
-    public float c_attackSpeed;
-    public float c_critChance;    
-    public int c_engineering;     
-    public int c_range;           
-    public float c_armor;         
-    public float c_dodge;         
-    public float c_speed;         
-    public float c_luck;          
-    public int c_harvesting; 
+    //public int c_maxHP;
+    //public float c_HPRegen;       
+    //public float c_lifeSteal;     
+    //public float c_damage;          
+    //public int c_meleeDamage;     
+    //public int c_rangedDamage;    
+    //public int c_elementalDamage; 
+    //public float c_attackSpeed;
+    //public float c_critChance;    
+    //public int c_engineering;     
+    //public int c_range;           
+    //public float c_armor;         
+    //public float c_dodge;         
+    //public float c_speed;         
+    //public float c_luck;          
+    //public int c_harvesting; 
     
     //Secondary Stats
     public int c_pierce;
@@ -89,52 +77,52 @@ public class PlayerBase : MonoBehaviour
         switch (stat)
         {
             case Stats.MaxHP:
-                maxHP += amount;
+                primaryStats.maxHP += amount;
                 break;
             case Stats.HPRegen:
-                HPRegen += amount;
+                primaryStats.HPRegen += amount;
                 break;
             case Stats.LifeSteal:
-                lifeSteal += amount;
+                primaryStats.lifeSteal += amount;
                 break;
             case Stats.Damage:
-                damage += amount;
+                primaryStats.damage += amount;
                 break;
             case Stats.MeleeDamage:
-                meleeDamage += amount;
+                primaryStats.meleeDamage += amount;
                 break;
             case Stats.RangedDamage:
-                rangedDamage += amount;
+                primaryStats.rangedDamage += amount;
                 break;
             case Stats.ElementalDamage:
-                elementalDamage += amount;
+                primaryStats.elementalDamage += amount;
                 break;
             case Stats.AttackSpeed:
-                attackSpeed += amount;
+                primaryStats.attackSpeed += amount;
                 break;
             case Stats.CritChance:
-                critChance += amount;
+                primaryStats.critChance += amount;
                 break;
             case Stats.Engineering:
-                engineering += amount;
+                primaryStats.engineering += amount;
                 break;
             case Stats.Range:
-                range += amount;
+                primaryStats.range += amount;
                 break;
             case Stats.Armor:
-                armor += amount;
+                primaryStats.armor += amount;
                 break;
             case Stats.Dodge:
-                dodge += amount;
+                primaryStats.dodge += amount;
                 break;
             case Stats.Speed:
-                speed += amount;
+                primaryStats.speed += amount;
                 break;
             case Stats.Luck:
-                luck += amount;
+                primaryStats.luck += amount;
                 break;
             case Stats.Harvesting:
-                harvesting += amount;
+                primaryStats.harvesting += amount;
                 break;
         }
     }
@@ -155,55 +143,116 @@ public class PlayerBase : MonoBehaviour
         switch (stat)
         {
             case Stats.MaxHP:
-                c_maxHP = maxHP; 
+                calcPrimaryStats.maxHP = primaryStats.maxHP; 
                 break;
             case Stats.HPRegen:
                 //formulas given on wiki
-                float HPEveryXSeconds = 5 / (1 + ((HPRegen - 1) / 2.25f)); 
-                c_HPRegen = 1 / HPEveryXSeconds;
+                float HPEveryXSeconds = 5 / (1 + ((primaryStats.HPRegen - 1) / 2.25f)); 
+                calcPrimaryStats.HPRegen = 1 / HPEveryXSeconds;
                 break;
             case Stats.LifeSteal:
-                c_lifeSteal = lifeSteal / 100;
+                calcPrimaryStats.lifeSteal = primaryStats.lifeSteal / 100;
                 break;
             case Stats.Damage:
-                c_damage = damage / 100;
+                calcPrimaryStats.damage = primaryStats.damage / 100;
                 break;
             case Stats.MeleeDamage:
-                c_meleeDamage = meleeDamage;
+                calcPrimaryStats.meleeDamage = primaryStats.meleeDamage;
                 break;
             case Stats.RangedDamage:
-                c_rangedDamage = rangedDamage;
+                calcPrimaryStats.rangedDamage = primaryStats.rangedDamage;
                 break;
             case Stats.ElementalDamage:
-                c_elementalDamage = elementalDamage;
+                calcPrimaryStats.elementalDamage = primaryStats.elementalDamage;
                 break;
             case Stats.AttackSpeed:
-                c_attackSpeed = attackSpeed / 100;
+                calcPrimaryStats.attackSpeed = primaryStats.attackSpeed / 100;
                 break;
             case Stats.CritChance:
-                c_critChance = critChance / 100;
+                calcPrimaryStats.critChance = primaryStats.critChance / 100;
                 break;
             case Stats.Engineering:
-                c_engineering = engineering;
+                calcPrimaryStats.engineering = primaryStats.engineering;
                 break;
             case Stats.Range:
-                c_range = range;
+                calcPrimaryStats.range = primaryStats.range;
                 break;
             case Stats.Armor:
-                c_armor = armor * 0.0667f;
+                calcPrimaryStats.armor = primaryStats.armor * 0.0667f;
                break;
             case Stats.Dodge:
-                c_dodge = dodge / 100;
+                calcPrimaryStats.dodge = primaryStats.dodge / 100;
                 break;
             case Stats.Speed:
-                c_speed = speed / 100;
+                calcPrimaryStats.speed = primaryStats.speed / 100;
                 break;
             case Stats.Luck:
-                c_luck = luck / 100;
+                calcPrimaryStats.luck = primaryStats.luck / 100;
                 break;
             case Stats.Harvesting:
-                c_harvesting = harvesting;
+                calcPrimaryStats.harvesting = primaryStats.harvesting;
                 break;
         }
     }
+}
+
+[Serializable]
+public struct PrimaryStats
+{
+    public float maxHP;
+    public float HPRegen;       //restores 1HP in n seconds
+    public float lifeSteal;     //attacks have % chance to heal 1HP (each weapon individually)
+    public float damage;          //increases all damage by 1% per damage point
+    public float meleeDamage;     //modifies base attack of melee weapons
+    public float rangedDamage;    //modifies base attack of ranged weapons
+    public float elementalDamage; //modifies base attack of elemental weapons
+    public float attackSpeed;   //attack x% faster [not to engineering turrents or mines]
+    public float critChance;    //x% increased chance to deal crit hit
+    public float engineering;     //increase the power of structures (not clear how)
+    public float range;           //max range increased by x (also increases cooldown of melee)
+    public float armor;         //reduce incoming damage by x%
+    public float dodge;         //have x% chance to dodge attacks
+    public float speed;         //move x% faster
+    public float luck;          //have x% more chance to find items/consumables on kill and increase upgrade/shop rarity
+    public float harvesting;    //You earn x materials and XP at the end of a wave. Increased by 5% every time it activates. (Rounded up)
+}
+
+[Serializable]
+public struct SecondaryStats
+{
+    public float XPGain;
+    public float explosionDamage;
+    public float explosionSize;
+    public float bounces;
+    public float piercing;
+    public float piercingDamage;
+    public float buringDamage;
+    public float burningSpeed;
+    public float buringSpread;
+    public float knockback;
+
+    public float standStill_armor;
+    public float standStill_dodge;
+    public float standStill_damage;
+
+    public float emenies_more;
+    public float emenies_less;
+    public float enemies_speed;
+    public float enemies_slow;
+
+    public float consumableHeal;
+    public float materialsHealing;
+    public float HPPerMaterial;
+
+    public float pickupRange;
+    public float trees;
+    public float materialsInCrates;
+    public float chanceForDoubleMaterials;
+    public float chanceForInstantMaterialPickup;
+    public float chanceToDamangeOnMaterialPickup;
+
+    public float itemsPrice;
+    public float freeRerolls;
+    public float itemRecyclingRewards;
+    public float materialInterestGain;
 }

@@ -22,57 +22,57 @@ public class StatCol : MonoBehaviour
         switch (stat)
         {
             case Stats.MaxHP:
-                GetStat(PlayerBase.Instance.maxHP, "Max HP");
+                GetStat(PlayerBase.Instance.primaryStats.maxHP, "Max HP");
                 break;
             case Stats.HPRegen:
-                GetStat(PlayerBase.Instance.HPRegen, "HP Regeneration");
+                GetStat(PlayerBase.Instance.primaryStats.HPRegen, "HP Regeneration");
                 break;
             case Stats.LifeSteal:
-                GetStat(PlayerBase.Instance.lifeSteal, "% Life Steal");
+                GetStat(PlayerBase.Instance.primaryStats.lifeSteal, "% Life Steal");
                 break;
             case Stats.Damage:
-                GetStat(PlayerBase.Instance.damage, "% Damage");
+                GetStat(PlayerBase.Instance.primaryStats.damage, "% Damage");
                 break;
             case Stats.MeleeDamage:                
-                GetStat(PlayerBase.Instance.meleeDamage, "Melee Damage");
+                GetStat(PlayerBase.Instance.primaryStats.meleeDamage, "Melee Damage");
                 break;
             case Stats.RangedDamage:                
-                GetStat(PlayerBase.Instance.rangedDamage, "Ranged Damage");
+                GetStat(PlayerBase.Instance.primaryStats.rangedDamage, "Ranged Damage");
                 break;
             case Stats.ElementalDamage:                
-                GetStat(PlayerBase.Instance.elementalDamage, "Elemental Damage");
+                GetStat(PlayerBase.Instance.primaryStats.elementalDamage, "Elemental Damage");
                 break;
             case Stats.AttackSpeed:                
-                GetStat(PlayerBase.Instance.attackSpeed, "% Attack Speed");
+                GetStat(PlayerBase.Instance.primaryStats.attackSpeed, "% Attack Speed");
                 break;
             case Stats.CritChance:                
-                GetStat(PlayerBase.Instance.critChance, "% Crit Chance");
+                GetStat(PlayerBase.Instance.primaryStats.critChance, "% Crit Chance");
                 break;
             case Stats.Engineering:                
-                GetStat(PlayerBase.Instance.engineering, "Engineering");
+                GetStat(PlayerBase.Instance.primaryStats.engineering, "Engineering");
                 break;
             case Stats.Range:                
-                GetStat(PlayerBase.Instance.range, "Range");
+                GetStat(PlayerBase.Instance.primaryStats.range, "Range");
                 break;
             case Stats.Armor:                
-                GetStat(PlayerBase.Instance.armor, "Armor");
+                GetStat(PlayerBase.Instance.primaryStats.armor, "Armor");
                 break;
             case Stats.Dodge:                
-                GetStat(PlayerBase.Instance.dodge, "% Dodge");
+                GetStat(PlayerBase.Instance.primaryStats.dodge, "% Dodge");
                 break;
             case Stats.Speed:                
-                GetStat(PlayerBase.Instance.speed, "% Speed");
+                GetStat(PlayerBase.Instance.primaryStats.speed, "% Speed");
                 break;
             case Stats.Luck:                
-                GetStat(PlayerBase.Instance.luck, "Luck");
+                GetStat(PlayerBase.Instance.primaryStats.luck, "Luck");
                 break;
             case Stats.Harvesting:                
-                GetStat(PlayerBase.Instance.harvesting, "Harvesting");
+                GetStat(PlayerBase.Instance.primaryStats.harvesting, "Harvesting");
                 break;
         }
     }
 
-    private void GetStat(int value, string stat)
+    private void GetStat(float value, string stat)
     {
         statValue.text = value.ToString();
         if (value > 0)
