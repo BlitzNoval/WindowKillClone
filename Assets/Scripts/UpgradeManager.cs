@@ -12,49 +12,91 @@ public class UpgradeManager : MonoBehaviour
     public UpgradeScale[] upgradeScales;
     public Upgrades[] upgrades;
     public float[] chanceThresholds = new float[4];
+    public GameObject upgradeUI;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
 
 
     private void Start()
     {
-        CalcChanceThresholds();
-        ChooseUpgrades();
+        OpenUpgradePanel();
     }
 
-
     /// <summary>
-    /// Applys the upgrade to the player
+    /// chooses 4 upgrades when the player levels up
     /// </summary>
-    /// <param name="upgrade"> the selected upgrade</param>
-
-    public void ChooseUpgrades()
+    private void ChooseUpgrades()
     {
         Upgrades[] selectedUpgrades = RandomUpgrades();
 
+        if (PlayerBase.Instance.level % 5 != 0)
+        {
+            for (int i = 0; i < upgradePanels.Length; i++)
+            {
+                Upgrades newUpgrade = selectedUpgrades[i];
+
+                upgradePanels[i].GetComponent<UpgradePanel>().upgrade = newUpgrade;
+
+                //generate a random number and check if it is above the rarity threshold
+                float randNum = Random.Range(0, 1f);
+
+                if (randNum > chanceThresholds[1])
+                {
+                    upgradePanels[i].GetComponent<UpgradePanel>().SetUpgradePanel(0);
+                }
+                else if (randNum > chanceThresholds[2])
+                {
+                    upgradePanels[i].GetComponent<UpgradePanel>().SetUpgradePanel(1);
+                }
+                else if (randNum > chanceThresholds[3])
+                {
+                    upgradePanels[i].GetComponent<UpgradePanel>().SetUpgradePanel(2);
+                }
+                else
+                {
+                    upgradePanels[i].GetComponent<UpgradePanel>().SetUpgradePanel(3);
+                }
+            }
+        }
+        else
+        {
+            if (PlayerBase.Instance.level / 5 == 1)
+            {
+                SetUpgradesToSameRarity(selectedUpgrades, 1);
+            }
+            else if (PlayerBase.Instance.level / 5 <= 4)
+            {
+                SetUpgradesToSameRarity(selectedUpgrades, 2);
+            }
+            else if (PlayerBase.Instance.level / 5 >= 5)
+            {
+                SetUpgradesToSameRarity(selectedUpgrades, 3);
+            }
+        }
+    }
+
+    /// <summary>
+    /// sets all the upgrades to the smae tier to match the games rarity guarentee table
+    /// </summary>
+    /// <param name="selectedUpgrades"> the array of selects upgrades </param>
+    /// <param name="tier"> the tier you want the upgrades to be -1 </param>
+    private void SetUpgradesToSameRarity(Upgrades[] selectedUpgrades, int tier)
+    {
         for (int i = 0; i < upgradePanels.Length; i++)
         {
             Upgrades newUpgrade = selectedUpgrades[i];
-
             upgradePanels[i].GetComponent<UpgradePanel>().upgrade = newUpgrade;
-
-            float randNum = Random.Range(0, 1f);
-
-            if (randNum > chanceThresholds[1])
-            {
-                upgradePanels[i].GetComponent<UpgradePanel>().SetUpgradePanel(0);
-            }
-            else if (randNum > chanceThresholds[2])
-            {
-                upgradePanels[i].GetComponent<UpgradePanel>().SetUpgradePanel(1);
-            }
-            else if (randNum > chanceThresholds[3])
-            {
-                upgradePanels[i].GetComponent<UpgradePanel>().SetUpgradePanel(2);
-            }
-            else
-            {
-                upgradePanels[i].GetComponent<UpgradePanel>().SetUpgradePanel(3);
-            }
-
+            upgradePanels[i].GetComponent<UpgradePanel>().SetUpgradePanel(tier);
         }
     }
 
@@ -89,5 +131,24 @@ public class UpgradeManager : MonoBehaviour
 
             chanceThresholds[i] = newThreshold;
         }
+    }
+
+    /// <summary>
+    /// rerolls the current upgrades
+    /// </summary>
+    /// <param name="rerollPrice"> cost of the reroll </param>
+    public void Reroll(int rerollPrice)
+    {
+        //use currency here
+        ChooseUpgrades();
+    }
+
+    /// <summary>
+    /// call this function when opening the upgrades panel
+    /// </summary>
+    public void OpenUpgradePanel()
+    {
+        CalcChanceThresholds();
+        ChooseUpgrades();
     }
 }

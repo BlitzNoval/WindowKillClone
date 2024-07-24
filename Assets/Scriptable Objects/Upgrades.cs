@@ -8,4 +8,5 @@ public class Upgrades : ScriptableObject
 {
     public Stats stats;
     public int[] amount = new int[4];
+    public Sprite icon;
 }
