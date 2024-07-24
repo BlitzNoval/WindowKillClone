@@ -35,6 +35,10 @@ public class PlayerResources : MonoBehaviour
 
     public void DamagePlayer(int damage)
     {
+        float randNum = Random.Range(0, 1f);
+
+        //dodge chance
+
         health -= damage;
         //cool maths stuff with armor;
 
@@ -43,6 +47,7 @@ public class PlayerResources : MonoBehaviour
             //player dies
         }
     }
+
 
     #endregion
 
