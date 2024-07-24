@@ -1,3 +1,4 @@
+using System;
 using Enums;
 using System.Collections;
 using System.Collections.Generic;
@@ -30,6 +31,10 @@ public class PlayerBase : MonoBehaviour
     public int speed;         //move x% faster
     public int luck;          //have x% more chance to find items/consumables on kill and increase upgrade/shop rarity
     public int harvesting;    //You earn x materials and XP at the end of a wave. Increased by 5% every time it activates. (Rounded up
+    
+    //Secondary Stats
+    public int pierce;
+    public int bounces;
     #endregion
 
     #region Calculated Stats
@@ -49,7 +54,11 @@ public class PlayerBase : MonoBehaviour
     public float c_dodge;         
     public float c_speed;         
     public float c_luck;          
-    public int c_harvesting;    
+    public int c_harvesting; 
+    
+    //Secondary Stats
+    public int c_pierce;
+    public int c_bounces;
     #endregion
 
     private void Awake()
@@ -123,6 +132,13 @@ public class PlayerBase : MonoBehaviour
                 harvesting += amount;
                 break;
         }
+    }
+    
+    //Function overload for secondary stats
+    //todo: implement overload for calculation as well
+    public void UpdateStat(SecondaryStats stat, int amount)
+    {
+        
     }
 
     /// <summary>

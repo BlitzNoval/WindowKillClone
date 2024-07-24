@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7050416459993023637}
   m_Layer: 7
   m_Name: EnemyMedium
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,12 +148,4 @@ MonoBehaviour:
     maxHealth: 0
     speed: 0
     damage: 0
-    attackRange: 0
-    attackCooldown: 0
     behavior: 1
-    chargeDelay: 0
-    chargeRange: 0
-    chargeSpeed: 0
-    chargeDuration: 0
-    patrolRadius: 0
-    patrolSpeed: 0

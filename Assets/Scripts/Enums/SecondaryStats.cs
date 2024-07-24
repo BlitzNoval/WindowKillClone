@@ -1,0 +1,35 @@
+namespace Enums
+{
+    public enum SecondaryStats
+    {
+        XPGain,
+        ExplosionDamage,
+        ExplosionSize,
+        Bounces,
+        Piercing,
+        PiercingDamage,
+        BurningSpeed,
+        BurningSpread,
+        Knockback,
+        StandStillArmor,
+        StandStillDodge,
+        StandStillDamage,
+        PlusEnemies,
+        MinusEnemies,
+        PlusEnemySpeed,
+        MinusEnemySpeed,
+        ConsumableHeal,
+        MaterialsHealing,
+        HPPerMaterials,
+        PickupRange,
+        Trees,
+        CrateMaterials,
+        DoubleMatChance,
+        InstantMatChance,
+        DamageMatChance,
+        ItemPrice,
+        FreeRerolls,
+        ItemCyclingRewards,
+        MaterialsInterest
+    }
+}
