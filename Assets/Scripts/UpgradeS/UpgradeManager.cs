@@ -126,7 +126,7 @@ public class UpgradeManager : MonoBehaviour
             float chancePerLevel = upgradeScales[i].chancePerLevel;
             float maxChance = upgradeScales[i].maxChance;
 
-            float newThreshold = ((chancePerLevel * (PlayerBase.Instance.level - minLevel)) + baseChance) * (1 + PlayerBase.Instance.luck / 100);
+            float newThreshold = ((chancePerLevel * (PlayerBase.Instance.level - minLevel)) + baseChance) * (1 + PlayerBase.Instance.primaryStats.luck / 100);
             newThreshold = Mathf.Clamp(newThreshold, 0, maxChance);
 
             chanceThresholds[i] = newThreshold;
