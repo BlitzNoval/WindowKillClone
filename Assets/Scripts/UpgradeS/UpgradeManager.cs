@@ -39,7 +39,7 @@ public class UpgradeManager : MonoBehaviour
     {
         Upgrades[] selectedUpgrades = RandomUpgrades();
 
-        if (PlayerBase.Instance.level % 5 != 0)
+        if (PlayerResources.Instance.level % 5 != 0)
         {
             for (int i = 0; i < upgradePanels.Length; i++)
             {
@@ -70,15 +70,15 @@ public class UpgradeManager : MonoBehaviour
         }
         else
         {
-            if (PlayerBase.Instance.level / 5 == 1)
+            if (PlayerResources.Instance.level / 5 == 1)
             {
                 SetUpgradesToSameRarity(selectedUpgrades, 1);
             }
-            else if (PlayerBase.Instance.level / 5 <= 4)
+            else if (PlayerResources.Instance.level / 5 <= 4)
             {
                 SetUpgradesToSameRarity(selectedUpgrades, 2);
             }
-            else if (PlayerBase.Instance.level / 5 >= 5)
+            else if (PlayerResources.Instance.level / 5 >= 5)
             {
                 SetUpgradesToSameRarity(selectedUpgrades, 3);
             }
@@ -126,7 +126,7 @@ public class UpgradeManager : MonoBehaviour
             float chancePerLevel = upgradeScales[i].chancePerLevel;
             float maxChance = upgradeScales[i].maxChance;
 
-            float newThreshold = ((chancePerLevel * (PlayerBase.Instance.level - minLevel)) + baseChance) * (1 + PlayerBase.Instance.primaryStats.luck / 100);
+            float newThreshold = ((chancePerLevel * (PlayerResources.Instance.level - minLevel)) + baseChance) * (1 + PlayerBase.Instance.primaryStats.luck / 100);
             newThreshold = Mathf.Clamp(newThreshold, 0, maxChance);
 
             chanceThresholds[i] = newThreshold;

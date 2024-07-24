@@ -9,8 +9,6 @@ public class PlayerBase : MonoBehaviour
     //singleton for stat logic
     public static PlayerBase Instance { get; private set; }
 
-    public int level;
-
     #region Icons
     public Sprite[] icons;
     #endregion
