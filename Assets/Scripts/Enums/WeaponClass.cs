@@ -6,9 +6,10 @@ namespace Enums
     
     //implemented as a binary sequence for multiple flag handling - can check each flag with bitwise operations
     //add multiple flags with binary OR (|)
-    //check a state with binary AND (&) operation against what you're checking for: currentstate & CarState.Grounded == Carstate.Grounded
-    //Remove a state with an inverted AND operation: currentstate = currentstate & ~Carstate.Grounded (or currentstate &= ~Carstate.Grounded)
-    //Add a state with an OR operation: currentstate = currentstate | Carstate.Grounded (or currentstate |= Carstate.grounded)
+    //check a state with binary AND (&) operation against what you're checking for: currentWeaponClass & WeaponClass.Blunt == WeaponClass.Blunt
+    //Remove a state with an inverted AND operation: currentWeaponClass = currentWeaponClass & ~WeaponClass.Blunt (or currentWeaponClass &= ~WeaponClass.Blunt)
+    //Add a state with an OR operation: currentWeaponClass = currentWeaponClass | WeaponClass.Blunt (or currentWeaponClass |= WeaponClass.Blunt)
+    //can have a max of 32 flags
     [Flags]
     public enum WeaponClass
     {

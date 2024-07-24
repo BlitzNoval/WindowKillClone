@@ -40,6 +40,8 @@ public class Weapon : ScriptableObject
     [SerializeField] private WeaponType weaponType;
     [SerializeField] private WeaponClass weaponClass;
     [SerializeField] private AttackType attackType;
+    //[SerializeField] private ActivePassive secondaryEffectType;
+    //[SerializeField] private bool hasSecondaryEffect;
     //[SerializeField] private WeaponTier weaponTier;
     [SerializeField] private float[] damagePerTier;
     [SerializeField] private StatScalingTier[] scalingPerTier;
@@ -50,6 +52,10 @@ public class Weapon : ScriptableObject
     [SerializeField] private float[] knockbackPerTier;
     [SerializeField] private float[] lifestealPerTier;
     [SerializeField] private int[] basePricePerTier;
+
+    //public bool HasSecondaryEffect => hasSecondaryEffect;
+
+    //public ActivePassive SecondaryEffectType => secondaryEffectType;
 
     public WeaponType WeaponType => weaponType;
 
