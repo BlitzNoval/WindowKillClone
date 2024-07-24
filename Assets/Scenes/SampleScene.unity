@@ -274,9 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnIndicatorPrefab: {fileID: 2641896467684339711, guid: a77e6a86f6113aa4ca12ef49a084fe94, type: 3}
   enemiesToSpawn:
-  - {fileID: 7998002414108195795, guid: 426a0bdca9ec59b4aa0393eb70325e2e, type: 3}
-  - {fileID: 5698764692258863881, guid: 2eed82ae0f99cc84491d3e111c51777f, type: 3}
-  - {fileID: 2045365572302486287, guid: 5ca5989d3387d034e9fff47cca3377ce, type: 3}
+  - {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
   spawnSpeed: 1
   spawnAmount: 2
   playableAreaSpriteRenderer: {fileID: 792576775}
@@ -2208,6 +2206,7 @@ GameObject:
   - component: {fileID: 518050546}
   - component: {fileID: 518050548}
   - component: {fileID: 518050549}
+  - component: {fileID: 518050550}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2404,7 +2403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icons: []
   primaryStats:
-    maxHP: 0
+    maxHP: 1
     HPRegen: 0
     lifeSteal: 0
     damage: 0
@@ -2441,6 +2440,27 @@ MonoBehaviour:
   bounces: 0
   c_pierce: 0
   c_bounces: 0
+--- !u!114 &518050550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518050542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: add2724a8a409fe47be791402063a0d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 2147483647
+  maxHealth: 0
+  level: 0
+  levelUp: 0
+  experience: 0
+  experienceRequired: 0
+  materials: 0
+  baggedMaterials: 0
+  lootBoxes: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3071,7 +3091,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 620107170}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49972aaa05696994980f2fdc939b5a58, type: 3}
   m_Name: 
@@ -3116,10 +3136,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0ce0f3f2b6fffb64aab74263c58a42dc, type: 2}
   - {fileID: 11400000, guid: 6ee7c2b35e1fad04297483681895a9b2, type: 2}
   chanceThresholds:
-  - 0
-  - 0
-  - 0
-  - 0
+  - 1
+  - 1
+  - 1
+  - 1
   upgradeUI: {fileID: 205289892}
 --- !u!1 &642366265
 GameObject:
@@ -3156,7 +3176,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: 0, y: -0.000017166}
+  m_AnchoredPosition: {x: 0, y: -0.000017166138}
   m_SizeDelta: {x: 0, y: 21.57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &642366267
