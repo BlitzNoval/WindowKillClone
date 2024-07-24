@@ -10,6 +10,10 @@ public class PlayerBase : MonoBehaviour
 
     public int level;
 
+    #region Icons
+    public Sprite[] icons;
+    #endregion
+
     [Space(10)]
 
     #region Displayed Stats
@@ -49,8 +53,9 @@ public class PlayerBase : MonoBehaviour
     public float c_dodge;         
     public float c_speed;         
     public float c_luck;          
-    public int c_harvesting;    
+    public int c_harvesting;
     #endregion
+
 
     private void Awake()
     {

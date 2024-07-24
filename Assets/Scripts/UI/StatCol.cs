@@ -11,6 +11,8 @@ public class StatCol : MonoBehaviour
     public Image icon;
     public TextMeshProUGUI statName;
     public TextMeshProUGUI statValue;
+
+    public Color[] textColour;
     
     /// <summary>
     /// Set the stat after each purchase or upgrade
@@ -73,6 +75,18 @@ public class StatCol : MonoBehaviour
     private void GetStat(int value, string stat)
     {
         statValue.text = value.ToString();
+        if (value > 0)
+        {
+            statValue.color = textColour[0];
+        }
+        else if (value < 0)
+        {
+            statValue.color = textColour[1];
+        }
+        else
+        {
+            statValue.color = textColour[2];
+        }
         statName.text = stat;
         //add the icon here
     }
