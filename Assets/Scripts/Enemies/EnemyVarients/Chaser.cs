@@ -1,9 +1,11 @@
 using UnityEngine;
 
-public class BabyAlien : MonoBehaviour
+public class Chaser : MonoBehaviour
 {
-    public float speed = 3.5f;       // Speed of the Baby Alien
-    public int health = 1;           // Health of the Baby Alien
+    public float minSpeed = 3.5f;    // Minimum speed of the Chaser
+    public float maxSpeed = 4.5f;    // Maximum speed of the Chaser
+    private float speed;             // Actual speed of the Chaser
+    public int health = 1;           // Health of the Chaser
     public int damage = 1;           // Damage dealt to the player
 
     public GameObject dropObject;   // Object to be dropped on death
@@ -15,6 +17,9 @@ public class BabyAlien : MonoBehaviour
 
     void Start()
     {
+        // Assign a random speed within the specified range
+        speed = Random.Range(minSpeed, maxSpeed);
+
         // Find the player and get the PlayerResources component
         player = GameObject.FindGameObjectWithTag("Player").transform;
         playerResources = PlayerResources.Instance;
@@ -42,7 +47,7 @@ public class BabyAlien : MonoBehaviour
             }
         }
 
-        // Check Baby Alien health
+        // Check Chaser health
         if (health <= 0)
         {
             Die();
@@ -51,7 +56,7 @@ public class BabyAlien : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Check if the Baby Alien collided with the player
+        // Check if the Chaser collided with the player
         if (collision.gameObject.CompareTag("Player"))
         {
             // Calculate damage to the player
@@ -59,7 +64,7 @@ public class BabyAlien : MonoBehaviour
             playerResources.DamagePlayer(damage);
 
             // Log to the console
-            Debug.Log($"Player hit by Baby Alien. Player health before: {playerHealthBefore}, after: {playerResources.health}");
+            Debug.Log($"Player hit by Chaser. Player health before: {playerHealthBefore}, after: {playerResources.health}");
 
             // Destroy the player if health is below or equal to 0
             if (playerResources.health <= 0)
@@ -77,13 +82,13 @@ public class BabyAlien : MonoBehaviour
 
     private void Die()
     {
-        // Check if the Baby Alien should drop an object
+        // Check if the Chaser should drop an object
         if (dropObject != null && Random.value <= dropRate / 100f)
         {
             Instantiate(dropObject, transform.position, Quaternion.identity);
         }
 
-        // Destroy the Baby Alien
+        // Destroy the Chaser
         Destroy(gameObject);
     }
 }

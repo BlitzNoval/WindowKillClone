@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 8417203645576171056}
   - component: {fileID: 4654883771038039022}
   - component: {fileID: 196614829533663813}
-  - component: {fileID: 5467335405681655579}
   - component: {fileID: -4804423623575567569}
+  - component: {fileID: 1322476441582556051}
   m_Layer: 7
-  m_Name: BabyAlien
+  m_Name: Chaser
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4654883771038039022
 SpriteRenderer:
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 85e413cb504d1ec44b1e0cfdb2960972, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a4c72abf0df2c2246b73074a97f3e57c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -123,7 +123,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.275, y: 3.75}
+    oldSize: {x: 3.75, y: 3.45}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -132,23 +132,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5467335405681655579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7802492558257095922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 659913159ad586e4385d7478da3e38d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  health: 3
-  damage: 1
-  dropObject: {fileID: 4214800325226193104, guid: fbe4453a278e5c7429a3cf5ff915aae7, type: 3}
-  dropRate: 100
 --- !u!50 &-4804423623575567569
 Rigidbody2D:
   serializedVersion: 4
@@ -176,3 +159,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &1322476441582556051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7802492558257095922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7018f4f4b5ab48468a0e99061ba3772, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minSpeed: 10
+  maxSpeed: 12
+  health: 1
+  damage: 1
+  dropObject: {fileID: 4214800325226193104, guid: fbe4453a278e5c7429a3cf5ff915aae7, type: 3}
+  dropRate: 100

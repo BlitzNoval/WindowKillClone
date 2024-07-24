@@ -275,6 +275,8 @@ MonoBehaviour:
   spawnIndicatorPrefab: {fileID: 2641896467684339711, guid: a77e6a86f6113aa4ca12ef49a084fe94, type: 3}
   enemiesToSpawn:
   - {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
+  - {fileID: 7802492558257095922, guid: cef5397c36a36ee4282ce3c6421724e2, type: 3}
+  - {fileID: 7802492558257095922, guid: 3f23babe6a4794b4da835c8d63f7849e, type: 3}
   spawnSpeed: 1
   spawnAmount: 2
   playableAreaSpriteRenderer: {fileID: 792576775}
@@ -3413,7 +3415,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: aa92441471def244daf45049c4231b02, type: 3}
   m_Color: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 1}
   m_FlipX: 0
@@ -4737,7 +4739,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -3
   m_Sprite: {fileID: 21300000, guid: aa92441471def244daf45049c4231b02, type: 3}
   m_Color: {r: 0.3773585, g: 0.330119, b: 0.2723389, a: 0.5882353}
   m_FlipX: 0
