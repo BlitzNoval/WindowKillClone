@@ -160,7 +160,7 @@ public class WeaponBehaviour : MonoBehaviour
     {
         float result = 0;
         //pulling range percentile modifier from the player stats
-        float rangeStat = playerStats.c_range;
+        float rangeStat = playerStats.calcPrimaryStats.range;
         
         //pulling weapon damage from the attached scriptableObject
         float weaponDamage = weaponData.RangePerTier[(int)currentTier];
@@ -206,6 +206,11 @@ public class WeaponBehaviour : MonoBehaviour
         waitTime = weaponSpeed / modifiedSpeed;
         yield return new WaitForSeconds(waitTime);
         canAttack = true;
+    }
+    
+    public void TriggerShootEffect(Vector2 dir)
+    {
+        thisShootingEffect?.Invoke(dir);
     }
 
     public void TriggerSecondaryEffect()

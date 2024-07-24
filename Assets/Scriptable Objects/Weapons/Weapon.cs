@@ -43,20 +43,25 @@ public class Weapon : ScriptableObject
     //[SerializeField] private ActivePassive secondaryEffectType;
     //[SerializeField] private bool hasSecondaryEffect;
     //[SerializeField] private WeaponTier weaponTier;
-    [SerializeField] private float[] damagePerTier;
-    [SerializeField] private StatScalingTier[] scalingPerTier;
-    [SerializeField] private float[] attackSpeedPerTier;
-    [SerializeField] private float[] critDamagePerTier;
-    [SerializeField] private float[] critChancePerTier;
-    [SerializeField] private float[] rangePerTier;
-    [SerializeField] private float[] knockbackPerTier;
-    [SerializeField] private float[] lifestealPerTier;
-    [SerializeField] private int[] basePricePerTier;
-    [SerializeField] private int[] piercePerTier;
-
+    [SerializeField] private float[] damagePerTier = new float[4];
+    [SerializeField] private StatScalingTier[] scalingPerTier = new StatScalingTier[4];
+    [SerializeField] private float[] attackSpeedPerTier = new float[4];
+    [SerializeField] private float[] critDamagePerTier = new float[4];
+    [SerializeField] private float[] critChancePerTier = new float[4];
+    [SerializeField] private float[] rangePerTier = new float[4];
+    [SerializeField] private float[] knockbackPerTier = new float[4];
+    [SerializeField] private float[] lifestealPerTier = new float[4];
+    [SerializeField] private int[] basePricePerTier = new int[4];
+    
+    [Header("Ranged Weapons")]
+    [SerializeField] private int[] numberOfProjectilesPerTier = new int[4];
+    [SerializeField] private int[] piercePerTier = new int[4];
+    
     //public bool HasSecondaryEffect => hasSecondaryEffect;
 
     //public ActivePassive SecondaryEffectType => secondaryEffectType;
+
+    public int[] NumberOfProjectilesPerTier => numberOfProjectilesPerTier;
 
     public WeaponType WeaponType => weaponType;
 
