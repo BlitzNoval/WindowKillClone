@@ -9,7 +9,9 @@ public class WeaponBehaviour : MonoBehaviour
     [Header("Setup")]
     [SerializeField] private PlayerBase playerStats;
     [SerializeField] private Weapon weaponData;
-
+    [SerializeField] private float debugRangeMultiplier;
+    public static float weaponRangeMultiplier = 1;
+    
     [Header("Watchers")] 
     [SerializeField] private WeaponTier currentTier;
 
@@ -150,7 +152,42 @@ public class WeaponBehaviour : MonoBehaviour
         result = weaponDamage * (1 + damageStat/100);
         return result;
     }
+    
+    /// <summary>
+    /// Method used to get the range of a weapon as it attacks
+    /// </summary>
+    public float CalculateRange()
+    {
+        float result = 0;
+        //pulling range percentile modifier from the player stats
+        float rangeStat = playerStats.c_range;
+        
+        //pulling weapon damage from the attached scriptableObject
+        float weaponDamage = weaponData.RangePerTier[(int)currentTier];
+        
+        //multiplying weapon range by the percentage of the range stat
+        result = weaponDamage * (1 + rangeStat/100);
 
+        if (UnityEngine.Debug.isDebugBuild)
+        {
+            result *= debugRangeMultiplier;
+        }
+        else
+        {
+            result *= weaponRangeMultiplier;
+        }
+        return result;
+    }
+
+    /// <summary>
+    /// Method used to get the range of a weapon as it attacks
+    /// </summary>
+    public int CalculatePierce()
+    {
+        int pierceStat = playerStats.c_pierce;
+        int weaponPierce = weaponData.PiercePerTier[(int)currentTier];
+        return weaponPierce + pierceStat;
+    }
     /// <summary>
     /// Cooldown timer method
     /// </summary>

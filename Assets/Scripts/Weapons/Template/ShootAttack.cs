@@ -29,10 +29,15 @@ public class ShootAttack : ShootingSuperclass
             {
                 throw new UnassignedReferenceException(
                     $"The bullet prefab attached to {parentBehaviour.gameObject} has no projectile behaviour script");
-                return;
             }
+            
             //Putting in the information the bullet needs
-
+            projBehaviour.damage = damage;
+            projBehaviour.maxPierce = parentBehaviour.CalculatePierce();
+            projBehaviour.maxRange = parentBehaviour.CalculateRange();
+            
+            //assigning speed to the bullet
+            newProj.GetComponent<Rigidbody2D>().AddForce(direction*projectileSpeed, ForceMode2D.Impulse);
         }
     }
 }

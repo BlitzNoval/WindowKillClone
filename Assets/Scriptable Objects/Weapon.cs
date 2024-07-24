@@ -52,6 +52,7 @@ public class Weapon : ScriptableObject
     [SerializeField] private float[] knockbackPerTier;
     [SerializeField] private float[] lifestealPerTier;
     [SerializeField] private int[] basePricePerTier;
+    [SerializeField] private int[] piercePerTier;
 
     //public bool HasSecondaryEffect => hasSecondaryEffect;
 
@@ -82,4 +83,6 @@ public class Weapon : ScriptableObject
     public float[] LifestealPerTier => lifestealPerTier;
 
     public int[] BasePricePerTier => basePricePerTier;
+
+    public int[] PiercePerTier => piercePerTier;
 }
