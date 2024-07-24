@@ -23,7 +23,7 @@ public class WeaponBehaviour : MonoBehaviour
 
     public delegate void SecondaryEffect();
 
-    public delegate void ShootingEffect();
+    public delegate void ShootingEffect(Vector2 direction);
 
     [SerializeField] private ShootingEffect thisShootingEffect;
     [SerializeField] private SecondaryEffect thisSecondaryEffect;
@@ -39,7 +39,19 @@ public class WeaponBehaviour : MonoBehaviour
         get => thisSecondaryEffect;
         set => thisSecondaryEffect = value;
     }
-    
+
+    public PlayerBase PlayerStats
+    {
+        get => playerStats;
+        set => playerStats = value;
+    }
+
+    public Weapon WeaponData
+    {
+        get => weaponData;
+        set => weaponData = value;
+    }
+
     void Start()
     {
         playerStats = GameObject.FindWithTag("Player").GetComponent<PlayerBase>();
@@ -64,7 +76,7 @@ public class WeaponBehaviour : MonoBehaviour
     /// <summary>
     /// Method used to get the damage of a weapon as it attacks
     /// </summary>
-    private float CalculateDamage()
+    public float CalculateDamage()
     {
         float result = 0;
         //pulling damage percentile modifier from the player stats
@@ -157,5 +169,10 @@ public class WeaponBehaviour : MonoBehaviour
         waitTime = weaponSpeed / modifiedSpeed;
         yield return new WaitForSeconds(waitTime);
         canAttack = true;
+    }
+
+    public void TriggerSecondaryEffect()
+    {
+        thisSecondaryEffect?.Invoke();
     }
 }
