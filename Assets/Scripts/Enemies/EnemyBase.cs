@@ -1,23 +1,78 @@
 using UnityEngine;
-using System.Collections;
 
 public abstract class Enemy : MonoBehaviour
 {
     public float health;
     public float speed;
     public float damage;
-    public float hpIncreasePerWave;
-    public float damageIncreasePerWave;
+    public GameObject dropObject;
+    [Range(0, 100)] public float dropRate = 100f;
+
+    protected Transform player;
+    protected PlayerResources playerResources;
+    protected SpriteRenderer spriteRenderer;
 
     protected virtual void Start()
     {
-        // Initialize enemy stats or other common logic
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        playerResources = PlayerResources.Instance;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     protected virtual void Update()
     {
-        // Common update logic for all enemies
+        if (health <= 0)
+        {
+            Die();
+        }
     }
 
-    public abstract void PerformBehavior();
+    public void TakeDamage(float amount) //MAKE A VIRTUAL CLASS IF IT NEEDS TO BE OVERRIDDEN
+    {
+        health -= amount;
+    }
+
+    protected virtual void Die()
+    {
+        if (dropObject != null && Random.value <= dropRate / 100f)
+        {
+            Instantiate(dropObject, transform.position, Quaternion.identity);
+        }
+        Destroy(gameObject);
+    }
+
+    protected void FlipSprite(Vector3 direction)
+    {
+        if (direction.x > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if (direction.x < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+    }
+
+    protected void MoveTowardsPlayer()
+    {
+        Vector3 direction = (player.position - transform.position).normalized;
+        transform.position += direction * speed * Time.deltaTime;
+        FlipSprite(direction);
+    }
+
+    protected void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            int playerHealthBefore = playerResources.health;
+            playerResources.DamagePlayer(Mathf.RoundToInt(damage)); // Convert float damage to int
+            Debug.Log($"Player hit by {gameObject.name}. Player health before: {playerHealthBefore}, after: {playerResources.health}");
+
+            if (playerResources.health <= 0)
+            {
+                Debug.Log("Player has died.");
+                Destroy(collision.gameObject);
+            }
+        }
+    }
 }

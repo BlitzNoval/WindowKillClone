@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4797150893331768604}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.63, y: 0.11, z: 0}
+  m_LocalPosition: {x: 1.93, y: 0.68, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -203,7 +203,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03b4ee70c4359af469fa0cdb37e6ec5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8
+  health: 8
+  speed: 5
+  damage: 5
+  dropObject: {fileID: 4214800325226193104, guid: fbe4453a278e5c7429a3cf5ff915aae7, type: 3}
+  dropRate: 100
   runAwaySpeed: 10
   stopDistance: 5
   runAwayDistance: 14
@@ -211,6 +215,5 @@ MonoBehaviour:
   projectilePrefab: {fileID: 3996430138256230750, guid: cfcd0dbe7d7c0d042b9e4b4d312721ea, type: 3}
   fireRate: 6
   firePoint: {fileID: 1577942457304280931}
-  health: 8
-  dropObject: {fileID: 4214800325226193104, guid: fbe4453a278e5c7429a3cf5ff915aae7, type: 3}
-  dropRate: 100
+  warningDuration: 0.25
+  warningFlashes: 2

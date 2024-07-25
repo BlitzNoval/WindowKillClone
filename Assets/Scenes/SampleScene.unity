@@ -277,6 +277,7 @@ MonoBehaviour:
   - {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
   - {fileID: 7802492558257095922, guid: cef5397c36a36ee4282ce3c6421724e2, type: 3}
   - {fileID: 7802492558257095922, guid: 3f23babe6a4794b4da835c8d63f7849e, type: 3}
+  - {fileID: 7802492558257095922, guid: 6c35f644046ef0d40be4c88cd4a1dac5, type: 3}
   spawnSpeed: 1
   spawnAmount: 2
   playableAreaSpriteRenderer: {fileID: 792576775}
@@ -2394,7 +2395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: add2724a8a409fe47be791402063a0d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2147483647
+  health: 15
   maxHealth: 0
   level: 0
   levelUp: 0
@@ -6539,6 +6540,7 @@ MonoBehaviour:
   MexHelt: 5
   maxHealthTxt: {fileID: 1665516875}
   crntLvl: {fileID: 397866418}
+  ishu: 0
   healthSlider: {fileID: 468233729}
 --- !u!1 &1724391951
 GameObject:
