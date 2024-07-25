@@ -8,9 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class LubaUI : MonoBehaviour
 {
-    // Just Need To Add playerResources script and assign it in inspector
-    public int healt;
-    public int MexHelt;
+    public int health;
+    public int MaxHealt;
 
     public TMP_Text maxHealthTxt;
     public TMP_Text crntLvl;
@@ -22,12 +21,21 @@ public class LubaUI : MonoBehaviour
 
     private PlayerResources playerResources;
 
+    //Lose Panel
+    public GameObject runPanel;
+
+    //
+    public GameObject pauseMenu;
+
+
+    // 
+
     void Start()
     {
         playerResources = PlayerResources.Instance;
         if (playerResources != null)
         {
-            Debug.Log("It is not Null");
+            Debug.Log("PLayer Instance Found");
         }
         else
         {
@@ -35,39 +43,49 @@ public class LubaUI : MonoBehaviour
         }
 
 
-        //Link Jay-Lee's Values Max Health Values to values of SLiders
-        //For now I used local values for testing
+        healthSlider.maxValue = MaxHealt;
+        healthSlider.value = health;
 
+        pauseMenu.SetActive(false);
 
-
-        healt = MexHelt;
-
-
-
-        healthSlider.maxValue = MexHelt;
-        healthSlider.value = healt;
-        /*  healthSlider.maxValue = playerResources.maxHealth;
-          healthSlider.value = playerResources.health;*/
-
-      //  Debug.Log(PlayerResources.Instance.maxHealth);
     }
 
 
     void Update()
     {
-        //   playerResources = GetComponent<PlayerResources>();
 
-        healthSlider.value = healt;
+        MaxHealt = playerResources.maxHealth;
+        health = playerResources.health;
 
-        maxHealthTxt.text = healt.ToString() + "/" + MexHelt.ToString();
+        healthSlider.maxValue = MaxHealt;
+        healthSlider.value = health;
 
-      // ishu = PlayerResources.Instance.maxHealth;
+        // Health Bar Text
 
-       // Debug.Log(ishu);
+        maxHealthTxt.text = health.ToString(); //+ "/" + MexHelt.ToString();  // For ACtual Game Health Bar Txt
 
+      
+        //LVL Text
+          crntLvl.text = "LV." + playerResources.level.ToString();
 
-        //   crntLvl.text = "LV." + playerResources.level.ToString();
+        if(health<=0)
+        {
+            runPanel.SetActive(true);
+            //Other Lose Panel Logic
+        }
 
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        pauseMenu.SetActive(true);
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1;
+        pauseMenu.SetActive(false);
     }
 
 
