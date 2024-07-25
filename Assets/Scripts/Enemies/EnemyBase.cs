@@ -65,7 +65,9 @@ public abstract class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             int playerHealthBefore = playerResources.health;
+
             playerResources.DamagePlayer(Mathf.RoundToInt(damage)); // Convert float damage to int
+            
             Debug.Log($"Player hit by {gameObject.name}. Player health before: {playerHealthBefore}, after: {playerResources.health}");
 
             if (playerResources.health <= 0)

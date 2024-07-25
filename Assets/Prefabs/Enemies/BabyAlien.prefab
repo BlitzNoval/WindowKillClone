@@ -144,8 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 659913159ad586e4385d7478da3e38d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
   health: 3
+  speed: 10
   damage: 1
   dropObject: {fileID: 4214800325226193104, guid: fbe4453a278e5c7429a3cf5ff915aae7, type: 3}
   dropRate: 100
@@ -171,7 +171,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
