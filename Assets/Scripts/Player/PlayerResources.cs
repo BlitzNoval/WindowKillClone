@@ -1,3 +1,4 @@
+using Enums;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,8 @@ public class PlayerResources : MonoBehaviour
     public int baggedMaterials;     //amount of materials that get doubled on next pickup
 
     public int lootBoxes;           //lootboxes that give you a random item
+
+    [SerializeField] private bool canLifeSteal = true;
 
     #region Unity Events
     public UnityEvent dodgeEvent = new UnityEvent();    //if an item has an effect based off dodge subscribe here
@@ -84,6 +87,40 @@ public class PlayerResources : MonoBehaviour
     #endregion
 
     #region Damage
+
+    /// <summary>
+    /// Call this function when an enemy takes damage, Life Steal and Crit will be handled here.
+    /// </summary>
+    /// <param name="damage">amount of damage the enemy takes</param>
+    /// <returns>float of the calculated damage</returns>
+    public float DealDamage(float damage)
+    {
+        float randCrit = Random.Range(0, 1f);
+        float randLifeSteal = Random.Range(0, 1f);
+
+        if (randLifeSteal <= PlayerBase.Instance.calcPrimaryStats.lifeSteal &&
+            canLifeSteal)
+        {
+            HealPlayer(1);
+            StartCoroutine(LifeStealImmunity());
+        }
+
+        if (randCrit <= PlayerBase.Instance.calcPrimaryStats.critChance)
+        {
+            return damage *= 2;
+        }
+        else
+        {
+            return damage;
+        }
+    }
+
+    public IEnumerator LifeStealImmunity()
+    {
+        canLifeSteal = false;
+        yield return new WaitForSeconds(0.1f);
+        canLifeSteal = true;
+    }
 
     #endregion
 
