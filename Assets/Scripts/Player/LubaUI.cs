@@ -30,9 +30,6 @@ public class LubaUI : MonoBehaviour
     public GameObject pauseMenu;
     #endregion
 
-// Level Up UI 
-    public GameObject[] upgradeUISlots;
-    public GameObject levelUpSprite;
 
     
 
@@ -54,12 +51,7 @@ public class LubaUI : MonoBehaviour
 
         pauseMenu.SetActive(false);
 
-        //LevelUp UI SLots
-        upgradeUISlots = new GameObject[5];
-        for (int i = 0; i < upgradeUISlots.Length; i++)
-        {
-            upgradeUISlots[i] = GameObject.Find("UpgradeSlot" + i);
-        }
+      
 
     }
 
