@@ -36,6 +36,10 @@ public class PlayerResources : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        StartCoroutine(HealthRegen());
+    }
 
 
     #region Health
@@ -57,13 +61,12 @@ public class PlayerResources : MonoBehaviour
             float damageAfterArmor = 1 / (1 + PlayerBase.Instance.primaryStats.armor / 15); //maths and armor
             int damageTaken = Mathf.RoundToInt(damage * damageAfterArmor);
             health -= damageTaken;
-        }
 
-
-        if (health <= 0)
-        {
-            Debug.Log("Player has died.");
-            Destroy(gameObject);
+            if (health <= 0)
+            {
+                Debug.Log("Player has died.");
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -72,6 +75,15 @@ public class PlayerResources : MonoBehaviour
         health += Mathf.RoundToInt(heal);
         health = Mathf.Clamp(health, -1, maxHealth);
     }
+
+    public IEnumerator HealthRegen()
+    {
+        yield return new WaitForSeconds(PlayerBase.Instance.calcPrimaryStats.HPRegen);
+        HealPlayer(1);
+    }
+    #endregion
+
+    #region Damage
 
     #endregion
 

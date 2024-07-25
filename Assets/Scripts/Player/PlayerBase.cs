@@ -38,6 +38,7 @@ public class PlayerBase : MonoBehaviour
         }
     }
 
+
     /// <summary>
     /// use this function to update the players stats
     /// </summary>
@@ -119,7 +120,7 @@ public class PlayerBase : MonoBehaviour
             case Stats.HPRegen:
                 //formulas given on wiki
                 float HPEveryXSeconds = 5 / (1 + ((primaryStats.HPRegen - 1) / 2.25f)); 
-                calcPrimaryStats.HPRegen = 1 / HPEveryXSeconds;
+                calcPrimaryStats.HPRegen = HPEveryXSeconds;
                 break;
             case Stats.LifeSteal:
                 calcPrimaryStats.lifeSteal = primaryStats.lifeSteal / 100;
@@ -164,6 +165,9 @@ public class PlayerBase : MonoBehaviour
                 calcPrimaryStats.harvesting = primaryStats.harvesting;
                 break;
         }
+
+        Debug.Log(calcPrimaryStats.HPRegen);
+
     }
 }
 
