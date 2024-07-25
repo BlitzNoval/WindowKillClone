@@ -21,34 +21,7 @@ public class PlayerBase : MonoBehaviour
     public PrimaryStats primaryStats = new PrimaryStats();
     public PrimaryStats calcPrimaryStats = new PrimaryStats();
 
-
-    //Secondary Stats
-    public int pierce;
-    public int bounces;
-    #endregion
-
-    #region Calculated Stats
-    [Header("Calculated Stats")]
-    //public int c_maxHP;
-    //public float c_HPRegen;       
-    //public float c_lifeSteal;     
-    //public float c_damage;          
-    //public int c_meleeDamage;     
-    //public int c_rangedDamage;    
-    //public int c_elementalDamage; 
-    //public float c_attackSpeed;
-    //public float c_critChance;    
-    //public int c_engineering;     
-    //public int c_range;           
-    //public float c_armor;         
-    //public float c_dodge;         
-    //public float c_speed;         
-    //public float c_luck;          
-    //public int c_harvesting; 
-    
-    //Secondary Stats
-    public int c_pierce;
-    public int c_bounces;
+    public SecondaryStats secondaryStats = new SecondaryStats();
     #endregion
 
 
