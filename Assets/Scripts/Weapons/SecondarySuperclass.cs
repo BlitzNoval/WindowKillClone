@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(WeaponBehaviour))]
 public class SecondarySuperclass : MonoBehaviour
 {
-    private WeaponBehaviour parentBehaviour;
+    protected WeaponBehaviour parentBehaviour;
 
     void Start()
     {
