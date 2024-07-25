@@ -41,6 +41,7 @@ public class PlayerResources : MonoBehaviour
 
     private void Start()
     {
+        CalcEXPRequired();
         StartCoroutine(HealthRegen());
     }
 
@@ -138,14 +139,14 @@ public class PlayerResources : MonoBehaviour
 
             levelUp++;
 
-            experienceRequired = CalcEXPRequired();
+            CalcEXPRequired();
             // call luba's ui function here
         }
     }
 
-    private int CalcEXPRequired()
+    private void CalcEXPRequired()
     {
-        return (level + 3) * (level + 3);
+        experienceRequired = (level + 3) * (level + 3);
     }
 
     #endregion
