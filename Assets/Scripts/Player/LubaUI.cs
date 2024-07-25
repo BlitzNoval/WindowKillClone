@@ -21,6 +21,15 @@ public class LubaUI : MonoBehaviour
 
     private PlayerResources playerResources;
 
+    //Lose Panel
+    public GameObject runPanel;
+
+    //
+    public GameObject pauseMenu;
+
+
+    // 
+
     void Start()
     {
         playerResources = PlayerResources.Instance;
@@ -37,7 +46,7 @@ public class LubaUI : MonoBehaviour
         healthSlider.maxValue = MaxHealt;
         healthSlider.value = health;
 
-         
+        pauseMenu.SetActive(false);
 
     }
 
@@ -59,6 +68,24 @@ public class LubaUI : MonoBehaviour
         //LVL Text
           crntLvl.text = "LV." + playerResources.level.ToString();
 
+        if(health<=0)
+        {
+            runPanel.SetActive(true);
+            //Other Lose Panel Logic
+        }
+
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        pauseMenu.SetActive(true);
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1;
+        pauseMenu.SetActive(false);
     }
 
 
