@@ -4,16 +4,25 @@ using System.Collections.Generic;
 using Enums;
 using UnityEngine;
 
+[RequireComponent(typeof(CircleCollider2D))]
 public class WeaponBehaviour : MonoBehaviour
 {
     [Header("Setup")]
     [SerializeField] private PlayerBase playerStats;
     [SerializeField] private Weapon weaponData;
-
+    [SerializeField] private float debugRangeMultiplier;
+    public static float weaponRangeMultiplier = 0.08f;
+    
     [Header("Watchers")] 
     [SerializeField] private WeaponTier currentTier;
 
     [SerializeField] private bool canAttack;
+
+    [Header("Targeting")] 
+    [SerializeField] private float detectionRange;
+    [SerializeField] private CircleCollider2D trackingArea;
+
+    [SerializeField] private List<Transform> enemiesInRange;
 
     public WeaponTier CurrentTier
     {
@@ -23,7 +32,7 @@ public class WeaponBehaviour : MonoBehaviour
 
     public delegate void SecondaryEffect();
 
-    public delegate void ShootingEffect();
+    public delegate void ShootingEffect(Vector2 direction);
 
     [SerializeField] private ShootingEffect thisShootingEffect;
     [SerializeField] private SecondaryEffect thisSecondaryEffect;
@@ -39,16 +48,29 @@ public class WeaponBehaviour : MonoBehaviour
         get => thisSecondaryEffect;
         set => thisSecondaryEffect = value;
     }
-    
+
+    public PlayerBase PlayerStats
+    {
+        get => playerStats;
+        set => playerStats = value;
+    }
+
+    public Weapon WeaponData
+    {
+        get => weaponData;
+        set => weaponData = value;
+    }
+
     void Start()
     {
+        trackingArea = GetComponent<CircleCollider2D>();
         playerStats = GameObject.FindWithTag("Player").GetComponent<PlayerBase>();
         canAttack = true;
+        UpdateRange();
     }
     
     void Update()
     {
-        /*
         if (Input.GetKeyDown(KeyCode.Space))
         {
             thisSecondaryEffect?.Invoke();
@@ -56,15 +78,58 @@ public class WeaponBehaviour : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            thisShootingEffect?.Invoke();
+            Vector2 shootDir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            thisShootingEffect?.Invoke(shootDir);
         }
-        */
+    }
+
+    private void FixedUpdate()
+    {
+        //enemy tracking behaviour
+        DoTrackingBehaviour();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            enemiesInRange.Add(other.transform);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            enemiesInRange.Remove(other.transform);
+        }
+    }
+
+    /// <summary>
+    /// Tracking behaviour for the weapon to track the closest enemy in range
+    /// </summary>
+    private void DoTrackingBehaviour()
+    {
+        if (enemiesInRange.Count > 0)
+        {
+            
+        }
+    }
+
+    /// <summary>
+    /// Update the range at which the weapon will detect enemies, based on the calculated Range4
+    /// MAKE SURE TO ADD THIS TO STAT CHANGES IN THE PLAYER
+    /// </summary>
+    public void UpdateRange()
+    {
+        detectionRange = CalculateRange();
+        trackingArea.radius = detectionRange;
     }
 
     /// <summary>
     /// Method used to get the damage of a weapon as it attacks
     /// </summary>
-    private float CalculateDamage()
+    public float CalculateDamage()
     {
         float result = 0;
         //pulling damage percentile modifier from the player stats
@@ -138,7 +203,42 @@ public class WeaponBehaviour : MonoBehaviour
         result = weaponDamage * (1 + damageStat/100);
         return result;
     }
+    
+    /// <summary>
+    /// Method used to get the range of a weapon as it attacks
+    /// </summary>
+    public float CalculateRange()
+    {
+        float result = 0;
+        //pulling range percentile modifier from the player stats
+        float rangeStat = playerStats.calcPrimaryStats.range;
+        
+        //pulling weapon damage from the attached scriptableObject
+        float weaponDamage = weaponData.RangePerTier[(int)currentTier];
+        
+        //multiplying weapon range by the percentage of the range stat
+        result = weaponDamage * (1 + rangeStat/100);
 
+        if (UnityEngine.Debug.isDebugBuild)
+        {
+            result *= debugRangeMultiplier;
+        }
+        else
+        {
+            result *= weaponRangeMultiplier;
+        }
+        return result;
+    }
+
+    /// <summary>
+    /// Method used to get the range of a weapon as it attacks
+    /// </summary>
+    public int CalculatePierce()
+    {
+        int pierceStat = playerStats.c_pierce;
+        int weaponPierce = weaponData.PiercePerTier[(int)currentTier];
+        return weaponPierce + pierceStat;
+    }
     /// <summary>
     /// Cooldown timer method
     /// </summary>
@@ -157,5 +257,15 @@ public class WeaponBehaviour : MonoBehaviour
         waitTime = weaponSpeed / modifiedSpeed;
         yield return new WaitForSeconds(waitTime);
         canAttack = true;
+    }
+    
+    public void TriggerShootEffect(Vector2 dir)
+    {
+        thisShootingEffect?.Invoke(dir);
+    }
+
+    public void TriggerSecondaryEffect()
+    {
+        thisSecondaryEffect?.Invoke();
     }
 }
