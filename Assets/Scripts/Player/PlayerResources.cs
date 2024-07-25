@@ -15,7 +15,7 @@ public class PlayerResources : MonoBehaviour
 
     public int experience;          //current experience
     public int experienceRequired;  //experience required to level up to next level
-    
+
     public int materials;           //amount of materials that the player has
     public int baggedMaterials;     //amount of materials that get doubled on next pickup
 
@@ -62,7 +62,8 @@ public class PlayerResources : MonoBehaviour
 
         if (health <= 0)
         {
-            //player dies
+            Debug.Log("Player has died.");
+            Destroy(gameObject);
         }
     }
 

@@ -62,11 +62,6 @@ public class BabyAlien : MonoBehaviour
             Debug.Log($"Player hit by Baby Alien. Player health before: {playerHealthBefore}, after: {playerResources.health}");
 
             // Destroy the player if health is below or equal to 0
-            if (playerResources.health <= 0)
-            {
-                Debug.Log("Player has died.");
-                Destroy(collision.gameObject);
-            }
         }
     }
 
