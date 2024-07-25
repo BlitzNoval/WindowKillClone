@@ -10,7 +10,7 @@ public class WeaponBehaviour : MonoBehaviour
     [SerializeField] private PlayerBase playerStats;
     [SerializeField] private Weapon weaponData;
     [SerializeField] private float debugRangeMultiplier;
-    public static float weaponRangeMultiplier = 1;
+    public static float weaponRangeMultiplier = 0.08f;
     
     [Header("Watchers")] 
     [SerializeField] private WeaponTier currentTier;
@@ -62,7 +62,6 @@ public class WeaponBehaviour : MonoBehaviour
     
     void Update()
     {
-        /*
         if (Input.GetKeyDown(KeyCode.Space))
         {
             thisSecondaryEffect?.Invoke();
@@ -70,9 +69,9 @@ public class WeaponBehaviour : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            thisShootingEffect?.Invoke();
+            Vector2 shootDir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            thisShootingEffect?.Invoke(shootDir);
         }
-        */
     }
 
     /// <summary>
