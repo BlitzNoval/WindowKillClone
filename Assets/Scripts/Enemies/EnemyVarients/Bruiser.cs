@@ -12,7 +12,6 @@ public class Bruiser : Enemy
 
     private float nextChargeTime;
     private bool isCharging;
-    private SpriteRenderer spriteRenderer;
     private Color originalColor;
 
     protected override void Start()
@@ -20,8 +19,7 @@ public class Bruiser : Enemy
         base.Start();
         SetNextChargeTime();
 
-        // Get the SpriteRenderer component and store the original color
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        // Store the original color
         originalColor = spriteRenderer.color;
     }
 
@@ -83,5 +81,4 @@ public class Bruiser : Enemy
         speed = originalSpeed;
         isCharging = false;
     }
-
 }

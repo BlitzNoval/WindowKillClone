@@ -13,13 +13,11 @@ public class Spitter : Enemy
     public float warningDuration = 0.25f; // Duration of each warning flash
     public int warningFlashes = 2; // Number of warning flashes
 
-    private SpriteRenderer spriteRenderer;
     private Color originalColor;
 
     protected override void Start()
     {
         base.Start();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
         StartCoroutine(FireProjectiles());
     }
@@ -29,7 +27,7 @@ public class Spitter : Enemy
         base.Update();
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        
+
         if (distanceToPlayer > stopDistance)
         {
             MoveTowardsPlayer();
@@ -69,4 +67,4 @@ public class Spitter : Enemy
             yield return new WaitForSeconds(fireRate);
         }
     }
-}
+} 
