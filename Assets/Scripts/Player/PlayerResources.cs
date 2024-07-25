@@ -136,16 +136,16 @@ public class PlayerResources : MonoBehaviour
             int remainingExperience = experience - experienceRequired;
             experience = remainingExperience;
 
-            // expRequired = next level exp required
-
-
             levelUp++;
+
+            experienceRequired = CalcEXPRequired();
             // call luba's ui function here
-
-
-
-
         }
+    }
+
+    private int CalcEXPRequired()
+    {
+        return (level + 3) * (level + 3);
     }
 
     #endregion

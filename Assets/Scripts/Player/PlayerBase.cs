@@ -80,6 +80,8 @@ public class PlayerBase : MonoBehaviour
                 break;
             case Stats.Range:
                 primaryStats.range += amount;
+                // --------------------------------------------LOOK HERE YOAV--------------------------------------------------
+                // Add updateRange() interface ****** HERE ********
                 break;
             case Stats.Armor:
                 primaryStats.armor += amount;
