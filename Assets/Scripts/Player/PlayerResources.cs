@@ -124,4 +124,29 @@ public class PlayerResources : MonoBehaviour
 
     #endregion
 
+    #region Level Up
+
+    public void GainExperience(int exp)
+    {
+        experience += exp;
+
+        if (experience >= experienceRequired)
+        {
+            //level up
+            int remainingExperience = experience - experienceRequired;
+            experience = remainingExperience;
+
+            // expRequired = next level exp required
+
+
+            levelUp++;
+            // call luba's ui function here
+
+
+
+
+        }
+    }
+
+    #endregion
 }
