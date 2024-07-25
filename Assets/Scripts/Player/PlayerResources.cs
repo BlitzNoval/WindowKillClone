@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class PlayerResources : MonoBehaviour
 {
@@ -20,10 +19,6 @@ public class PlayerResources : MonoBehaviour
     public int baggedMaterials;     //amount of materials that get doubled on next pickup
 
     public int lootBoxes;           //lootboxes that give you a random item
-
-    #region Unity Events
-    public UnityEvent dodgeEvent = new UnityEvent();    //if an item has an effect based off dodge subscribe here
-    #endregion
     private void Awake()
     {
         if (Instance != null)
@@ -36,40 +31,17 @@ public class PlayerResources : MonoBehaviour
         }
     }
 
-
-
     #region Health
 
-    public void DamagePlayer(float damage)
+    public void DamagePlayer(int damage)
     {
-        float randNum = Random.Range(0, 1f);
+        health -= damage;
+        //cool maths stuff with armor;
 
-        //dodge chance
-        if (randNum <= PlayerBase.Instance.calcPrimaryStats.dodge)
-        {
-            //add items effects that affect dodge
-            dodgeEvent.Invoke();
-            return;
-        }
-        else
-        {
-            damage = Mathf.Round(damage);
-            float damageAfterArmor = 1 / (1 + PlayerBase.Instance.primaryStats.armor / 15); //maths and armor
-            int damageTaken = Mathf.RoundToInt(damage * damageAfterArmor);
-            health -= damageTaken;
-        }
-
-
-        if (health <= 0)
+        if (health < 0)
         {
             //player dies
         }
-    }
-
-    public void HealPlayer(float heal)
-    {
-        health += Mathf.RoundToInt(heal);
-        health = Mathf.Clamp(health, -1, maxHealth);
     }
 
     #endregion
