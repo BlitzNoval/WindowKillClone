@@ -8,9 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class LubaUI : MonoBehaviour
 {
-    // Just Need To Add playerResources script and assign it in inspector
-    public int healt;
-    public int MexHelt;
+    public int health;
+    public int MaxHealt;
 
     public TMP_Text maxHealthTxt;
     public TMP_Text crntLvl;
@@ -27,7 +26,7 @@ public class LubaUI : MonoBehaviour
         playerResources = PlayerResources.Instance;
         if (playerResources != null)
         {
-            Debug.Log("It is not Null");
+            Debug.Log("PLayer Instance Found");
         }
         else
         {
@@ -35,38 +34,30 @@ public class LubaUI : MonoBehaviour
         }
 
 
-        //Link Jay-Lee's Values Max Health Values to values of SLiders
-        //For now I used local values for testing
+        healthSlider.maxValue = MaxHealt;
+        healthSlider.value = health;
 
+         
 
-
-        healt = MexHelt;
-
-
-
-        healthSlider.maxValue = MexHelt;
-        healthSlider.value = healt;
-        /*  healthSlider.maxValue = playerResources.maxHealth;
-          healthSlider.value = playerResources.health;*/
-
-      //  Debug.Log(PlayerResources.Instance.maxHealth);
     }
 
 
     void Update()
     {
-        //   playerResources = GetComponent<PlayerResources>();
 
-        healthSlider.value = healt;
+        MaxHealt = playerResources.maxHealth;
+        health = playerResources.health;
 
-        maxHealthTxt.text = healt.ToString() + "/" + MexHelt.ToString();
+        healthSlider.maxValue = MaxHealt;
+        healthSlider.value = health;
 
-      // ishu = PlayerResources.Instance.maxHealth;
+        // Health Bar Text
 
-       // Debug.Log(ishu);
+        maxHealthTxt.text = health.ToString(); //+ "/" + MexHelt.ToString();  // For ACtual Game Health Bar Txt
 
-
-        //   crntLvl.text = "LV." + playerResources.level.ToString();
+      
+        //LVL Text
+          crntLvl.text = "LV." + playerResources.level.ToString();
 
     }
 
