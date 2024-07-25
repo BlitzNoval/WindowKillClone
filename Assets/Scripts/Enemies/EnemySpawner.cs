@@ -6,9 +6,6 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject spawnIndicatorPrefab;
     public GameObject[] enemiesToSpawn;
-    public float spawnSpeed;
-    public int spawnAmount;
-
     public SpriteRenderer playableAreaSpriteRenderer; // Reference to the SpriteRenderer defining the playable area
 
     private Bounds playableAreaBounds;
@@ -23,33 +20,10 @@ public class EnemySpawner : MonoBehaviour
 
         // Calculate the bounds based on the sprite renderer
         playableAreaBounds = playableAreaSpriteRenderer.bounds;
-
-        StartCoroutine(EnemySpawnLoop());
     }
 
-    private IEnumerator EnemySpawnLoop()
+    public void SpawnEnemy(GameObject enemyPrefab)
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(spawnSpeed);
-
-            int randEnemy = Random.Range(0, enemiesToSpawn.Length);
-            GameObject enemyPrefab = enemiesToSpawn[randEnemy];
-
-            if (enemyPrefab.GetComponent<Chaser>() != null)
-            {
-                SpawnGroup(enemyPrefab, 5);
-            }
-            else
-            {
-                SpawnEnemy(enemyPrefab);
-            }
-        }
-    }
-
-    private void SpawnEnemy(GameObject enemyPrefab)
-    {
-        // Get the bounds of the playable area
         Vector3 spawnPosition = new Vector3(
             Random.Range(playableAreaBounds.min.x, playableAreaBounds.max.x),
             Random.Range(playableAreaBounds.min.y, playableAreaBounds.max.y),
@@ -60,9 +34,8 @@ public class EnemySpawner : MonoBehaviour
         spawnedIndicator.GetComponent<EnemySpawnIndicator>().enemyToSpawn = enemyPrefab;
     }
 
-    private void SpawnGroup(GameObject enemyPrefab, int groupSize)
+    public void SpawnGroup(GameObject enemyPrefab, int groupSize)
     {
-        // Central spawn position for the group
         Vector3 centralPosition = new Vector3(
             Random.Range(playableAreaBounds.min.x, playableAreaBounds.max.x),
             Random.Range(playableAreaBounds.min.y, playableAreaBounds.max.y),
