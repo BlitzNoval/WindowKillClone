@@ -274,9 +274,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnIndicatorPrefab: {fileID: 2641896467684339711, guid: a77e6a86f6113aa4ca12ef49a084fe94, type: 3}
   enemiesToSpawn:
-  - {fileID: 7998002414108195795, guid: 426a0bdca9ec59b4aa0393eb70325e2e, type: 3}
-  - {fileID: 5698764692258863881, guid: 2eed82ae0f99cc84491d3e111c51777f, type: 3}
-  - {fileID: 2045365572302486287, guid: 5ca5989d3387d034e9fff47cca3377ce, type: 3}
+  - {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
+  - {fileID: 7802492558257095922, guid: cef5397c36a36ee4282ce3c6421724e2, type: 3}
+  - {fileID: 7802492558257095922, guid: 3f23babe6a4794b4da835c8d63f7849e, type: 3}
   spawnSpeed: 1
   spawnAmount: 2
   playableAreaSpriteRenderer: {fileID: 792576775}
@@ -2345,7 +2345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icons: []
   primaryStats:
-    maxHP: 0
+    maxHP: 1
     HPRegen: 0
     lifeSteal: 0
     damage: 0
@@ -2394,7 +2394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: add2724a8a409fe47be791402063a0d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  health: 2147483647
   maxHealth: 0
   level: 0
   levelUp: 0
@@ -3033,7 +3033,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 620107170}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49972aaa05696994980f2fdc939b5a58, type: 3}
   m_Name: 
@@ -3078,10 +3078,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0ce0f3f2b6fffb64aab74263c58a42dc, type: 2}
   - {fileID: 11400000, guid: 6ee7c2b35e1fad04297483681895a9b2, type: 2}
   chanceThresholds:
-  - 0
-  - 0
-  - 0
-  - 0
+  - 1
+  - 1
+  - 1
+  - 1
   upgradeUI: {fileID: 205289892}
 --- !u!1 &642366265
 GameObject:
@@ -3355,7 +3355,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: aa92441471def244daf45049c4231b02, type: 3}
   m_Color: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 1}
   m_FlipX: 0
@@ -4814,7 +4814,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -3
   m_Sprite: {fileID: 21300000, guid: aa92441471def244daf45049c4231b02, type: 3}
   m_Color: {r: 0.3773585, g: 0.330119, b: 0.2723389, a: 0.5882353}
   m_FlipX: 0
