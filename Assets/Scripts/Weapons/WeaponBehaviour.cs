@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Enums;
 using UnityEngine;
 
+[RequireComponent(typeof(CircleCollider2D))]
 public class WeaponBehaviour : MonoBehaviour
 {
     [Header("Setup")]
@@ -16,6 +17,12 @@ public class WeaponBehaviour : MonoBehaviour
     [SerializeField] private WeaponTier currentTier;
 
     [SerializeField] private bool canAttack;
+
+    [Header("Targeting")] 
+    [SerializeField] private float detectionRange;
+    [SerializeField] private CircleCollider2D trackingArea;
+
+    [SerializeField] private List<Transform> enemiesInRange;
 
     public WeaponTier CurrentTier
     {
@@ -56,8 +63,10 @@ public class WeaponBehaviour : MonoBehaviour
 
     void Start()
     {
+        trackingArea = GetComponent<CircleCollider2D>();
         playerStats = GameObject.FindWithTag("Player").GetComponent<PlayerBase>();
         canAttack = true;
+        UpdateRange();
     }
     
     void Update()
@@ -72,6 +81,49 @@ public class WeaponBehaviour : MonoBehaviour
             Vector2 shootDir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             thisShootingEffect?.Invoke(shootDir);
         }
+    }
+
+    private void FixedUpdate()
+    {
+        //enemy tracking behaviour
+        DoTrackingBehaviour();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            enemiesInRange.Add(other.transform);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            enemiesInRange.Remove(other.transform);
+        }
+    }
+
+    /// <summary>
+    /// Tracking behaviour for the weapon to track the closest enemy in range
+    /// </summary>
+    private void DoTrackingBehaviour()
+    {
+        if (enemiesInRange.Count > 0)
+        {
+            
+        }
+    }
+
+    /// <summary>
+    /// Update the range at which the weapon will detect enemies, based on the calculated Range4
+    /// MAKE SURE TO ADD THIS TO STAT CHANGES IN THE PLAYER
+    /// </summary>
+    public void UpdateRange()
+    {
+        detectionRange = CalculateRange();
+        trackingArea.radius = detectionRange;
     }
 
     /// <summary>
