@@ -235,7 +235,7 @@ public class WeaponBehaviour : MonoBehaviour
     /// </summary>
     public int CalculatePierce()
     {
-        int pierceStat = playerStats.c_pierce;
+        int pierceStat = (int) playerStats.secondaryStats.piercing;
         int weaponPierce = weaponData.PiercePerTier[(int)currentTier];
         return weaponPierce + pierceStat;
     }
