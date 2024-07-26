@@ -20,7 +20,6 @@ MonoBehaviour:
   - 4
   - 4
   - 6
-  numberOfProjectilesPerTier: 03000000060000000900000009000000
   scalingPerTier:
   - scalings:
     - scalingAmount: 80
@@ -65,4 +64,5 @@ MonoBehaviour:
   - 0
   - 0
   basePricePerTier: 14000000270000004a00000095000000
+  numberOfProjectilesPerTier: 03000000060000000900000009000000
   piercePerTier: 00000000010000000200000003000000
