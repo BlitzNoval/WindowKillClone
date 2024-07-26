@@ -70,11 +70,11 @@ public abstract class Enemy : MonoBehaviour
             
             Debug.Log($"Player hit by {gameObject.name}. Player health before: {playerHealthBefore}, after: {playerResources.health}");
 
-            if (playerResources.health <= 0)
+            /*if (playerResources.health <= 0)
             {
                 Debug.Log("Player has died.");
                 Destroy(collision.gameObject);
-            }
+            }*/
         }
     }
 }

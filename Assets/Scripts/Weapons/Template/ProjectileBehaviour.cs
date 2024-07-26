@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(CircleCollider2D))]
 public class ProjectileBehaviour : MonoBehaviour
 {
     private Vector2 startingPostion;
@@ -28,6 +30,10 @@ public class ProjectileBehaviour : MonoBehaviour
 
     public void DoSetup()
     {
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        GetComponent<Rigidbody2D>().mass = 1;
+        GetComponent<Rigidbody2D>().gravityScale = 0;
+        GetComponent<CircleCollider2D>().isTrigger = true;
         currentPierce = maxPierce;
         currentRange = maxRange;
         startingPostion = transform.position;
@@ -39,6 +45,12 @@ public class ProjectileBehaviour : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             //The bullet has hit an enemy
+            other.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+            currentPierce--;
+            if (currentPierce < 0)
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 }
