@@ -21,6 +21,7 @@ public class LubaUI : MonoBehaviour
 
     //private PlayerResources playerResources;
     public Slider healthSlider;
+    public Slider levelSlider;
 
    
 
@@ -45,9 +46,14 @@ public class LubaUI : MonoBehaviour
             Debug.LogError("PlayerResources singleton instance not found.");
         }
 
-
+        // Health SLider
         healthSlider.maxValue = MaxHealt;
         healthSlider.value = health;
+
+        //Level Slider
+        levelSlider.maxValue = playerResources.experienceRequired;
+        levelSlider.value = playerResources.experience;
+
 
         pauseMenu.SetActive(false);
 

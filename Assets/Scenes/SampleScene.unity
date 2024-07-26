@@ -7990,6 +7990,7 @@ MonoBehaviour:
   maxHealthTxt: {fileID: 1665516875}
   crntLvl: {fileID: 397866418}
   healthSlider: {fileID: 468233729}
+  levelSlider: {fileID: 233718590}
   runPanel: {fileID: 1339512289}
   pauseMenu: {fileID: 643820007}
   spriteToClone: {fileID: 1213381985}
