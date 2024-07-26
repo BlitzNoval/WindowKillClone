@@ -66,7 +66,7 @@ public class LubaUI : MonoBehaviour
         healthSlider.value = health;
 
         // Health Bar Text
-         maxHealthTxt.text = health.ToString(); //+ "/" + MexHelt.ToString();  // For ACtual Game Health Bar Txt
+         maxHealthTxt.text = health.ToString() + "/" + MaxHealt.ToString();  // For ACtual Game Health Bar Txt
 
       
         //LVL Text
