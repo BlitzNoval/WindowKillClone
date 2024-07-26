@@ -110,9 +110,28 @@ public class WeaponBehaviour : MonoBehaviour
     /// </summary>
     private void DoTrackingBehaviour()
     {
+        //There is an enemy in range
         if (enemiesInRange.Count > 0)
         {
-            
+            float closestDistance = int.MaxValue;
+            Transform closestEnemy = transform;
+            // Getting the closest enemy
+            foreach (var enemyInstance in enemiesInRange)
+            {
+                float enemyDistance = Vector2.Distance(transform.position, enemyInstance.position);
+                if (closestDistance > enemyDistance)
+                {
+                    closestDistance = enemyDistance;
+                    closestEnemy = enemyInstance;
+                }
+            }
+
+            if (canAttack)
+            {
+                canAttack = false;
+                thisShootingEffect?.Invoke(closestEnemy.position - transform.position);
+                StartCoroutine(DoWeaponCooldown());
+            }
         }
     }
 
@@ -239,6 +258,7 @@ public class WeaponBehaviour : MonoBehaviour
         int weaponPierce = weaponData.PiercePerTier[(int)currentTier];
         return weaponPierce + pierceStat;
     }
+    
     /// <summary>
     /// Cooldown timer method
     /// </summary>
