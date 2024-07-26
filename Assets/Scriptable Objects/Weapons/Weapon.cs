@@ -27,7 +27,7 @@ public class Weapon : ScriptableObject
         }
     }
     //Wrapper class to add multiple scaling types for serialization
-    [Serializable]
+    [Serializable] 
     public struct StatScalingTier
     {
         [SerializeField] private StatScaling[] scalings;
