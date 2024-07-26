@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: TestWeapon
+  m_EditorClassIdentifier: Assembly-CSharp::Weapon
+  weaponType: 0
+  weaponClass: 0
+  attackType: 0
+  damagePerTier:
+  - 0
+  - 0
+  - 0
+  - 0
+  scalingPerTier:
+  - scalings: []
+  - scalings: []
+  - scalings: []
+  - scalings: []
+  attackSpeedPerTier:
+  - 0
+  - 0
+  - 0
+  - 0
+  critDamagePerTier:
+  - 0
+  - 0
+  - 0
+  - 0
+  critChancePerTier:
+  - 0
+  - 0
+  - 0
+  - 0
+  rangePerTier:
+  - 0
+  - 0
+  - 0
+  - 0
+  knockbackPerTier:
+  - 0
+  - 0
+  - 0
+  - 0
+  lifestealPerTier:
+  - 0
+  - 0
+  - 0
+  - 0
+  basePricePerTier: 00000000000000000000000000000000
+  numberOfProjectilesPerTier: 00000000000000000000000000000000
+  piercePerTier: 00000000000000000000000000000000
