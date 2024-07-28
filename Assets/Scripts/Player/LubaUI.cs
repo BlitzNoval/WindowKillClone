@@ -71,8 +71,11 @@ public class LubaUI : MonoBehaviour
         healthSlider.maxValue = MaxHealt;
         healthSlider.value = health;
 
+        levelSlider.maxValue = playerResources.experienceRequired;
+        levelSlider.value = playerResources.experience;
+
         // Health Bar Text
-         maxHealthTxt.text = health.ToString() + "/" + MaxHealt.ToString();  // For ACtual Game Health Bar Txt
+        maxHealthTxt.text = health.ToString() + "/" + MaxHealt.ToString();  // For ACtual Game Health Bar Txt
 
       
         //LVL Text
@@ -89,43 +92,45 @@ public class LubaUI : MonoBehaviour
     //BELOW IS THE LOGIC FOR SHOWING THE LEVEL UP UI
     //I used empty game objects as place Holders then when the script is called it instatiates the UI at an open GO
 
-    public GameObject spriteToClone;
-    public GameObject[] slots;
 
-    public void CloneSpriteAtRandomSlot()
+
+    public GameObject[] gameObjects;
+
+    // Variable to keep track of the current active object index
+    private int currentIndex = -1;
+
+    // Method to activate the next game object
+    public void ActivateNextObject()
     {
-        if (slots.Length == 0)
+        // Deactivate the currently active object if there is one
+        if (currentIndex >= 0 && currentIndex < gameObjects.Length)
         {
-            Debug.LogWarning("No available slots to clone the sprite.");
-            return;
+            gameObjects[currentIndex].SetActive(false);
         }
 
-    
-        int randomIndex = Random.Range(0, slots.Length);
-        Vector3 clonePosition = slots[randomIndex].transform.position;
-        Instantiate(spriteToClone, clonePosition, Quaternion.identity);
-        RemoveSlotAtIndex(randomIndex);
-    }
-    private void RemoveSlotAtIndex(int index)
-    {
-        if (index < 0 || index >= slots.Length)
+        // Increment the index
+        currentIndex++;
+
+        // If the index goes out of bounds, reset it to the first object
+        if (currentIndex >= gameObjects.Length)
         {
-            Debug.LogError("Index out of range.");
-            return;
+            currentIndex = 0;
         }
-        GameObject[] newSlots = new GameObject[slots.Length - 1];
-        for (int i = 0, j = 0; i < slots.Length; i++)
+
+        // Activate the next object
+        if (currentIndex < gameObjects.Length)
         {
-            if (i != index)
-            {
-                newSlots[j++] = slots[i];
-            }
+            gameObjects[currentIndex].SetActive(true);
         }
-        slots = newSlots;
     }
 
 
-public void PauseGame()
+    public void levelUPUI ()
+    {
+
+    }
+
+    public void PauseGame()
     {
         Time.timeScale = 0;
         pauseMenu.SetActive(true);
