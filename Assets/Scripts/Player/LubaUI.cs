@@ -16,6 +16,7 @@ public class LubaUI : MonoBehaviour
 
     public TMP_Text maxHealthTxt; 
     public TMP_Text crntLvl;
+    public TMP_Text coins;
 
     public Slider healthSlider;
     public Slider levelSlider;
@@ -71,9 +72,11 @@ public class LubaUI : MonoBehaviour
         // Health Bar Text
         maxHealthTxt.text = health.ToString() + "/" + MaxHealt.ToString();  // For ACtual Game Health Bar Txt
 
-      
+        // Coins Text
+        coins.text = playerResources.materials.ToString();
+
         //LVL Text
-          crntLvl.text = "LV." + playerResources.level.ToString();
+        crntLvl.text = "LV." + playerResources.level.ToString();
 
         if(health<=0)
         {

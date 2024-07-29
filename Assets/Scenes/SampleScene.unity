@@ -444,7 +444,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 2800000, guid: c08d48ff2094a014ba2973d412934ac6, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -4841,7 +4841,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 150, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 250, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &870949057
@@ -4898,8 +4898,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -8199,6 +8199,7 @@ MonoBehaviour:
   MaxHealt: 0
   maxHealthTxt: {fileID: 1665516875}
   crntLvl: {fileID: 397866418}
+  coins: {fileID: 868906221}
   healthSlider: {fileID: 468233729}
   levelSlider: {fileID: 233718590}
   runPanel: {fileID: 1339512289}
