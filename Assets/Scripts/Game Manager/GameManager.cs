@@ -4,11 +4,26 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+
+    public GameObject upgradeUI;
+
     public BaseGameState currentState;
     public UpgradeGameState upgradeState = new UpgradeGameState();
     public ShopGameState shopState = new ShopGameState();
     public PlayGameState playState = new PlayGameState();
 
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(Instance);
+        }
+    }
 
     private void Start()
     {

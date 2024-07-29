@@ -29,7 +29,7 @@ public class UpgradeManager : MonoBehaviour
 
     private void Start()
     {
-        OpenUpgradePanel();
+        //OpenUpgradePanel();
     }
 
     /// <summary>
