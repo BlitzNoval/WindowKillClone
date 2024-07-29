@@ -17,15 +17,9 @@ public class LubaUI : MonoBehaviour
     public TMP_Text maxHealthTxt; 
     public TMP_Text crntLvl;
 
-   // public int ishu;
-
-    //private PlayerResources playerResources;
     public Slider healthSlider;
     public Slider levelSlider;
 
-   
-
-    
     #region
     public GameObject runPanel; //This is the Lose Panel
     public GameObject pauseMenu;
@@ -90,24 +84,14 @@ public class LubaUI : MonoBehaviour
     }
 
     //BELOW IS THE LOGIC FOR SHOWING THE LEVEL UP UI
-    //I used empty game objects as place Holders then when the script is called it instatiates the UI at an open GO
-
-
-
+   
     public GameObject[] gameObjects;
 
-    // Variable to keep track of the current active object index
     private int currentIndex = -1;
 
-    // Method to activate the next game object
-    public void ActivateNextObject()
-    {
-        // Deactivate the currently active object if there is one
-        if (currentIndex >= 0 && currentIndex < gameObjects.Length)
-        {
-            gameObjects[currentIndex].SetActive(false);
-        }
-
+    // THIS IS THE METHOD @JAY_LEE
+    public void ActivateLevelUp()
+    {      
         // Increment the index
         currentIndex++;
 
@@ -125,11 +109,18 @@ public class LubaUI : MonoBehaviour
     }
 
 
-    public void levelUPUI ()
+    //Method to reset Level Up UI
+    public void LevelRestart()
     {
-
+        currentIndex = -1;
+        foreach (GameObject obj in gameObjects)
+        {
+            obj.SetActive(false);
+        }
     }
 
+
+   
     public void PauseGame()
     {
         Time.timeScale = 0;
