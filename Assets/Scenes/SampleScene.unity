@@ -2743,7 +2743,7 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &518050547
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3774,8 +3774,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfProjectiles: 0
   projectileToShoot: {fileID: 5960831637389542055, guid: 1284b2f22882c2846a5004995a256dbc, type: 3}
-  coneAngle: 45
-  minimumSpacingAngle: 5
+  coneAngle: 30
+  minimumSpacingAngle: 2
   projectilePlug: {fileID: 1521476550}
   projectileSpeed: 25
 --- !u!114 &628612910
