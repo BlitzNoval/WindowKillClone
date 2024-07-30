@@ -14,6 +14,9 @@ public class UpgradeManager : MonoBehaviour
     public float[] chanceThresholds = new float[4];
     public GameObject upgradeUI;
 
+    public int currentRerollPrice;
+    public int rerollIncrease;
+
     private void Awake()
     {
         if (Instance != null)
@@ -150,5 +153,12 @@ public class UpgradeManager : MonoBehaviour
     {
         CalcChanceThresholds();
         ChooseUpgrades();
+    }
+
+    public void CalculateRerollIncrease()
+    {
+        rerollIncrease = Mathf.FloorToInt(0.5f * WaveSpawner.Instance.currentWaveIndex);
+        rerollIncrease = (rerollIncrease < 1) ? 1 : rerollIncrease;
+
     }
 }
