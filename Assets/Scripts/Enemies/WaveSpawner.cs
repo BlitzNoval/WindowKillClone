@@ -72,6 +72,9 @@ public class WaveSpawner : MonoBehaviour
         }
     }
 
+    private const float statIncreasePerWave = 1.006f; // 0.6% increase per wave
+
+
     private IEnumerator SpawnEnemies(Wave wave)
     {
         // Get the total number of enemies to spawn
