@@ -19,17 +19,28 @@ public class WaveSpawnInfo
 
 public class WaveSpawner : MonoBehaviour
 {
+    public static WaveSpawner Instance = new WaveSpawner();
+
     public List<Wave> waves;
     public EnemySpawner enemySpawner;
     public TextMeshProUGUI waveText;
     public TextMeshProUGUI timerText;
 
-    private int currentWaveIndex;
+    public int currentWaveIndex;
     private float waveTimer;
     private bool isWaveActive;
 
-    private const float statIncreasePerWave = 1.006f; // 0.6% increase per wave
-
+    private void Awake()
+    {
+        if(Instance != null)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
     private void Start()
     {
         if (enemySpawner == null)
