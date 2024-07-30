@@ -150,7 +150,7 @@ public class PlayerResources : MonoBehaviour
 
     private void LevelUp()
     {
-        level++;
+        levelUp++;
         PlayerBase.Instance.UpdateStat(Stats.MaxHP, 1);
 
         CalcEXPRequired();

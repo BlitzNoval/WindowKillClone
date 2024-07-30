@@ -8,7 +8,9 @@ public class ShopGameState : BaseGameState
     {
         //open the shop and run logic here
         Debug.Log("Shop State");
-        manager.SwitchState(manager.playState);
+        manager.upgradeUI.SetActive(false);
+        manager.shopUI.SetActive(true);
+        //manager.SwitchState(manager.playState);
     }
 
     public override void ExitState(GameManager manager)

@@ -8,7 +8,13 @@ public class UpgradeGameState : BaseGameState
     {
         //open the Upgrade UI
         Debug.Log("Update State");
+
+
+
+        manager.staticCanvas.SetActive(true);
         manager.upgradeUI.SetActive(true);
+        manager.shopUI.SetActive(true);
+
         UpgradeManager.Instance.OpenUpgradePanel();
     }
 
@@ -19,5 +25,6 @@ public class UpgradeGameState : BaseGameState
 
     public override void UpdateState(GameManager manager)
     {
+        
     }
 }

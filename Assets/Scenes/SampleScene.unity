@@ -2525,6 +2525,7 @@ RectTransform:
   m_Children:
   - {fileID: 205289893}
   - {fileID: 1724391952}
+  - {fileID: 1439027456}
   m_Father: {fileID: 1884478522}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2888,7 +2889,7 @@ MonoBehaviour:
   health: 214748364
   maxHealth: 10
   level: 0
-  levelUp: 0
+  levelUp: 3
   experience: 0
   experienceRequired: 0
   materials: 0
@@ -3724,6 +3725,8 @@ MonoBehaviour:
   - 1
   - 1
   upgradeUI: {fileID: 205289892}
+  currentRerollPrice: 0
+  rerollIncrease: 0
 --- !u!1 &628612907
 GameObject:
   m_ObjectHideFlags: 0
@@ -6700,6 +6703,42 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7352102062198426314, guid: b57f48594febf514abc2f5be3849ca1e, type: 3}
   m_PrefabInstance: {fileID: 2041930263}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1439027455
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1439027456}
+  m_Layer: 0
+  m_Name: Shop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1439027456
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439027455}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 508356102}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1474383694
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8647,6 +8686,7 @@ MonoBehaviour:
   enemySpawner: {fileID: 97402640}
   waveText: {fileID: 870949057}
   timerText: {fileID: 404519025}
+  currentWaveIndex: 0
 --- !u!1 &1866420848
 GameObject:
   m_ObjectHideFlags: 3
@@ -9201,7 +9241,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec4eaafa415df244aa7821b6f1fa5452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeUI: {fileID: 508356101}
+  staticCanvas: {fileID: 508356101}
+  upgradeUI: {fileID: 205289892}
+  shopUI: {fileID: 1439027455}
 --- !u!1 &1972762280
 GameObject:
   m_ObjectHideFlags: 0

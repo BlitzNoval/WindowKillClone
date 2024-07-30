@@ -6,7 +6,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    public GameObject staticCanvas;
     public GameObject upgradeUI;
+    public GameObject shopUI;
 
     public BaseGameState currentState;
     public UpgradeGameState upgradeState = new UpgradeGameState();
