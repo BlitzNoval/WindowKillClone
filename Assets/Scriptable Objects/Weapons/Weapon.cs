@@ -37,6 +37,8 @@ public class Weapon : ScriptableObject
             set => scalings = value;
         }
     }
+
+    [SerializeField] private string weaponID;
     [SerializeField] private WeaponType weaponType;
     [SerializeField] private WeaponClass weaponClass;
     [SerializeField] private AttackType attackType;

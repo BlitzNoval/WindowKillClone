@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3c544a4b1167744599cfafb61d150f3, type: 3}
   m_Name: Double Barrel Shotgun
   m_EditorClassIdentifier: 
+  weaponID: w002
   weaponType: 1
   weaponClass: 32
   attackType: 1
