@@ -8790,61 +8790,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - duration: 20
+  - duration: 3
     enemiesToSpawn:
     - enemyPrefab: {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
       amount: 10
-  - duration: 25
-    enemiesToSpawn:
-    - enemyPrefab: {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
-      amount: 15
-  - duration: 30.2
+  - duration: 3
     enemiesToSpawn:
     - enemyPrefab: {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
       amount: 10
-    - enemyPrefab: {fileID: 7802492558257095922, guid: cef5397c36a36ee4282ce3c6421724e2, type: 3}
-      amount: 10
-  - duration: 35
+  - duration: 3
     enemiesToSpawn:
     - enemyPrefab: {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
-      amount: 10
-    - enemyPrefab: {fileID: 7802492558257095922, guid: 3f23babe6a4794b4da835c8d63f7849e, type: 3}
-      amount: 10
-  - duration: 40
-    enemiesToSpawn:
-    - enemyPrefab: {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
-      amount: 10
-    - enemyPrefab: {fileID: 7802492558257095922, guid: 3f23babe6a4794b4da835c8d63f7849e, type: 3}
-      amount: 10
-  - duration: 45
-    enemiesToSpawn:
-    - enemyPrefab: {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
-      amount: 10
-    - enemyPrefab: {fileID: 7802492558257095922, guid: 3f23babe6a4794b4da835c8d63f7849e, type: 3}
-      amount: 10
-  - duration: 50
-    enemiesToSpawn:
-    - enemyPrefab: {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
-      amount: 10
-    - enemyPrefab: {fileID: 7802492558257095922, guid: 3f23babe6a4794b4da835c8d63f7849e, type: 3}
-      amount: 10
-  - duration: 55
-    enemiesToSpawn:
-    - enemyPrefab: {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
-      amount: 10
-    - enemyPrefab: {fileID: 7802492558257095922, guid: 3f23babe6a4794b4da835c8d63f7849e, type: 3}
-      amount: 10
-  - duration: 60
-    enemiesToSpawn:
-    - enemyPrefab: {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
-      amount: 10
-    - enemyPrefab: {fileID: 7802492558257095922, guid: 3f23babe6a4794b4da835c8d63f7849e, type: 3}
-      amount: 10
-  - duration: 60
-    enemiesToSpawn:
-    - enemyPrefab: {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
-      amount: 10
-    - enemyPrefab: {fileID: 7802492558257095922, guid: 3f23babe6a4794b4da835c8d63f7849e, type: 3}
       amount: 10
   enemySpawner: {fileID: 97402640}
   waveText: {fileID: 870949057}
