@@ -28,6 +28,8 @@ public class WaveSpawner : MonoBehaviour
     private float waveTimer;
     private bool isWaveActive;
 
+    private const float statIncreasePerWave = 1.006f; // 0.6% increase per wave
+
     private void Start()
     {
         if (enemySpawner == null)
@@ -76,6 +78,15 @@ public class WaveSpawner : MonoBehaviour
         {
             for (int i = 0; i < spawnInfo.amount; i++)
             {
+                GameObject enemyInstance = Instantiate(spawnInfo.enemyPrefab);
+                Enemy enemyScript = enemyInstance.GetComponent<Enemy>();
+
+                if (enemyScript != null)
+                {
+                    float multiplier = Mathf.Pow(statIncreasePerWave, currentWaveIndex);
+                    enemyScript.ApplyStatMultiplier(multiplier);
+                }
+
                 if (spawnInfo.enemyPrefab.GetComponent<Chaser>() != null)
                 {
                     enemySpawner.SpawnGroup(spawnInfo.enemyPrefab, 5);
