@@ -6,8 +6,7 @@ public class UpgradeGameState : BaseGameState
 {
     public override void EnterState(GameManager manager)
     {
-        //open the Upgrade UI
-        Debug.Log("Update State");
+        Debug.Log("Upgrade State");
         manager.upgradeUI.SetActive(true);
         UpgradeManager.Instance.OpenUpgradePanel();
     }
@@ -15,9 +14,11 @@ public class UpgradeGameState : BaseGameState
     public override void ExitState(GameManager manager)
     {
         manager.upgradeUI.SetActive(false);
+        manager.ResumeGame();
     }
 
     public override void UpdateState(GameManager manager)
     {
+        // Update logic for Upgrade State if needed
     }
 }

@@ -13,7 +13,7 @@ public class ShopGameState : BaseGameState
 
     public override void ExitState(GameManager manager)
     {
-
+       
     }
 
     public override void UpdateState(GameManager manager)
