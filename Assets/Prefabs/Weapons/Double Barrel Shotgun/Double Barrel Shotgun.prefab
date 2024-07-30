@@ -111,8 +111,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfProjectiles: 0
   projectileToShoot: {fileID: 173075272571856650, guid: 6ae85c4371de94e4db31f6c4778d4c3d, type: 3}
-  coneAngle: 30
-  minimumSpacingAngle: 5
+  coneAngle: 20
+  minimumSpacingAngle: 1
   projectilePlug: {fileID: 5160842940971547648}
   projectileSpeed: 50
 --- !u!4 &5160842940971547648 stripped

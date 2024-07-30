@@ -63,6 +63,8 @@ public class Weapon : ScriptableObject
 
     //public ActivePassive SecondaryEffectType => secondaryEffectType;
 
+    public string WeaponID => weaponID;
+
     public int[] NumberOfProjectilesPerTier => numberOfProjectilesPerTier;
 
     public WeaponType WeaponType => weaponType;

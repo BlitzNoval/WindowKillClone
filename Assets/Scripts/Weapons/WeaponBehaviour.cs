@@ -61,7 +61,7 @@ public class WeaponBehaviour : MonoBehaviour
         set => weaponData = value;
     }
 
-    void Start()
+    void Awake()
     {
         trackingArea = GetComponent<CircleCollider2D>();
         playerStats = GameObject.FindWithTag("Player").GetComponent<PlayerBase>();
