@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayGameState : BaseGameState
@@ -27,4 +25,3 @@ public class PlayGameState : BaseGameState
         }
     }
 }
-

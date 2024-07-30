@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         if (player != null)
         {
-            player.GetComponent<PlayerMovement>().enabled = false; // Assuming the player has a PlayerController script
+            player.GetComponent<PlayerMovement>().enabled = false; //
         }
     }
 
@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
         }
     }
 }
+
 
 public abstract class BaseGameState
 {

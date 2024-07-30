@@ -253,7 +253,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 97402638}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 9.3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -277,6 +277,7 @@ MonoBehaviour:
   - {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
   - {fileID: 7802492558257095922, guid: cef5397c36a36ee4282ce3c6421724e2, type: 3}
   - {fileID: 7802492558257095922, guid: 3f23babe6a4794b4da835c8d63f7849e, type: 3}
+  - {fileID: 7802492558257095922, guid: 6c35f644046ef0d40be4c88cd4a1dac5, type: 3}
   playableAreaSpriteRenderer: {fileID: 792576775}
 --- !u!1 &99802554
 GameObject:
@@ -2691,8 +2692,8 @@ SpriteRenderer:
   m_SortingLayerID: 1475999519
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0.8260877, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: a95e8213a89acc047a9b6de35e189350, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3079,7 +3080,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 25.58
+  orthographic size: 19.75
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3103,7 +3104,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.094735, y: -0.04736972, z: -10}
+  m_LocalPosition: {x: -6.073144, y: -0.03657365, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6297,7 +6298,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1277340748}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.094735, y: -0.04736972, z: -10}
+  m_LocalPosition: {x: -6.073144, y: -0.03657365, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6327,7 +6328,7 @@ MonoBehaviour:
   m_Follow: {fileID: 518050545}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 25.58
+    OrthographicSize: 19.75
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -8790,18 +8791,96 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - duration: 3
+  - duration: 20
     enemiesToSpawn:
     - enemyPrefab: {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
-      amount: 10
-  - duration: 3
+      amount: 15
+  - duration: 25
     enemiesToSpawn:
+    - enemyPrefab: {fileID: 7802492558257095922, guid: cef5397c36a36ee4282ce3c6421724e2, type: 3}
+      amount: 10
     - enemyPrefab: {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
       amount: 10
-  - duration: 3
+  - duration: 30
     enemiesToSpawn:
+    - enemyPrefab: {fileID: 7802492558257095922, guid: 3f23babe6a4794b4da835c8d63f7849e, type: 3}
+      amount: 10
     - enemyPrefab: {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
       amount: 10
+  - duration: 35
+    enemiesToSpawn:
+    - enemyPrefab: {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
+      amount: 20
+    - enemyPrefab: {fileID: 7802492558257095922, guid: cef5397c36a36ee4282ce3c6421724e2, type: 3}
+      amount: 5
+    - enemyPrefab: {fileID: 7802492558257095922, guid: 3f23babe6a4794b4da835c8d63f7849e, type: 3}
+      amount: 5
+  - duration: 40
+    enemiesToSpawn:
+    - enemyPrefab: {fileID: 7802492558257095922, guid: cef5397c36a36ee4282ce3c6421724e2, type: 3}
+      amount: 20
+    - enemyPrefab: {fileID: 7802492558257095922, guid: 6c35f644046ef0d40be4c88cd4a1dac5, type: 3}
+      amount: 5
+  - duration: 40
+    enemiesToSpawn:
+    - enemyPrefab: {fileID: 7802492558257095922, guid: 6c35f644046ef0d40be4c88cd4a1dac5, type: 3}
+      amount: 5
+    - enemyPrefab: {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
+      amount: 20
+    - enemyPrefab: {fileID: 7802492558257095922, guid: cef5397c36a36ee4282ce3c6421724e2, type: 3}
+      amount: 20
+  - duration: 45
+    enemiesToSpawn:
+    - enemyPrefab: {fileID: 7802492558257095922, guid: 6c35f644046ef0d40be4c88cd4a1dac5, type: 3}
+      amount: 10
+    - enemyPrefab: {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
+      amount: 10
+    - enemyPrefab: {fileID: 7802492558257095922, guid: 3f23babe6a4794b4da835c8d63f7849e, type: 3}
+      amount: 5
+  - duration: 50
+    enemiesToSpawn:
+    - enemyPrefab: {fileID: 7802492558257095922, guid: 6c35f644046ef0d40be4c88cd4a1dac5, type: 3}
+      amount: 5
+    - enemyPrefab: {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
+      amount: 10
+    - enemyPrefab: {fileID: 7802492558257095922, guid: 3f23babe6a4794b4da835c8d63f7849e, type: 3}
+      amount: 10
+    - enemyPrefab: {fileID: 7802492558257095922, guid: cef5397c36a36ee4282ce3c6421724e2, type: 3}
+      amount: 20
+  - duration: 55
+    enemiesToSpawn:
+    - enemyPrefab: {fileID: 7802492558257095922, guid: 6c35f644046ef0d40be4c88cd4a1dac5, type: 3}
+      amount: 5
+    - enemyPrefab: {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
+      amount: 10
+    - enemyPrefab: {fileID: 7802492558257095922, guid: 3f23babe6a4794b4da835c8d63f7849e, type: 3}
+      amount: 10
+    - enemyPrefab: {fileID: 7802492558257095922, guid: cef5397c36a36ee4282ce3c6421724e2, type: 3}
+      amount: 28
+  - duration: 60
+    enemiesToSpawn:
+    - enemyPrefab: {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
+      amount: 30
+    - enemyPrefab: {fileID: 7802492558257095922, guid: 3f23babe6a4794b4da835c8d63f7849e, type: 3}
+      amount: 10
+    - enemyPrefab: {fileID: 7802492558257095922, guid: cef5397c36a36ee4282ce3c6421724e2, type: 3}
+      amount: 30
+    - enemyPrefab: {fileID: 7802492558257095922, guid: 6c35f644046ef0d40be4c88cd4a1dac5, type: 3}
+      amount: 2
+  - duration: 60
+    enemiesToSpawn:
+    - enemyPrefab: {fileID: 7802492558257095922, guid: 88ace6962e543f044836eb83aa2fbcc6, type: 3}
+      amount: 1
+    - enemyPrefab: {fileID: 7802492558257095922, guid: 3f23babe6a4794b4da835c8d63f7849e, type: 3}
+      amount: 10
+    - enemyPrefab: {fileID: 7802492558257095922, guid: cef5397c36a36ee4282ce3c6421724e2, type: 3}
+      amount: 20
+    - enemyPrefab: {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
+      amount: 10
+  - duration: 60
+    enemiesToSpawn:
+    - enemyPrefab: {fileID: 7802492558257095922, guid: 88ace6962e543f044836eb83aa2fbcc6, type: 3}
+      amount: 20
   enemySpawner: {fileID: 97402640}
   waveText: {fileID: 870949057}
   timerText: {fileID: 404519025}

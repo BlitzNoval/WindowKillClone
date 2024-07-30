@@ -19,7 +19,7 @@ public class WaveSpawnInfo
 
 public class WaveSpawner : MonoBehaviour
 {
-      public static WaveSpawner Instance { get; private set; }
+     public static WaveSpawner Instance { get; private set; }
 
     public List<Wave> waves;
     public EnemySpawner enemySpawner;
@@ -30,13 +30,13 @@ public class WaveSpawner : MonoBehaviour
     private float waveTimer;
     private bool isWaveActive;
 
-     public bool IsWaveActive => isWaveActive;
+    public bool IsWaveActive => isWaveActive;
 
     private void Awake()
     {
-        if(Instance != null)
+        if (Instance != null)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
         else
         {
