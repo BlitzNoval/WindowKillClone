@@ -15,5 +15,6 @@ public class PlayGameState : BaseGameState
 
     public override void UpdateState(GameManager manager)
     {
+
     }
 }

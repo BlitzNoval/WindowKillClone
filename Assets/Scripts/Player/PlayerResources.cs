@@ -137,10 +137,9 @@ public class PlayerResources : MonoBehaviour
             int remainingExperience = experience - experienceRequired;
             experience = remainingExperience;
 
-            levelUp++;
 
-            CalcEXPRequired();
-            // call luba's ui function here
+            LevelUp();
+            //luba ui function here
         }
     }
 
@@ -149,5 +148,12 @@ public class PlayerResources : MonoBehaviour
         experienceRequired = (level + 3) * (level + 3);
     }
 
+    private void LevelUp()
+    {
+        level++;
+        PlayerBase.Instance.UpdateStat(Stats.MaxHP, 1);
+
+        CalcEXPRequired();
+    }
     #endregion
 }
