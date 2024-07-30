@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6196068968758090221
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -5865768966213932953, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_Size.x
+      value: 0.96
+      objectReference: {fileID: 0}
+    - target: {fileID: -5865768966213932953, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_Size.y
+      value: 0.96
+      objectReference: {fileID: 0}
+    - target: {fileID: -5865768966213932953, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9f0b6ea0354cc304dab5c89f610c55bc, type: 3}
+    - target: {fileID: -5865768966213932953, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3618190040551011069, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: weaponData
+      value: 
+      objectReference: {fileID: 11400000, guid: e485876d9379e974ba7917a78a8955db, type: 2}
+    - target: {fileID: -3618190040551011069, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: debugRangeMultiplier
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 3781489034568657180, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907417106830163660, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907417106830163660, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907417106830163660, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907417106830163660, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907417106830163660, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907417106830163660, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907417106830163660, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907417106830163660, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907417106830163660, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907417106830163660, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907417106830163660, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5698162964894202236, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_Name
+      value: Double Barrel Shotgun
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5698162964894202236, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1801317899833907106}
+  m_SourcePrefab: {fileID: 100100000, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+--- !u!1 &1940817109679054993 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5698162964894202236, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+  m_PrefabInstance: {fileID: 6196068968758090221}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-1801317899833907106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940817109679054993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb1b84a7c8c1147438f296decbf0ab14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfProjectiles: 0
+  projectileToShoot: {fileID: 173075272571856650, guid: 6ae85c4371de94e4db31f6c4778d4c3d, type: 3}
+  coneAngle: 30
+  minimumSpacingAngle: 5
+  projectilePlug: {fileID: 5160842940971547648}
+  projectileSpeed: 50
+--- !u!4 &5160842940971547648 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1324661551362565613, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+  m_PrefabInstance: {fileID: 6196068968758090221}
+  m_PrefabAsset: {fileID: 0}

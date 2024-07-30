@@ -22,7 +22,7 @@ public class WeaponBehaviour : MonoBehaviour
     [SerializeField] private float detectionRange;
     [SerializeField] private CircleCollider2D trackingArea;
 
-    [SerializeField] private List<Transform> enemiesInRange;
+    private List<Transform> enemiesInRange = new List<Transform>();
 
     public WeaponTier CurrentTier
     {
@@ -141,7 +141,8 @@ public class WeaponBehaviour : MonoBehaviour
     /// </summary>
     public void UpdateRange()
     {
-        detectionRange = CalculateRange();
+        //Halving the range to account for the radius rather than the diameter
+        detectionRange = CalculateRange()/2;
         trackingArea.radius = detectionRange;
     }
 
