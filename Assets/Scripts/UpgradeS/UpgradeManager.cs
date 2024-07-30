@@ -33,6 +33,7 @@ public class UpgradeManager : MonoBehaviour
     private void Start()
     {
         //OpenUpgradePanel();
+        //CalculateRerollIncrease();
     }
 
     /// <summary>
@@ -156,6 +157,7 @@ public class UpgradeManager : MonoBehaviour
     /// </summary>
     public void OpenUpgradePanel()
     {
+        CalculateRerollIncrease();
         CalcChanceThresholds();
         ChooseUpgrades();
     }
