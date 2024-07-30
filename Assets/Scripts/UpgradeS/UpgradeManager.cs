@@ -140,10 +140,15 @@ public class UpgradeManager : MonoBehaviour
     /// rerolls the current upgrades
     /// </summary>
     /// <param name="rerollPrice"> cost of the reroll </param>
-    public void Reroll(int rerollPrice)
+    public void Reroll()
     {
-        //use currency here
-        ChooseUpgrades();
+        if (PlayerResources.Instance.materials >= currentRerollPrice + rerollIncrease)
+        {
+            currentRerollPrice += rerollIncrease;
+            PlayerResources.Instance.materials -= currentRerollPrice;
+            //use currency here
+            ChooseUpgrades();
+        }
     }
 
     /// <summary>
@@ -155,10 +160,17 @@ public class UpgradeManager : MonoBehaviour
         ChooseUpgrades();
     }
 
+    /// <summary>
+    /// calculates the current waves reroll price increase
+    /// call every time a wave is complete
+    /// </summary>
     public void CalculateRerollIncrease()
     {
         rerollIncrease = Mathf.FloorToInt(0.5f * WaveSpawner.Instance.currentWaveIndex);
         rerollIncrease = (rerollIncrease < 1) ? 1 : rerollIncrease;
 
+        currentRerollPrice = WaveSpawner.Instance.currentWaveIndex;
     }
+
+
 }
