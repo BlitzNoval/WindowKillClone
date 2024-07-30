@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class LubaUI : MonoBehaviour
 {
     private PlayerResources playerResources;
-
+    private Enemy enemyS;
 
     public int health; // These are the PlayTest Stats however I have linked themto JayLee stats
     public int MaxHealt;
@@ -27,7 +27,10 @@ public class LubaUI : MonoBehaviour
     #endregion
 
 
-    
+    private float lastHealth;
+    private Enemy enemy;
+
+
 
     void Start()
     {
@@ -39,6 +42,12 @@ public class LubaUI : MonoBehaviour
         else
         {
             Debug.LogError("PlayerResources singleton instance not found.");
+        }
+        enemy = GetComponent<Enemy>();
+
+        if (enemy != null)
+        {
+            lastHealth = enemy.health;
         }
 
         // Health SLider
@@ -84,6 +93,15 @@ public class LubaUI : MonoBehaviour
             //Other Lose Panel Logic
         }
 
+
+        // Monitor the health for changes
+        if (enemy != null && enemy.health != lastHealth)
+        {
+            float damageTaken = lastHealth - enemy.health;
+            lastHealth = enemy.health;
+            Debug.Log($"Enemy took {damageTaken} damage.");
+        }
+
     }
 
     //BELOW IS THE LOGIC FOR SHOWING THE LEVEL UP UI
@@ -122,6 +140,7 @@ public class LubaUI : MonoBehaviour
         }
     }
 
+  
 
    
     public void PauseGame()
