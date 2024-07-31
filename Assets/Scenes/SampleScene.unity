@@ -9507,7 +9507,7 @@ MonoBehaviour:
   - duration: 60
     enemiesToSpawn:
     - enemyPrefab: {fileID: 7802492558257095922, guid: 88ace6962e543f044836eb83aa2fbcc6, type: 3}
-      amount: 20
+      amount: 2
   enemySpawner: {fileID: 97402640}
   waveText: {fileID: 870949057}
   timerText: {fileID: 404519025}
