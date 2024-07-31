@@ -124,8 +124,8 @@ public class LubaUI : MonoBehaviour
         }
         if (enemyHealth != lastEnemyHealth)
         {
-            float damage = lastEnemyHealth - enemyHealth;
-            Debug.Log($"Enemy lost {damage} health");
+            float enemyDamage = lastEnemyHealth - enemyHealth;
+            Debug.Log($"Enemy lost {enemyDamage} health");
 
             lastEnemyHealth = enemyHealth;
 
@@ -142,7 +142,7 @@ public class LubaUI : MonoBehaviour
                 if (tmpText != null)
                 {
                     // Change the text value
-                    tmpText.text = $"-{damage}";
+                    tmpText.text = $"-{enemyDamage}";
                 }
                 else
                 {
