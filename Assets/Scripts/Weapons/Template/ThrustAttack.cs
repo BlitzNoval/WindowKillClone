@@ -39,8 +39,9 @@ public class ThrustAttack : ShootingSuperclass
             currentTime += Time.deltaTime;
         } while (currentTime < extensionTime);
 
-        GameObject temp = Instantiate(new GameObject("Tester"), transform.position, Quaternion.identity,
-            parentTransform);
+        GameObject temp = new GameObject();
+        temp.transform.position = transform.position;
+        temp.transform.parent = parentTransform;
         //Return phase
         currentTime = 0;
         do
