@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6196068968758090221
+--- !u!1001 &5090543136644639680
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,10 +8,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5865768966213932953, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_Size.x
+      value: 0.96
+      objectReference: {fileID: 0}
+    - target: {fileID: -5865768966213932953, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_Size.y
+      value: 0.96
+      objectReference: {fileID: 0}
+    - target: {fileID: -5865768966213932953, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 03485776b8f573c4eb177cab64b8d1ad, type: 3}
+    - target: {fileID: -5865768966213932953, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -3618190040551011069, guid: da600fd545945884ea0d7ef25c715033, type: 3}
       propertyPath: weaponData
       value: 
-      objectReference: {fileID: 11400000, guid: e485876d9379e974ba7917a78a8955db, type: 2}
+      objectReference: {fileID: 11400000, guid: 57206a3ca1671d54b997159f83f7ea70, type: 2}
+    - target: {fileID: -3618190040551011069, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: debugRangeMultiplier
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 241106080599070287, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1414986209620980038, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3907417106830163660, guid: da600fd545945884ea0d7ef25c715033, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -58,10 +86,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5698162964894202236, guid: da600fd545945884ea0d7ef25c715033, type: 3}
       propertyPath: m_Name
-      value: Double Barrel Shotgun
+      value: Cacti Club
       objectReference: {fileID: 0}
+    - target: {fileID: 6719660001174028453, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: hitBoxHit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: -309971532349324140}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5698162964894202236, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -309971532349324140}
   m_SourcePrefab: {fileID: 100100000, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+--- !u!1 &699974415962575548 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5698162964894202236, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+  m_PrefabInstance: {fileID: 5090543136644639680}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-309971532349324140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699974415962575548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e7cf604d051f384ba5c0d36996a24c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

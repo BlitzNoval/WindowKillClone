@@ -22,7 +22,7 @@ public class ProjectileBehaviour : MonoBehaviour
     {
         currentRange = Vector2.Distance(startingPostion, transform.position);
         //Range checks
-        if (Vector2.Distance(startingPostion, transform.position) >= maxRange)
+        if (currentRange >= maxRange)
         {
             Destroy(this.gameObject);
         }
