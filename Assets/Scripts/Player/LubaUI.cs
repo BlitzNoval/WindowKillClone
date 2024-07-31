@@ -67,15 +67,7 @@ public class LubaUI : MonoBehaviour
     void Update()
     {
 
-        GameObject enemyObject = GameObject.FindGameObjectWithTag("Enemy");
-        if (enemyObject != null)
-        {
-            enemyScript = enemyObject.GetComponent<Enemy>();
-            if (enemyScript != null)
-            {
-                enemyHealth = enemyScript.health;
-            }
-        }
+        
 
         MaxHealt = playerResources.maxHealth;
         health = playerResources.health;
@@ -108,15 +100,12 @@ public class LubaUI : MonoBehaviour
        
       
         displayPlayerDamage();
-        
-       
-    }
-
-    private void FixedUpdate()
-    {
         displayEnemyDamage();
+
+
     }
 
+   
 
 
 
@@ -124,6 +113,15 @@ public class LubaUI : MonoBehaviour
 
     void displayEnemyDamage()
     {
+        GameObject enemyObject = GameObject.FindGameObjectWithTag("Enemy");
+        if (enemyObject != null)
+        {
+            enemyScript = enemyObject.GetComponent<Enemy>();
+            if (enemyScript != null)
+            {
+                enemyHealth = enemyScript.health;
+            }
+        }
         if (enemyHealth != lastEnemyHealth)
         {
             float damage = lastEnemyHealth - enemyHealth;
