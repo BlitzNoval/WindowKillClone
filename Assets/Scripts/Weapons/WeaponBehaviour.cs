@@ -160,7 +160,10 @@ public class WeaponBehaviour : MonoBehaviour
         }
         else
         {
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            if (canAttack)
+            {
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            }
         }
     }
 
