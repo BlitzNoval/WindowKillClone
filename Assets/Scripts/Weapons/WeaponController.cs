@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Enums;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeaponController : MonoBehaviour
@@ -22,7 +23,7 @@ public class WeaponController : MonoBehaviour
 
     private void Update()
     {
-        /*
+        if (!Debug.isDebugBuild) return;
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GameObject test = Instantiate(testAddPrefab, transform);
@@ -35,7 +36,6 @@ public class WeaponController : MonoBehaviour
                 Destroy(test);
             }
         }
-        */
     }
 
     /// <summary>
