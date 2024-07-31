@@ -8969,6 +8969,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+  lastPlayerHealth: 0
   MaxHealt: 0
   maxHealthTxt: {fileID: 1665516875}
   crntLvl: {fileID: 397866418}
@@ -8977,6 +8978,9 @@ MonoBehaviour:
   levelSlider: {fileID: 233718590}
   runPanel: {fileID: 1339512289}
   pauseMenu: {fileID: 643820007}
+  damageTextPrefab: {fileID: 890530124732736411, guid: 0d4b6ac33fed5cf459170c10ca0570e8, type: 3}
+  enemyCrntHealth: 0
+  dmgValue: 0
   gameObjects:
   - {fileID: 793950819}
   - {fileID: 818330209}
