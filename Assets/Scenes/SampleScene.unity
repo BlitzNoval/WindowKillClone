@@ -3082,6 +3082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: add2724a8a409fe47be791402063a0d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lubaUI: {fileID: 1693934420}
   health: 214748364
   maxHealth: 10
   level: 1
@@ -10062,6 +10063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec4eaafa415df244aa7821b6f1fa5452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lubaUI: {fileID: 1693934420}
   staticCanvas: {fileID: 508356101}
   upgradeUI: {fileID: 205289892}
   shopUI: {fileID: 159285031}

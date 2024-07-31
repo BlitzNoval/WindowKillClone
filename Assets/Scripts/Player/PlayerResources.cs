@@ -8,6 +8,8 @@ public class PlayerResources : MonoBehaviour
 {
     public static PlayerResources Instance { get; private set; }
 
+    public LubaUI lubaUI;
+
     public int health;
     public int maxHealth;
 
@@ -139,7 +141,7 @@ public class PlayerResources : MonoBehaviour
 
 
             LevelUp();
-            //luba ui function here
+
         }
     }
 
@@ -153,7 +155,7 @@ public class PlayerResources : MonoBehaviour
         levelUp++;
         level++;
         PlayerBase.Instance.UpdateStat(Stats.MaxHP, 1);
-
+        lubaUI.ActivateLevelUp();
         CalcEXPRequired();
     }
     #endregion

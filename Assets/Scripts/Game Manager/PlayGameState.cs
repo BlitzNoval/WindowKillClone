@@ -7,6 +7,8 @@ public class PlayGameState : BaseGameState
         Debug.Log("Play State");
         manager.upgradeUI.SetActive(false);
         WaveSpawner.Instance.StartNextWave();
+
+        manager.lubaUI.LevelRestart();
     }
 
     public override void ExitState(GameManager manager)

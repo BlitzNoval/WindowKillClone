@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    public LubaUI lubaUI;
+
     public GameObject staticCanvas;
     public GameObject upgradeUI;
     public GameObject shopUI;
