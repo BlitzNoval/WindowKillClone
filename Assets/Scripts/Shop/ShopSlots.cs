@@ -9,6 +9,8 @@ using UnityEngine.UI;
 public class ShopSlots : MonoBehaviour
 {
     public GameObject item;
+    public Image panel;
+    public Color[] tierColours;
 
     public WeaponTier itemTier;
 
@@ -35,7 +37,7 @@ public class ShopSlots : MonoBehaviour
         t_itemDescription.text = GenerateItemDescription();
         t_itemCost.text = $"$ {ShopManager.Instance.CalculateInflation(itemBehaviour.WeaponData.BasePricePerTier[(int)tier])}";
 
-        Debug.Log(ShopManager.Instance.CalculateInflation(itemBehaviour.WeaponData.BasePricePerTier[(int)tier]));
+        panel.color = tierColours[(int)tier];
 
 
         //get informaiton and plug it in here
