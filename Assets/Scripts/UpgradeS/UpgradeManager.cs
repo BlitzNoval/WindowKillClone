@@ -147,7 +147,6 @@ public class UpgradeManager : MonoBehaviour
         {
             currentRerollPrice += rerollIncrease;
             PlayerResources.Instance.materials -= currentRerollPrice;
-            //use currency here
             ChooseUpgrades();
         }
     }

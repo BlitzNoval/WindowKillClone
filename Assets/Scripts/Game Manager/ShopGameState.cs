@@ -10,6 +10,8 @@ public class ShopGameState : BaseGameState
         Debug.Log("Shop State");
         manager.upgradeUI.SetActive(false);
         manager.shopUI.SetActive(true);
+
+        ShopManager.Instance.OpenShopPanel();
         //manager.SwitchState(manager.playState);
     }
 

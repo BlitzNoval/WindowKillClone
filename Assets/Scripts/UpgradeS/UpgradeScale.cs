@@ -11,3 +11,13 @@ public class UpgradeScale
     public float chancePerLevel;
     public float maxChance;
 }
+
+[Serializable]
+
+public class ShopScale
+{
+    public int minWave;
+    public float baseChance;
+    public float chancePerWave;
+    public float maxChance;
+}
