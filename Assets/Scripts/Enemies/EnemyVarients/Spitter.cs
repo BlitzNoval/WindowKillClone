@@ -3,22 +3,26 @@ using UnityEngine;
 
 public class Spitter : Enemy
 {
-    public float runAwaySpeed = 5.0f;
+    public float moveSpeed = 2.0f; // Speed at which the Spitter floats around
     public float stopDistance = 5.0f;
-    public float runAwayDistance = 3.0f;
     public float attackRange = 10.0f;
     public GameObject projectilePrefab;
     public float fireRate = 6.0f;
-    public Transform firePoint;
+    public Transform[] firePoints; // Array of fire points
     public float warningDuration = 0.25f; // Duration of each warning flash
     public int warningFlashes = 2; // Number of warning flashes
 
     private Color originalColor;
+    private Vector3 targetPosition;
+    private float wanderTime = 2.0f; // Time to wander before choosing a new direction
+    private float wanderTimer;
 
     protected override void Start()
     {
         base.Start();
         originalColor = spriteRenderer.color;
+        targetPosition = transform.position;
+        wanderTimer = wanderTime;
         StartCoroutine(FireProjectiles());
     }
 
@@ -30,19 +34,26 @@ public class Spitter : Enemy
 
         if (distanceToPlayer > stopDistance)
         {
-            MoveTowardsPlayer();
+            Wander();
         }
-        if (distanceToPlayer < runAwayDistance)
-        {
-            RunAwayFromPlayer();
-        }
+
+        // Optionally, you can add logic here if you want the Spitter to do something specific when close to the player
     }
 
-    private void RunAwayFromPlayer()
+    private void Wander()
     {
-        Vector3 direction = (transform.position - player.position).normalized;
-        transform.position += direction * runAwaySpeed * Time.deltaTime;
-        FlipSprite(direction);
+        wanderTimer -= Time.deltaTime;
+
+        if (wanderTimer <= 0)
+        {
+            // Choose a new target position within a certain range
+            targetPosition = transform.position + new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), 0);
+            wanderTimer = wanderTime;
+        }
+
+        // Move towards the target position
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+        FlipSprite((targetPosition - transform.position).normalized);
     }
 
     private IEnumerator FireProjectiles()
@@ -58,13 +69,17 @@ public class Spitter : Enemy
                 yield return new WaitForSeconds(warningDuration);
             }
 
-            // Fire a projectile
-            if (projectilePrefab != null)
+            // Fire projectiles from each fire point
+            if (projectilePrefab != null && firePoints.Length > 0)
             {
-                GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
-                projectile.GetComponent<EnemyProjectile>().Initialize(player.position - firePoint.position);
+                foreach (Transform firePoint in firePoints)
+                {
+                    GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+                    projectile.GetComponent<EnemyProjectile>().Initialize(player.position - firePoint.position);
+                }
             }
+
             yield return new WaitForSeconds(fireRate);
         }
     }
-} 
+}

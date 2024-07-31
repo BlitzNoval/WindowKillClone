@@ -32,6 +32,13 @@ public abstract class Enemy : MonoBehaviour
         health -= amount;
     }
 
+    public void ApplyStatMultiplier(float multiplier)
+    {
+        health *= multiplier;
+        speed *= multiplier;
+        damage *= multiplier;
+    }
+
     protected virtual void Die()
     {
         if (dropObject != null && Random.value <= dropRate / 100f)

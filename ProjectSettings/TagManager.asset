@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Material
   - LubaUI
+  - WeaponPlug
   layers:
   - Default
   - TransparentFX

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3c544a4b1167744599cfafb61d150f3, type: 3}
   m_Name: Cacti Club
   m_EditorClassIdentifier: 
+  weaponID: w001
   weaponType: 0
   weaponClass: 2112
   attackType: 1
@@ -64,3 +65,5 @@ MonoBehaviour:
   - 0
   - 0
   basePricePerTier: 14000000270000004a00000095000000
+  numberOfProjectilesPerTier: 00000000000000000000000000000000
+  piercePerTier: 00000000000000000000000000000000

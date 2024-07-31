@@ -19,15 +19,31 @@ public class WaveSpawnInfo
 
 public class WaveSpawner : MonoBehaviour
 {
+     public static WaveSpawner Instance { get; private set; }
+
     public List<Wave> waves;
     public EnemySpawner enemySpawner;
     public TextMeshProUGUI waveText;
     public TextMeshProUGUI timerText;
 
-    private int currentWaveIndex;
+    public int currentWaveIndex;
     private float waveTimer;
     private bool isWaveActive;
 
+    public bool IsWaveActive => isWaveActive;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+    
     private void Start()
     {
         if (enemySpawner == null)
@@ -40,7 +56,6 @@ public class WaveSpawner : MonoBehaviour
         isWaveActive = false;
         UpdateWaveText();
         UpdateTimerText();
-        StartNextWave(); // Automatically start the first wave when the scene starts
     }
 
     private void Update()
@@ -53,11 +68,12 @@ public class WaveSpawner : MonoBehaviour
             if (waveTimer <= 0)
             {
                 isWaveActive = false;
-                // Automatically start the next wave when the current wave ends
-                StartNextWave();
+                WaveCompleted();
             }
         }
     }
+
+    private const float statIncreasePerWave = 1.006f; // 0.6% increase per wave
 
     private IEnumerator SpawnEnemies(Wave wave)
     {
@@ -76,6 +92,15 @@ public class WaveSpawner : MonoBehaviour
         {
             for (int i = 0; i < spawnInfo.amount; i++)
             {
+                GameObject enemyInstance = Instantiate(spawnInfo.enemyPrefab);
+                Enemy enemyScript = enemyInstance.GetComponent<Enemy>();
+
+                if (enemyScript != null)
+                {
+                    float multiplier = Mathf.Pow(statIncreasePerWave, currentWaveIndex);
+                    enemyScript.ApplyStatMultiplier(multiplier);
+                }
+
                 if (spawnInfo.enemyPrefab.GetComponent<Chaser>() != null)
                 {
                     enemySpawner.SpawnGroup(spawnInfo.enemyPrefab, 5);
@@ -91,7 +116,7 @@ public class WaveSpawner : MonoBehaviour
         }
     }
 
-    private void StartNextWave()
+    public void StartNextWave()
     {
         if (currentWaveIndex < waves.Count)
         {
@@ -107,6 +132,12 @@ public class WaveSpawner : MonoBehaviour
             waveText.text = "All waves completed!";
             // Optionally, you could disable further wave spawning or handle end-of-game logic here
         }
+    }
+
+    private void WaveCompleted()
+    {
+        // Logic to handle wave completion
+        GameManager.Instance.SwitchState(GameManager.Instance.upgradeState);
     }
 
     private void UpdateWaveText()

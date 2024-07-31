@@ -22,4 +22,9 @@ public class ShootingSuperclass : MonoBehaviour
     {
         throw new NotSupportedException("Please use a child class of this script");
     }
+
+    public virtual void OnHitboxHit(Collider2D other)
+    {
+        throw new NotSupportedException("Please use a child class of this script");
+    }
 }

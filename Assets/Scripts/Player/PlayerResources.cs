@@ -8,6 +8,8 @@ public class PlayerResources : MonoBehaviour
 {
     public static PlayerResources Instance { get; private set; }
 
+    public LubaUI lubaUI;
+
     public int health;
     public int maxHealth;
 
@@ -137,10 +139,9 @@ public class PlayerResources : MonoBehaviour
             int remainingExperience = experience - experienceRequired;
             experience = remainingExperience;
 
-            levelUp++;
 
-            CalcEXPRequired();
-            // call luba's ui function here
+            LevelUp();
+
         }
     }
 
@@ -149,5 +150,13 @@ public class PlayerResources : MonoBehaviour
         experienceRequired = (level + 3) * (level + 3);
     }
 
+    private void LevelUp()
+    {
+        levelUp++;
+        level++;
+        PlayerBase.Instance.UpdateStat(Stats.MaxHP, 1);
+        lubaUI.ActivateLevelUp();
+        CalcEXPRequired();
+    }
     #endregion
 }

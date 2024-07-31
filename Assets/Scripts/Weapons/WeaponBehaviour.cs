@@ -10,8 +10,8 @@ public class WeaponBehaviour : MonoBehaviour
     [Header("Setup")]
     [SerializeField] private PlayerBase playerStats;
     [SerializeField] private Weapon weaponData;
-    [SerializeField] private float debugRangeMultiplier;
-    public static float weaponRangeMultiplier = 0.08f;
+    //[SerializeField] private float debugRangeMultiplier;
+    private static float weaponRangeMultiplier = 0.08f;
     
     [Header("Watchers")] 
     [SerializeField] private WeaponTier currentTier;
@@ -22,7 +22,7 @@ public class WeaponBehaviour : MonoBehaviour
     [SerializeField] private float detectionRange;
     [SerializeField] private CircleCollider2D trackingArea;
 
-    [SerializeField] private List<Transform> enemiesInRange;
+    private List<Transform> enemiesInRange = new List<Transform>();
 
     public WeaponTier CurrentTier
     {
@@ -61,7 +61,7 @@ public class WeaponBehaviour : MonoBehaviour
         set => weaponData = value;
     }
 
-    void Start()
+    void Awake()
     {
         trackingArea = GetComponent<CircleCollider2D>();
         playerStats = GameObject.FindWithTag("Player").GetComponent<PlayerBase>();
@@ -71,6 +71,7 @@ public class WeaponBehaviour : MonoBehaviour
     
     void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.Space))
         {
             thisSecondaryEffect?.Invoke();
@@ -81,6 +82,7 @@ public class WeaponBehaviour : MonoBehaviour
             Vector2 shootDir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             thisShootingEffect?.Invoke(shootDir);
         }
+        */
     }
 
     private void FixedUpdate()
@@ -125,13 +127,40 @@ public class WeaponBehaviour : MonoBehaviour
                     closestEnemy = enemyInstance;
                 }
             }
+            
+            //Logic to stop the weapon from rotating while attacking if it is melee
+            if (weaponData.AttackType == AttackType.Shoot || canAttack)
+            {
+                //Rotate towards nearest enemy
+                // Calculate the direction from the sprite to the target
+                Vector3 direction = (closestEnemy.position - transform.position).normalized;
 
+                // Calculate the angle to rotate the sprite
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                //check if the angle is facing right
+                if (angle is >= 0 and < 90 or < 0 and > -90)
+                {
+                    // Apply the rotation to the sprite
+                    transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+                }
+                else
+                {
+                    angle = -(angle+180);
+                    transform.rotation = Quaternion.Euler(new Vector3(0, 180, angle));
+                }
+            }
+
+            //Auto shooting logic
             if (canAttack)
             {
                 canAttack = false;
                 thisShootingEffect?.Invoke(closestEnemy.position - transform.position);
                 StartCoroutine(DoWeaponCooldown());
             }
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         }
     }
 
@@ -141,7 +170,8 @@ public class WeaponBehaviour : MonoBehaviour
     /// </summary>
     public void UpdateRange()
     {
-        detectionRange = CalculateRange();
+        //Halving the range to account for the radius rather than the diameter
+        detectionRange = CalculateRange()/2;
         trackingArea.radius = detectionRange;
     }
 
@@ -237,15 +267,8 @@ public class WeaponBehaviour : MonoBehaviour
         
         //multiplying weapon range by the percentage of the range stat
         result = weaponDamage * (1 + rangeStat/100);
-
-        if (UnityEngine.Debug.isDebugBuild)
-        {
-            result *= debugRangeMultiplier;
-        }
-        else
-        {
-            result *= weaponRangeMultiplier;
-        }
+        
+        result *= weaponRangeMultiplier;
         return result;
     }
 

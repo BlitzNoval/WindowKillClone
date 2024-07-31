@@ -22,7 +22,7 @@ public class UpgradePanel : MonoBehaviour
     {
         itemname.text = $"{upgrade.name} {tier + 1}";
         statDescription.text = $"+{upgrade.amount[tier]} {upgrade.stats}";
-        upgradeTier = tier ;
+        upgradeTier = tier;
         GetComponent<Image>().color = tierColors[tier];
         icon.sprite = upgrade.icon;
         //make icon the same
@@ -31,8 +31,20 @@ public class UpgradePanel : MonoBehaviour
     {
         PlayerBase.Instance.UpdateStat(upgrade.stats, upgrade.amount[upgradeTier]);
         PlayerBase.Instance.CalculateStat(upgrade.stats);
-        UpgradeManager.Instance.upgradeUI.SetActive(false);
         StatDisplay.Instance.UpgradteStatColumns();
+
+        PlayerResources.Instance.levelUp--;
+
+        if (PlayerResources.Instance.levelUp > 0)
+        {
+            UpgradeManager.Instance.OpenUpgradePanel();
+        }
+        else
+        {
+            UpgradeManager.Instance.upgradeUI.SetActive(false);
+            GameManager.Instance.SwitchState(GameManager.Instance.shopState);
+        }
+
         // go to next upgrade panel or to item store;
     }
 }
