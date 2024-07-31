@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerResources: {fileID: 0}
-  range: 2
+  range: 0
   moveSpeed: 45
   playerTransform: {fileID: 0}
 --- !u!61 &8353344186652522004
