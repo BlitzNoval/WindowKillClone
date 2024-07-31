@@ -21,6 +21,7 @@ public class UpgradeGameState : BaseGameState
     public override void ExitState(GameManager manager)
     {
         manager.upgradeUI.SetActive(false);
+        manager.ResumeGame();
     }
 
     public override void UpdateState(GameManager manager)
@@ -28,3 +29,4 @@ public class UpgradeGameState : BaseGameState
         
     }
 }
+

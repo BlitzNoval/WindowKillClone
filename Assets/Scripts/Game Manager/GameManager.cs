@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject upgradeUI;
     public GameObject shopUI;
 
+    public GameObject player; // Reference to the player object to disable movement
     public BaseGameState currentState;
     public UpgradeGameState upgradeState = new UpgradeGameState();
     public ShopGameState shopState = new ShopGameState();
@@ -17,19 +18,19 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
         }
         else
         {
-            Destroy(Instance);
+            Destroy(gameObject);
         }
     }
 
     private void Start()
     {
-        currentState = upgradeState;
+        currentState = shopState; // Start with the shop state
         currentState.EnterState(this);
     }
 
@@ -44,7 +45,26 @@ public class GameManager : MonoBehaviour
         currentState = state;
         currentState.EnterState(this);
     }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+        if (player != null)
+        {
+            player.GetComponent<PlayerMovement>().enabled = false; //
+        }
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        if (player != null)
+        {
+            player.GetComponent<PlayerMovement>().enabled = true;
+        }
+    }
 }
+
 
 public abstract class BaseGameState
 {
