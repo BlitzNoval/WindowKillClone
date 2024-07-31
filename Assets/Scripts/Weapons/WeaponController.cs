@@ -55,6 +55,7 @@ public class WeaponController : MonoBehaviour
         for (int i = 0; i < weaponInventory.Count; i++)
         {
             weaponInventory[i].transform.position = currentGroup.transform.GetChild(i).transform.position;
+            weaponInventory[i].transform.parent = currentGroup.transform.GetChild(i).transform;
         }
     }
 
