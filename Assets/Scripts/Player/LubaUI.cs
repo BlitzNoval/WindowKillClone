@@ -11,6 +11,8 @@ public class LubaUI : MonoBehaviour
     public int lastPlayerHealth;
     public int MaxHealt;// Reminder, Player also loses health
 
+    public float enemyHealth;
+    public float lastEnemyHealth;
     public TMP_Text maxHealthTxt;
     public TMP_Text crntLvl;
     public TMP_Text coins;
@@ -29,7 +31,7 @@ public class LubaUI : MonoBehaviour
 
     public float enemyCrntHealth;
 
-    private Enemy enemy;
+    private Enemy enemyScript;
 
     public int dmgValue;
 
@@ -38,6 +40,7 @@ public class LubaUI : MonoBehaviour
     {
 
         lastPlayerHealth = health;
+        lastEnemyHealth = enemyHealth;
         playerResources = PlayerResources.Instance;
         if (playerResources != null)
         {
@@ -47,19 +50,6 @@ public class LubaUI : MonoBehaviour
         {
             Debug.LogError("PlayerResources singleton instance not found.");
         }
-
-       /* // Find the enemy component by tag
-        GameObject enemyObject = GameObject.FindGameObjectWithTag("Enemy");
-        if (enemyObject != null)
-        {
-            enemy = enemyObject.GetComponent<Enemy>();
-            lastHealth = enemyCrntHealth = enemy.health;
-        }
-        else
-        {
-            Debug.LogWarning("Enemy component not found on GameObject with tag 'Enemy'.");
-        }
-        */
 
         // Health Slider
         healthSlider.maxValue = MaxHealt;
@@ -78,9 +68,19 @@ public class LubaUI : MonoBehaviour
     {
 
         GameObject enemyObject = GameObject.FindGameObjectWithTag("Enemy");
+        if (enemyObject != null)
+        {
+            enemyScript = enemyObject.GetComponent<Enemy>();
+            if (enemyScript != null)
+            {
+                enemyHealth = enemyScript.health;
+            }
+        }
+
         MaxHealt = playerResources.maxHealth;
         health = playerResources.health;
 
+        
         healthSlider.maxValue = MaxHealt;
         healthSlider.value = health;
 
@@ -106,24 +106,64 @@ public class LubaUI : MonoBehaviour
 
 
        
-      //  DisplayDamage();
+      
         displayPlayerDamage();
+        
+       
     }
 
-   
-
-   
-
-    /*
-
-
-            Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
-        GameObject.FindWithTag("LubaUI").GetComponent<LubaUI>().SpawnDamageNumber(pos, amount);
-     * 
-     * */
+    private void FixedUpdate()
+    {
+        displayEnemyDamage();
+    }
 
 
 
+
+
+
+    void displayEnemyDamage()
+    {
+        if (enemyHealth != lastEnemyHealth)
+        {
+            float damage = lastEnemyHealth - enemyHealth;
+            Debug.Log($"Enemy lost {damage} health");
+
+            lastEnemyHealth = enemyHealth;
+
+            GameObject enemy = GameObject.FindGameObjectWithTag("Enemy");
+            if (enemy != null)
+            {
+                // Instantiate the TMP_Text at the enemy's position
+                Vector3 enemyPosition = enemy.transform.position;
+
+                GameObject damageText = Instantiate(floatingText, enemyPosition, Quaternion.identity);
+                TMP_Text tmpText = damageText.GetComponentInChildren<TMP_Text>();
+
+                // Check if the TMP component is found
+                if (tmpText != null)
+                {
+                    // Change the text value
+                    tmpText.text = $"-{damage}";
+                }
+                else
+                {
+                    Debug.LogWarning("Text is null");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Enemy GameObject with tag 'Enemy' not found");
+            }
+
+
+            if (lastEnemyHealth != enemyHealth)
+            {
+                Debug.LogWarning("Code for enem health display not functional");
+            }
+
+        }
+    }
 
     void displayPlayerDamage()
     {
@@ -166,11 +206,7 @@ public class LubaUI : MonoBehaviour
         }
     }
 
-    public void DisplayDamage() //Enemy
-    {
-        // Implement display damage logic here
-    }
-
+    
     // BELOW IS THE LOGIC FOR SHOWING THE LEVEL UP UI
 
     public GameObject[] gameObjects;
