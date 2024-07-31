@@ -2,6 +2,8 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
+
+    public float lastHealth;
     public float health;
     public float speed;
     public float damage;

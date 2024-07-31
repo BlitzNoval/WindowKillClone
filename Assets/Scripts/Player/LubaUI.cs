@@ -104,10 +104,25 @@ public class LubaUI : MonoBehaviour
        
       
         displayPlayerDamage();
-        displayEnemyDamage();
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
+        foreach (GameObject enemyObject in enemies)
+        {
+            Enemy enemyScript = enemyObject.GetComponent<Enemy>();
+            if (enemyScript != null)
+            {
+                float currentEnemyHealth = enemyScript.health;
 
-    }
+                // Call displayEnemyDamage only if health has changed
+                if (enemyScript.lastHealth != currentEnemyHealth)
+                {
+                    displayEnemyDamage(enemyObject, enemyScript.lastHealth, currentEnemyHealth);
+                    enemyScript.lastHealth = currentEnemyHealth; // Update last health value
+                }
+            }
+        }
+    
+}
 
    
 
@@ -115,58 +130,29 @@ public class LubaUI : MonoBehaviour
 
 
 
-    void displayEnemyDamage()
+    void displayEnemyDamage(GameObject enemyObject, float lastHealth, float currentHealth)
+{
+    float damage = lastHealth - currentHealth;
+    if (damage != 0)
     {
-        GameObject enemyObject = GameObject.FindGameObjectWithTag("Enemy");
-        if (enemyObject != null)
+        Debug.Log($"Enemy at {enemyObject.name} lost {damage} health");
+
+        // Instantiate the damage text at the enemy's position
+        Vector3 enemyPosition = enemyObject.transform.position;
+        GameObject damageText = Instantiate(floatingText, enemyPosition, Quaternion.identity);
+        TMP_Text tmpText = damageText.GetComponentInChildren<TMP_Text>();
+
+        if (tmpText != null)
         {
-            enemyScript = enemyObject.GetComponent<Enemy>();
-            if (enemyScript != null)
-            {
-                enemyHealth = enemyScript.health;
-            }
-            if (enemyHealth != lastEnemyHealth)
-            {
-                float enemyDamage = lastEnemyHealth - enemyHealth;
-                Debug.Log($"Enemy lost {enemyDamage} health");
-
-                lastEnemyHealth = enemyHealth;
-
-                GameObject enemy = GameObject.FindGameObjectWithTag("Enemy");
-                if (enemy != null)
-                {
-                    // Instantiate the TMP_Text at the enemy's position
-                    Vector3 enemyPosition = enemy.transform.position;
-
-                    GameObject damageText = Instantiate(floatingText, enemyPosition, Quaternion.identity);
-                    TMP_Text tmpText = damageText.GetComponentInChildren<TMP_Text>();
-
-                    // Check if the TMP component is found
-                    if (tmpText != null)
-                    {
-                        // Change the text value
-                        tmpText.text = $"-{enemyDamage}";
-                    }
-                    else
-                    {
-                        Debug.LogWarning("Text is null");
-                    }
-                }
-                else
-                {
-                    Debug.LogWarning("Enemy GameObject with tag 'Enemy' not found");
-                }
-
-
-                if (lastEnemyHealth != enemyHealth)
-                {
-                    Debug.LogWarning("Code for enem health display not functional");
-                }
-
-            }
+            tmpText.text = $"-{damage}";
         }
-       
+        else
+        {
+            Debug.LogWarning("Text is null");
+        }
     }
+}
+
 
     void displayPlayerDamage()
     {
