@@ -373,7 +373,7 @@ PrefabInstance:
     - target: {fileID: 2880952694907086390, guid: 54933990294040447b2784c7666ce840, type: 3}
       propertyPath: testAddPrefab
       value: 
-      objectReference: {fileID: 699974415962575548, guid: 41bd3b14bab844f40b3421e3577cf9f4, type: 3}
+      objectReference: {fileID: 5966777579858946412, guid: a42e791b3d829b94987831326a44fd8b, type: 3}
     - target: {fileID: 4116269361059510808, guid: 54933990294040447b2784c7666ce840, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -9433,8 +9433,8 @@ MonoBehaviour:
   waves:
   - duration: 20
     enemiesToSpawn:
-    - enemyPrefab: {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
-      amount: 15
+    - enemyPrefab: {fileID: 7802492558257095922, guid: 88ace6962e543f044836eb83aa2fbcc6, type: 3}
+      amount: 1
   - duration: 25
     enemiesToSpawn:
     - enemyPrefab: {fileID: 7802492558257095922, guid: cef5397c36a36ee4282ce3c6421724e2, type: 3}

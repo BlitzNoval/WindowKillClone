@@ -15,45 +15,55 @@ public class ThrustAttack : ShootingSuperclass
 
     protected override void DoShootingEffect(Vector2 direction)
     {
-        if (!isAttacking)
-        {
-            StartCoroutine(PerformThrustAttack(direction));
-        }
+        StartCoroutine(DoThrust());
     }
-
-    private IEnumerator PerformThrustAttack(Vector2 direction)
-    {
-        isAttacking = true;
-        // Enable the hitbox
-        GetComponent<Collider2D>().enabled = true;
-
-        // Move the hitbox forward
-        Vector3 targetPosition = originalPosition + (Vector3)direction * thrustRange;
-        float elapsedTime = 0f;
-        while (elapsedTime < thrustCooldown / 2)
-        {
-            transform.position = Vector3.Lerp(originalPosition, targetPosition, (elapsedTime / (thrustCooldown / 2)));
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        // Move the hitbox back to the original position
-        elapsedTime = 0f;
-        while (elapsedTime < thrustCooldown / 2)
-        {
-            transform.position = Vector3.Lerp(targetPosition, originalPosition, (elapsedTime / (thrustCooldown / 2)));
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        // Disable the hitbox
-        GetComponent<Collider2D>().enabled = false;
-        isAttacking = false;
-    }
-
+    
     public override void OnHitboxHit(Collider2D other)
     {
-        Debug.Log("WHOAAA");
-        other.gameObject.GetComponent<Enemy>().TakeDamage(parentBehaviour.CalculateDamage());
+        other.gameObject.GetComponent<Enemy>()?.TakeDamage(parentBehaviour.CalculateDamage());
+    }
+
+    private IEnumerator DoThrust()
+    {
+        float animationTime = parentBehaviour.CalculateCooldown();
+        //Dividing animation into parts of 10 to make it easily divisible
+        //Adding another part for grace period - half the cooldown is the attack, the other half is idle
+        float extensionTime = animationTime * (6f / 30f);
+        //float swingTime = animationTime * (5f / 30f);
+        float returnTime = animationTime * (4f / 30f);
+
+        Transform parentTransform = transform.parent;
+
+        hitBox.SetActive(true);
+        
+        //Extension Phase
+        float currentTime = 0;
+        do
+        {
+            Vector2 movePos = Vector2.Lerp(parentTransform.position, parentTransform.position+transform.right * parentBehaviour.CalculateRange(),
+                currentTime / extensionTime);
+            transform.position = movePos;
+            Debug.Log($"Extend. base is {parentTransform.position} and new is {movePos}");
+            yield return new WaitForEndOfFrame();
+            currentTime += Time.deltaTime;
+        } while (currentTime < extensionTime);
+
+        GameObject temp = new GameObject();
+        temp.transform.position = transform.position;
+        temp.transform.parent = parentTransform;
+        //Return phase
+        currentTime = 0;
+        do
+        {
+            Vector2 movePos = Vector2.Lerp(temp.transform.position, parentTransform.position,currentTime / returnTime);
+            transform.position = movePos;
+            //Weapon Return code here
+            Debug.Log("Return");
+            yield return new WaitForEndOfFrame();
+            currentTime += Time.deltaTime;
+        } while (currentTime < returnTime);
+        
+        Destroy(temp);
+        hitBox.SetActive(false);
     }
 }
