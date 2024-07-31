@@ -281,6 +281,25 @@ public class WeaponBehaviour : MonoBehaviour
         int weaponPierce = weaponData.PiercePerTier[(int)currentTier];
         return weaponPierce + pierceStat;
     }
+
+    /// <summary>
+    /// Method used to get the cooldown time for a weapon
+    /// </summary>
+    public float CalculateCooldown()
+    {
+        float waitTime = 0;
+        //This is a value in seconds
+        float weaponSpeed = weaponData.AttackSpeedPerTier[(int)currentTier];
+        //percentage modifier of base speed
+        float attackSpeedStat = playerStats.calcPrimaryStats.attackSpeed;
+        // There are some exceptions with changes to certain weapons etc, but because I couldn't find a sheet of which
+        // weapons get what effects, they will be ignored for now
+        
+        //cooldown = baseTime/modifiedSpeed
+        float modifiedSpeed = (100 + attackSpeedStat)/100;
+        waitTime = weaponSpeed / modifiedSpeed;
+        return waitTime;
+    }
     
     /// <summary>
     /// Cooldown timer method
