@@ -56,7 +56,7 @@ public class LubaUI : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Enemy component not found on GameObject with tag 'Enemy'.");
+  
         }
 
         // Health Slider
