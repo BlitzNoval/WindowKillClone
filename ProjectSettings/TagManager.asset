@@ -7,6 +7,7 @@ TagManager:
   - Border
   - Enemy
   - Material
+  - LubaUI
   layers:
   - Default
   - TransparentFX

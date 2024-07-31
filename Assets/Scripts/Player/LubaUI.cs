@@ -108,9 +108,16 @@ public class LubaUI : MonoBehaviour
         displayPlayerDamage();
     }
 
+    public void SpawnDamageNumber(Vector2 position, float value)
+    {
+        //damageTextPrefab
+        GameObject newText = Instantiate(damageTextPrefab, position, Quaternion.identity);
+        newText.GetComponent<TMP_Text>().text = $"{value}";
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Enemy") && gameObject.CompareTag("Player"))
         {
 
             Debug.Log("Collsion Detectedin Luba Script");
@@ -118,11 +125,18 @@ public class LubaUI : MonoBehaviour
         }
     }
 
+    /*Roles and responsibilities:
+
+Insert our roles and responsibilities here
+            Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
+        GameObject.FindWithTag("LubaUI").GetComponent<LubaUI>().SpawnDamageNumber(pos, amount);
+     * 
+     * */
 
 
 
 
-    void  displayPlayerDamage()
+    void displayPlayerDamage()
     {
         if (health != lastPlayerHealth)
         {
