@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        currentState = shopState; // Start with the shop state
+        currentState = playState; // Start with the shop state
         currentState.EnterState(this);
     }
 
