@@ -80,9 +80,17 @@ public class ShopManager : MonoBehaviour
     private GameObject[] RandomItems()
     {
         List<GameObject> l_items = allItems.ToList();
-        GameObject[] selectedItems = new GameObject[4];
+        GameObject[] selectedItems;
+        if (l_items.Count <4)
+        {
+            selectedItems = new GameObject[l_items.Count];
+        } else
+        {
+            selectedItems = new GameObject[4];
+        }
+        //GameObject[] selectedItems = new GameObject[4];
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < selectedItems.Length; i++)
         {
             selectedItems[i] = l_items[Random.Range(0, l_items.Count)];
             l_items.Remove(selectedItems[i]);
