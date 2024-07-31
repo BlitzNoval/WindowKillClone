@@ -21,7 +21,8 @@ public class LubaUI : MonoBehaviour
     #region
     public GameObject runPanel; // This is the Lose Panel
     public GameObject pauseMenu;
-    public GameObject damageTextPrefab;
+    public TMP_Text damageTextPrefab;
+    public GameObject floatingText;
     #endregion
 
     private float lastHealth;
@@ -47,7 +48,7 @@ public class LubaUI : MonoBehaviour
             Debug.LogError("PlayerResources singleton instance not found.");
         }
 
-        // Find the enemy component by tag
+       /* // Find the enemy component by tag
         GameObject enemyObject = GameObject.FindGameObjectWithTag("Enemy");
         if (enemyObject != null)
         {
@@ -56,8 +57,9 @@ public class LubaUI : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Enemy component not found on GameObject with tag 'Enemy'.");
+            Debug.LogWarning("Enemy component not found on GameObject with tag 'Enemy'.");
         }
+        */
 
         // Health Slider
         healthSlider.maxValue = MaxHealt;
@@ -108,26 +110,13 @@ public class LubaUI : MonoBehaviour
         displayPlayerDamage();
     }
 
-    public void SpawnDamageNumber(Vector2 position, float value)
-    {
-        //damageTextPrefab
-        GameObject newText = Instantiate(damageTextPrefab, position, Quaternion.identity);
-        newText.GetComponent<TMP_Text>().text = $"{value}";
-    }
+   
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy") && gameObject.CompareTag("Player"))
-        {
+   
 
-            Debug.Log("Collsion Detectedin Luba Script");
-           // Vector2 collisionPoint = collision.contacts[0].point;
-        }
-    }
+    /*
 
-    /*Roles and responsibilities:
 
-Insert our roles and responsibilities here
             Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
         GameObject.FindWithTag("LubaUI").GetComponent<LubaUI>().SpawnDamageNumber(pos, amount);
      * 
@@ -144,13 +133,36 @@ Insert our roles and responsibilities here
             Debug.Log($"player lost  {damage} health");
             lastPlayerHealth = health;
 
-
-            if(lastPlayerHealth != health)
+            GameObject player = GameObject.FindWithTag("Player");
+            if (player != null)
             {
-                Debug.LogError("Code for health display not functional");
+                // Instantiate the TMP_Text at the player's position
+                Vector3 playerPosition = player.transform.position;
+
+                Instantiate(floatingText, playerPosition, Quaternion.identity);
+                TMP_Text tmpText = floatingText.GetComponentInChildren<TMP_Text>();
+
+                // Check if the TMP component is found
+                if (tmpText != null)
+                {
+                    // Change the text value
+                    tmpText.text = $"-{damage}";
+                }
+                else
+                {
+                    Debug.LogWarning("Text is null");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Player GameObject with tag 'Player' not found");
             }
 
-            //instantiate text mesh at point of collision
+            if (lastPlayerHealth != health)
+            {
+                Debug.LogWarning("Code for health display not functional");
+            }
+
         }
     }
 

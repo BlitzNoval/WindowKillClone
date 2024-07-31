@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AutoTimeout : MonoBehaviour
 {
-    [SerializeField] private float timeoutTime;
+    [SerializeField] private float timeoutTime = 3;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,7 +13,7 @@ public class AutoTimeout : MonoBehaviour
 
     private IEnumerator DoTimeout(float seconds)
     {
-        yield return new WaitForSeconds(seconds);
+        yield return new WaitForSeconds(1.5f);
         Destroy(this.gameObject);
     }
 }
