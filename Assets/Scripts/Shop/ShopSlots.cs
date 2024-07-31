@@ -1,6 +1,7 @@
 using Enums;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,7 +33,9 @@ public class ShopSlots : MonoBehaviour
         t_itemName.text = item.name;
         t_itemClassifications.text = itemBehaviour.WeaponData.WeaponClass.ToString();
         t_itemDescription.text = GenerateItemDescription();
-        t_itemCost.text = $"$ {itemBehaviour.WeaponData.BasePricePerTier[(int)tier]}";
+        t_itemCost.text = $"$ {ShopManager.Instance.CalculateInflation(itemBehaviour.WeaponData.BasePricePerTier[(int)tier])}";
+
+        Debug.Log(ShopManager.Instance.CalculateInflation(itemBehaviour.WeaponData.BasePricePerTier[(int)tier]));
 
 
         //get informaiton and plug it in here
@@ -51,24 +54,33 @@ public class ShopSlots : MonoBehaviour
         Weapon itemData = item.GetComponent<WeaponBehaviour>().WeaponData;
 
 
-        string description = "";
+        List<string> description = new List<string>();
         int tier = (int)itemTier;
 
         //Damage
-        description += $"Damage : {itemData.DamagePerTier[tier]} \n";
+        description.Add($"Damage : {itemData.DamagePerTier[tier]}");
 
         //Critical
-        description += $"Critical : {itemData.CritDamagePerTier[tier]} ({itemData.CritChancePerTier[tier]}% chance) \n";
+        description.Add($"Critical : {itemData.CritDamagePerTier[tier]} ({itemData.CritChancePerTier[tier]*100}% chance)");
 
         //Cooldown
-        description += $"Cooldown : {itemData.AttackSpeedPerTier[tier]} \n";
+        description.Add($"Cooldown : {itemData.AttackSpeedPerTier[tier]}");
 
         //Knockback
-        description += (itemData.KnockbackPerTier[tier] != 0) ? $"Knockback : {itemData.KnockbackPerTier[tier]} \n" : "";
+        if (itemData.KnockbackPerTier[tier] != 0)
+        {
+            description.Add($"Knockback : {itemData.KnockbackPerTier[tier]}");
+        }
 
         //Range
-        description += $"Range : {itemData.RangePerTier[tier]} ({itemData.WeaponType}) \n";
+        description.Add($"Range : {itemData.RangePerTier[tier]} ({itemData.WeaponType})");
 
-        return description;
+        //Lifesteal
+        if (itemData.LifestealPerTier[tier] != 0)
+        {
+            description.Add($"Lifesteal : {itemData.LifestealPerTier[tier]}%");
+        }
+
+        return string.Join("\n", description);
     }
 }

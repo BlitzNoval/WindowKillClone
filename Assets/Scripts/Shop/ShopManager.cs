@@ -2,6 +2,7 @@ using Enums;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class ShopManager : MonoBehaviour
@@ -15,6 +16,8 @@ public class ShopManager : MonoBehaviour
     public GameObject[] shopSlots = new GameObject[4];
 
     public Dictionary<GameObject, bool> slotAvailability = new Dictionary<GameObject, bool>();
+
+    public TextMeshProUGUI rerollButton;
 
     public int currentRerollPrice;
     public int rerollIncrease;
@@ -125,9 +128,10 @@ public class ShopManager : MonoBehaviour
     {
         if (PlayerResources.Instance.materials >= currentRerollPrice + rerollIncrease)
         {
-            currentRerollPrice += rerollIncrease;
             PlayerResources.Instance.materials -= currentRerollPrice;
+            currentRerollPrice += rerollIncrease;
             // reroll the shop
+            rerollButton.text = $"Reroll (${currentRerollPrice})";
         }
     }
 
@@ -137,5 +141,13 @@ public class ShopManager : MonoBehaviour
         rerollIncrease = (rerollIncrease < 1) ? 1 : rerollIncrease;
 
         currentRerollPrice = WaveSpawner.Instance.currentWaveIndex;
+
+        rerollButton.text = $"Reroll (${currentRerollPrice})";
+    }
+
+    public int CalculateInflation(int basePrice)
+    {
+        Debug.Log(Mathf.RoundToInt(basePrice + (WaveSpawner.Instance.currentWaveIndex + 1) + (basePrice * 0.1f * (WaveSpawner.Instance.currentWaveIndex + 1))));
+        return Mathf.RoundToInt(basePrice + (WaveSpawner.Instance.currentWaveIndex + 1) + (basePrice * 0.1f * (WaveSpawner.Instance.currentWaveIndex + 1)));
     }
 }

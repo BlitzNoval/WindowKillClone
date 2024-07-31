@@ -2,6 +2,7 @@ using Enums;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour
@@ -13,6 +14,8 @@ public class UpgradeManager : MonoBehaviour
     public Upgrades[] upgrades;
     public float[] chanceThresholds = new float[4];
     public GameObject upgradeUI;
+
+    public TextMeshProUGUI rerollButton;
 
     public int currentRerollPrice;
     public int rerollIncrease;
@@ -145,8 +148,11 @@ public class UpgradeManager : MonoBehaviour
     {
         if (PlayerResources.Instance.materials >= currentRerollPrice + rerollIncrease)
         {
-            currentRerollPrice += rerollIncrease;
             PlayerResources.Instance.materials -= currentRerollPrice;
+            currentRerollPrice += rerollIncrease;
+
+            rerollButton.text = $"Reroll (${currentRerollPrice})";
+
             ChooseUpgrades();
         }
     }
@@ -171,6 +177,8 @@ public class UpgradeManager : MonoBehaviour
         rerollIncrease = (rerollIncrease < 1) ? 1 : rerollIncrease;
 
         currentRerollPrice = WaveSpawner.Instance.currentWaveIndex;
+
+        rerollButton.text = $"Reroll (${currentRerollPrice})";
     }
 
 
