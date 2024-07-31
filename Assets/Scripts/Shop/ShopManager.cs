@@ -1,3 +1,4 @@
+using Enums;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,19 +57,19 @@ public class ShopManager : MonoBehaviour
 
                 if (randNum > chanceThresholds[1])
                 {
-                    shopSlots[i].GetComponent<ShopSlots>().SetShopSlot();
+                    shopSlots[i].GetComponent<ShopSlots>().SetShopSlot(WeaponTier.Common);
                 }
                 else if (randNum > chanceThresholds[2])
                 {
-                    shopSlots[i].GetComponent<ShopSlots>().SetShopSlot();
+                    shopSlots[i].GetComponent<ShopSlots>().SetShopSlot(WeaponTier.Uncommon);
                 }
                 else if (randNum > chanceThresholds[3])
                 {
-                    shopSlots[i].GetComponent<ShopSlots>().SetShopSlot();
+                    shopSlots[i].GetComponent<ShopSlots>().SetShopSlot(WeaponTier.Rare);
                 }
                 else
                 {
-                    shopSlots[i].GetComponent<ShopSlots>().SetShopSlot();
+                    shopSlots[i].GetComponent<ShopSlots>().SetShopSlot(WeaponTier.Legendary);
                 }
 
                 slotAvailability[shopSlots[i]] = false;

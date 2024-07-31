@@ -37,6 +37,7 @@ public class Weapon : ScriptableObject
             set => scalings = value;
         }
     }
+    [SerializeField] private Sprite weaponSprite;
     [SerializeField] private WeaponType weaponType;
     [SerializeField] private WeaponClass weaponClass;
     [SerializeField] private AttackType attackType;
@@ -61,6 +62,7 @@ public class Weapon : ScriptableObject
 
     //public ActivePassive SecondaryEffectType => secondaryEffectType;
 
+    public Sprite WeaponSprite => weaponSprite;
     public int[] NumberOfProjectilesPerTier => numberOfProjectilesPerTier;
 
     public WeaponType WeaponType => weaponType;
