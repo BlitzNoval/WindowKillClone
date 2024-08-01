@@ -30,7 +30,7 @@ public class CoinUI : MonoBehaviour
         if (playerTransform != null && Vector3.Distance(transform.position, playerTransform.position) <= range)
         {
             MoveToPlayer();
-            MoveToBag();
+         
         }
     }
 
@@ -43,9 +43,13 @@ public class CoinUI : MonoBehaviour
 
     public void MoveToBag()
     {
-        Debug.Log("MoveToBg is called");
- 
-        transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, moveSpeed * Time.deltaTime);
+
+        CoinUI[] allCoins = FindObjectsOfType<CoinUI>();
+        int coinCount = allCoins.Length;
+        Debug.Log("Number of coins in the scene: " + coinCount);
+        LubaUI lubaUi = FindAnyObjectByType<LubaUI>();
+        playerResources.baggedMaterials += coinCount;
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

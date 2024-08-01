@@ -105,27 +105,7 @@ public class LubaUI : MonoBehaviour
         }
 
 
-
-        //displayPlayerDamage();
-        /*GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-        foreach (GameObject enemyObject in enemies)
-        {
-            Enemy enemyScript = enemyObject.GetComponent<Enemy>();
-            if (enemyScript != null)
-            {
-                float currentEnemyHealth = enemyScript.health;
-
-                // Call displayEnemyDamage only if health has changed
-                if (enemyScript.lastHealth != currentEnemyHealth)
-                {
-                    displayEnemyDamage(enemyObject, enemyScript.lastHealth, currentEnemyHealth);
-                    enemyScript.lastHealth = currentEnemyHealth; // Update last health value
-                }
-            }
-        }*/
-
-    }
+  }
 
 
 
@@ -155,6 +135,11 @@ public class LubaUI : MonoBehaviour
         else
         {
             Debug.LogWarning("Text is null");
+        }
+
+        if (playerResources.baggedMaterials != 0)
+        {
+            playerResources.baggedMaterials -= 1;
         }
     }
 
