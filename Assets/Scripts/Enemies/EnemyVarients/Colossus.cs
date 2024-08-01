@@ -3,22 +3,22 @@ using UnityEngine;
 
 public class Colossus : Enemy
 {
-    public float initialMoveSpeed = 2.0f;
-    public float moveSpeedMultiplier = 2.0f;
+    public float initialMoveSpeed = 2.0f; // Initial speed at which the Colossus moves
+    public float moveSpeedMultiplier = 2.0f; // Multiplier for stats in the enhanced phase
     public float stopDistance = 5.0f;
     public float attackRange = 10.0f;
     public GameObject projectilePrefab;
     public float fireRate = 6.0f;
-    public Transform[] firePoints;
-    public float warningDuration = 0.25f;
-    public int warningFlashes = 2;
-    public float phaseDuration = 30.0f;
+    public Transform[] firePoints; // Array of fire points
+    public float warningDuration = 0.25f; // Duration of each warning flash
+    public int warningFlashes = 2; // Number of warning flashes
+    public float phaseDuration = 30.0f; // Duration before phase change
 
     private Color originalColor;
     private Vector3 targetPosition;
-    public float wanderTime = 2.0f;
+    private float wanderTime = 2.0f; // Time to decide on a new direction
     private float phaseTimer;
-    private int currentPhase = 1;
+    private bool isEnhanced = false;
 
     protected override void Start()
     {
@@ -27,7 +27,7 @@ public class Colossus : Enemy
         targetPosition = transform.position;
         phaseTimer = phaseDuration;
         StartCoroutine(FireProjectiles());
-        ChooseNewTargetPosition();
+        ChooseNewTargetPosition(); // Initialize the first target position
     }
 
     protected override void Update()
@@ -38,57 +38,41 @@ public class Colossus : Enemy
 
         if (phaseTimer <= 0)
         {
-            AdvancePhase();
-            phaseTimer = phaseDuration;
+            ActivateEnhancedPhase();
+            phaseTimer = phaseDuration; // Reset phase timer if needed
         }
 
         MoveTowardsTarget();
     }
 
-    private void AdvancePhase()
+    private void ActivateEnhancedPhase()
     {
-        currentPhase++;
-
-        if (currentPhase == 2)
+        if (!isEnhanced)
         {
-            ActivatePhase2();
+            initialMoveSpeed *= moveSpeedMultiplier; // Double the movement speed
+            fireRate /= moveSpeedMultiplier; // Adjust fire rate accordingly
+            isEnhanced = true;
         }
-        else if (currentPhase == 3)
-        {
-            ActivatePhase3();
-        }
-    }
-
-    private void ActivatePhase2()
-    {
-        initialMoveSpeed *= moveSpeedMultiplier;
-        fireRate /= moveSpeedMultiplier;
-        // Additional behavior for Phase 2
-        StartCoroutine(EnhancedBehavior());
-    }
-
-    private void ActivatePhase3()
-    {
-        initialMoveSpeed *= moveSpeedMultiplier;
-        fireRate /= moveSpeedMultiplier;
-        // Additional behavior for Phase 3
-        StartCoroutine(UnpredictableBehavior());
     }
 
     private void ChooseNewTargetPosition()
     {
+        // Choose a new target position within a certain range
         targetPosition = transform.position + new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), 0);
     }
 
     private void MoveTowardsTarget()
     {
+        // Move towards the target position
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, initialMoveSpeed * Time.deltaTime);
 
+        // Check if the Colossus has reached the target position
         if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
         {
-            ChooseNewTargetPosition();
+            ChooseNewTargetPosition(); // Choose a new target position if the current one is reached
         }
 
+        // Flip sprite based on movement direction
         FlipSprite((targetPosition - transform.position).normalized);
     }
 
@@ -96,6 +80,7 @@ public class Colossus : Enemy
     {
         while (true)
         {
+            // Flash red as a warning before firing
             for (int i = 0; i < warningFlashes; i++)
             {
                 spriteRenderer.color = Color.red;
@@ -104,6 +89,7 @@ public class Colossus : Enemy
                 yield return new WaitForSeconds(warningDuration);
             }
 
+            // Fire projectiles from each fire point
             if (projectilePrefab != null && firePoints.Length > 0)
             {
                 foreach (Transform firePoint in firePoints)
@@ -114,70 +100,6 @@ public class Colossus : Enemy
             }
 
             yield return new WaitForSeconds(fireRate);
-        }
-    }
-
-    private IEnumerator EnhancedBehavior()
-    {
-        while (currentPhase == 2)
-        {
-            ChooseNewTargetPosition();
-            yield return new WaitForSeconds(wanderTime / moveSpeedMultiplier);
-
-            StartCoroutine(AoEAttack());
-            yield return new WaitForSeconds(phaseDuration / 2);
-        }
-    }
-
-    private IEnumerator UnpredictableBehavior()
-    {
-        while (currentPhase == 3)
-        {
-            ChooseNewTargetPosition();
-            yield return new WaitForSeconds(wanderTime / (moveSpeedMultiplier * 2));
-
-            StartCoroutine(PowerfulAoEAttack());
-            yield return new WaitForSeconds(phaseDuration / 4);
-        }
-    }
-
-    private IEnumerator AoEAttack()
-    {
-        for (int i = 0; i < warningFlashes; i++)
-        {
-            spriteRenderer.color = Color.blue;
-            yield return new WaitForSeconds(warningDuration);
-            spriteRenderer.color = originalColor;
-            yield return new WaitForSeconds(warningDuration);
-        }
-
-        Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(transform.position, attackRange);
-        foreach (Collider2D player in hitPlayers)
-        {
-            if (player.CompareTag("Player"))
-            {
-                player.GetComponent<PlayerResources>().DamagePlayer(20);
-            }
-        }
-    }
-
-    private IEnumerator PowerfulAoEAttack()
-    {
-        for (int i = 0; i < warningFlashes; i++)
-        {
-            spriteRenderer.color = Color.magenta;
-            yield return new WaitForSeconds(warningDuration / 2);
-            spriteRenderer.color = originalColor;
-            yield return new WaitForSeconds(warningDuration / 2);
-        }
-
-        Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(transform.position, attackRange * 1.5f);
-        foreach (Collider2D player in hitPlayers)
-        {
-            if (player.CompareTag("Player"))
-            {
-                player.GetComponent<PlayerResources>().DamagePlayer(40);
-            }
         }
     }
 }

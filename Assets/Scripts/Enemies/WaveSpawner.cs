@@ -76,37 +76,45 @@ public class WaveSpawner : MonoBehaviour
     private const float statIncreasePerWave = 1.006f; // 0.6% increase per wave
 
     private IEnumerator SpawnEnemies(Wave wave)
-{
-    // Get the total number of enemies to spawn
-    int totalEnemies = 0;
-    foreach (var spawnInfo in wave.enemiesToSpawn)
     {
-        totalEnemies += spawnInfo.amount;
-    }
-
-    // Calculate the interval for spawning enemies
-    float spawnInterval = wave.duration / totalEnemies;
-
-    // Spawn the enemies
-    foreach (var spawnInfo in wave.enemiesToSpawn)
-    {
-        for (int i = 0; i < spawnInfo.amount; i++)
+        // Get the total number of enemies to spawn
+        int totalEnemies = 0;
+        foreach (var spawnInfo in wave.enemiesToSpawn)
         {
-            if (spawnInfo.enemyPrefab.GetComponent<Chaser>() != null)
-            {
-                enemySpawner.SpawnGroup(spawnInfo.enemyPrefab, 5);
-            }
-            else
-            {
-                enemySpawner.SpawnEnemy(spawnInfo.enemyPrefab);
-            }
+            totalEnemies += spawnInfo.amount;
+        }
 
-            // Wait for the next spawn interval
-            yield return new WaitForSeconds(spawnInterval);
+        // Calculate the interval for spawning enemies
+        float spawnInterval = wave.duration / totalEnemies;
+
+        // Spawn the enemies
+        foreach (var spawnInfo in wave.enemiesToSpawn)
+        {
+            for (int i = 0; i < spawnInfo.amount; i++)
+            {
+                GameObject enemyInstance = Instantiate(spawnInfo.enemyPrefab);
+                Enemy enemyScript = enemyInstance.GetComponent<Enemy>();
+
+                if (enemyScript != null)
+                {
+                    float multiplier = Mathf.Pow(statIncreasePerWave, currentWaveIndex);
+                    enemyScript.ApplyStatMultiplier(multiplier);
+                }
+
+                if (spawnInfo.enemyPrefab.GetComponent<Chaser>() != null)
+                {
+                    enemySpawner.SpawnGroup(spawnInfo.enemyPrefab, 5);
+                }
+                else
+                {
+                    enemySpawner.SpawnEnemy(spawnInfo.enemyPrefab);
+                }
+
+                // Wait for the next spawn interval
+                yield return new WaitForSeconds(spawnInterval);
+            }
         }
     }
-}
-
 
     public void StartNextWave()
     {
