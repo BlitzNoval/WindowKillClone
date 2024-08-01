@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Laser
   m_EditorClassIdentifier: 
   weaponID: w002
+  weaponSprite: {fileID: 0}
   weaponType: 1
   weaponClass: 32
   attackType: 1
@@ -65,5 +66,5 @@ MonoBehaviour:
   - 0
   - 0
   basePricePerTier: 14000000270000004a00000095000000
-  numberOfProjectilesPerTier: 04000000040000000400000006000000
+  numberOfProjectilesPerTier: 01000000010000000100000001000000
   piercePerTier: 00000000010000000200000003000000
