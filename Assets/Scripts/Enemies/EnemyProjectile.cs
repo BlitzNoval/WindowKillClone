@@ -1,19 +1,15 @@
 using UnityEngine;
-using System.Collections.Generic;
-using System.Collections;
 
 public class EnemyProjectile : MonoBehaviour
 {
     public float speed = 10f;          // Speed of the projectile
     public int damage = 1;             // Damage dealt by the projectile
-    public float despawnTime = 5f;     // Time in seconds before the projectile despawns
 
     private Vector3 direction;
 
     public void Initialize(Vector3 direction)
     {
         this.direction = direction.normalized;
-        StartCoroutine(DespawnAfterTime(despawnTime)); // Start the despawn timer
     }
 
     void Update()
@@ -39,11 +35,5 @@ public class EnemyProjectile : MonoBehaviour
             // Destroy the projectile
             Destroy(gameObject);
         }
-    }
-
-    private IEnumerator DespawnAfterTime(float time)
-    {
-        yield return new WaitForSeconds(time);
-        Destroy(gameObject);
     }
 }

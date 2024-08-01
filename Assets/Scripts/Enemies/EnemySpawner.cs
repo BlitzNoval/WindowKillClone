@@ -30,7 +30,7 @@ public class EnemySpawner : MonoBehaviour
             0
         );
 
-        GameObject spawnedIndicator = Instantiate(spawnIndicatorPrefab, spawnPosition, Quaternion.identity);
+        GameObject spawnedIndicator = Instantiate(spawnIndicatorPrefab, spawnPosition, transform.rotation);
         spawnedIndicator.GetComponent<EnemySpawnIndicator>().enemyToSpawn = enemyPrefab;
     }
 
@@ -47,7 +47,7 @@ public class EnemySpawner : MonoBehaviour
         foreach (Vector3 offset in pattern)
         {
             Vector3 spawnPosition = centralPosition + offset;
-            GameObject spawnedIndicator = Instantiate(spawnIndicatorPrefab, spawnPosition, Quaternion.identity);
+            GameObject spawnedIndicator = Instantiate(spawnIndicatorPrefab, spawnPosition, transform.rotation);
             spawnedIndicator.GetComponent<EnemySpawnIndicator>().enemyToSpawn = enemyPrefab;
         }
     }

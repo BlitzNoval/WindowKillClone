@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1658580686994982622}
   - component: {fileID: 1190486696966535669}
   - component: {fileID: 6719660001174028453}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +80,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1382c81bd2e634e91264da80c823f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentShooter: {fileID: 0}
 --- !u!1 &1414986209620980038
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,7 +89,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1324661551362565613}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ShootingPlug
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -124,7 +123,7 @@ GameObject:
   - component: {fileID: -5865768966213932953}
   - component: {fileID: -3618190040551011069}
   - component: {fileID: 3781489034568657180}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Weapon Master
   m_TagString: Untagged
   m_Icon: {fileID: 0}
