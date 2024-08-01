@@ -36,6 +36,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 241106080599070287, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_TagString
+      value: Hitbox
+      objectReference: {fileID: 0}
     - target: {fileID: 1414986209620980038, guid: da600fd545945884ea0d7ef25c715033, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -43,6 +47,18 @@ PrefabInstance:
     - target: {fileID: 3907417106830163660, guid: da600fd545945884ea0d7ef25c715033, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907417106830163660, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907417106830163660, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907417106830163660, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3907417106830163660, guid: da600fd545945884ea0d7ef25c715033, type: 3}
       propertyPath: m_LocalPosition.x
@@ -84,6 +100,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3907417106830163660, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5698162964894202236, guid: da600fd545945884ea0d7ef25c715033, type: 3}
       propertyPath: m_Name
       value: Cacti Club
@@ -117,3 +137,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e7cf604d051f384ba5c0d36996a24c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitBox: {fileID: 5043374834420743567}
+--- !u!1 &5043374834420743567 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 241106080599070287, guid: da600fd545945884ea0d7ef25c715033, type: 3}
+  m_PrefabInstance: {fileID: 5090543136644639680}
+  m_PrefabAsset: {fileID: 0}

@@ -11,7 +11,7 @@ public class WeaponBehaviour : MonoBehaviour
     [SerializeField] private PlayerBase playerStats;
     [SerializeField] private Weapon weaponData;
     //[SerializeField] private float debugRangeMultiplier;
-    private static float weaponRangeMultiplier = 0.08f;
+    private static float weaponRangeMultiplier = 0.04f;
     
     [Header("Watchers")] 
     [SerializeField] private WeaponTier currentTier;
@@ -160,7 +160,10 @@ public class WeaponBehaviour : MonoBehaviour
         }
         else
         {
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            if (canAttack)
+            {
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            }
         }
     }
 
@@ -260,13 +263,14 @@ public class WeaponBehaviour : MonoBehaviour
     {
         float result = 0;
         //pulling range percentile modifier from the player stats
-        float rangeStat = playerStats.calcPrimaryStats.range;
+        float rangeStat = playerStats.calcPrimaryStats.range * (weaponData.AttackType!=AttackType.Shoot ? 0.5f : 1);
         
         //pulling weapon damage from the attached scriptableObject
-        float weaponDamage = weaponData.RangePerTier[(int)currentTier];
+        float weaponRange = weaponData.RangePerTier[(int)currentTier];
         
         //multiplying weapon range by the percentage of the range stat
-        result = weaponDamage * (1 + rangeStat/100);
+        //The range stat effects melee weapons half as much
+        result = weaponRange * (1 + rangeStat/100);
         
         result *= weaponRangeMultiplier;
         return result;
@@ -280,6 +284,25 @@ public class WeaponBehaviour : MonoBehaviour
         int pierceStat = (int) playerStats.secondaryStats.piercing;
         int weaponPierce = weaponData.PiercePerTier[(int)currentTier];
         return weaponPierce + pierceStat;
+    }
+
+    /// <summary>
+    /// Method used to get the cooldown time for a weapon
+    /// </summary>
+    public float CalculateCooldown()
+    {
+        float waitTime = 0;
+        //This is a value in seconds
+        float weaponSpeed = weaponData.AttackSpeedPerTier[(int)currentTier];
+        //percentage modifier of base speed
+        float attackSpeedStat = playerStats.calcPrimaryStats.attackSpeed;
+        // There are some exceptions with changes to certain weapons etc, but because I couldn't find a sheet of which
+        // weapons get what effects, they will be ignored for now
+        
+        //cooldown = baseTime/modifiedSpeed
+        float modifiedSpeed = (100 + attackSpeedStat)/100;
+        waitTime = weaponSpeed / modifiedSpeed;
+        return waitTime;
     }
     
     /// <summary>
@@ -310,5 +333,12 @@ public class WeaponBehaviour : MonoBehaviour
     public void TriggerSecondaryEffect()
     {
         thisSecondaryEffect?.Invoke();
+    }
+    
+    public static float MapFloat(float fromMin, float fromMax, float toMin, float toMax, float val)
+    {
+        float revFac = Mathf.InverseLerp(fromMin, fromMax, val);
+        float output = Mathf.Lerp(toMin, toMax, revFac);
+        return output;
     }
 }
