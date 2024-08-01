@@ -38,6 +38,51 @@ public class Colossus : Enemy
 
         if (phaseTimer <= 0)
         {
+            Vector3 targetPosition = Vector3.Distance(transform.position, player.position) <= attackRange
+                ? player.position
+                : wanderTarget;
+
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, currentMoveSpeed * Time.deltaTime);
+            FlipSprite((targetPosition - transform.position).normalized);
+
+            if (Vector3.Distance(transform.position, wanderTarget) < 0.1f)
+            {
+                SetWanderTarget();
+            }
+        }
+        else if (currentPhase == 3)
+        {
+            ActivatePhase3();
+        }
+    }
+
+    private void ActivatePhase2()
+    {
+        initialMoveSpeed *= moveSpeedMultiplier;
+        fireRate /= moveSpeedMultiplier;
+        // Additional behavior for Phase 2
+        StartCoroutine(EnhancedBehavior());
+    }
+
+    private void ActivatePhase3()
+    {
+        initialMoveSpeed *= moveSpeedMultiplier;
+        fireRate /= moveSpeedMultiplier;
+        // Additional behavior for Phase 3
+        StartCoroutine(UnpredictableBehavior());
+    }
+
+    private void SetWanderTarget()
+    {
+        wanderTarget = transform.position + Random.insideUnitSphere * wanderRadius;
+        wanderTarget.z = 0;
+    }
+
+    private IEnumerator ManagePhases()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(phaseDuration);
             AdvancePhase();
             phaseTimer = phaseDuration;
         }
@@ -157,26 +202,6 @@ public class Colossus : Enemy
             if (player.CompareTag("Player"))
             {
                 player.GetComponent<PlayerResources>().DamagePlayer(20);
-            }
-        }
-    }
-
-    private IEnumerator PowerfulAoEAttack()
-    {
-        for (int i = 0; i < warningFlashes; i++)
-        {
-            spriteRenderer.color = Color.magenta;
-            yield return new WaitForSeconds(warningDuration / 2);
-            spriteRenderer.color = originalColor;
-            yield return new WaitForSeconds(warningDuration / 2);
-        }
-
-        Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(transform.position, attackRange * 1.5f);
-        foreach (Collider2D player in hitPlayers)
-        {
-            if (player.CompareTag("Player"))
-            {
-                player.GetComponent<PlayerResources>().DamagePlayer(40);
             }
         }
     }
