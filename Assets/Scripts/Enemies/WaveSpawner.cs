@@ -129,7 +129,10 @@ public class WaveSpawner : MonoBehaviour
     private void WaveCompleted()
     {
         // Logic to handle wave completion
+        CoinUI coins = FindAnyObjectByType<CoinUI>();
+        coins.MoveToBag();
         GameManager.Instance.SwitchState(GameManager.Instance.upgradeState);
+      
     }
 
     private void UpdateWaveText()
@@ -137,6 +140,8 @@ public class WaveSpawner : MonoBehaviour
         if (currentWaveIndex < waves.Count)
         {
             waveText.text = $"Wave: {currentWaveIndex + 1}";
+
+            
         }
     }
 

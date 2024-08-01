@@ -17,6 +17,8 @@ public class LubaUI : MonoBehaviour
     public TMP_Text crntLvl;
     public TMP_Text coins;
     public TMP_Text baggedMaterials;
+    public float moveSpeed = 45f;
+    private WaveSpawner waveSpawner;
 
     public Slider healthSlider;
     public Slider levelSlider;
@@ -28,7 +30,7 @@ public class LubaUI : MonoBehaviour
     public GameObject floatingText;
     public GameObject floatingTextEnemy;
 
-
+    public Transform baggedMaterialsTrans;
     #endregion
 
     private float lastHealth;
@@ -42,7 +44,7 @@ public class LubaUI : MonoBehaviour
 
     void Start()
     {
-
+        waveSpawner = FindObjectOfType<WaveSpawner>();
         lastPlayerHealth = health;
         lastEnemyHealth = enemyHealth;
         playerResources = PlayerResources.Instance;
@@ -72,7 +74,7 @@ public class LubaUI : MonoBehaviour
     {
 
 
-
+        
         MaxHealt = playerResources.maxHealth;
         health = playerResources.health;
 
@@ -103,27 +105,7 @@ public class LubaUI : MonoBehaviour
         }
 
 
-
-        //displayPlayerDamage();
-        /*GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-        foreach (GameObject enemyObject in enemies)
-        {
-            Enemy enemyScript = enemyObject.GetComponent<Enemy>();
-            if (enemyScript != null)
-            {
-                float currentEnemyHealth = enemyScript.health;
-
-                // Call displayEnemyDamage only if health has changed
-                if (enemyScript.lastHealth != currentEnemyHealth)
-                {
-                    displayEnemyDamage(enemyObject, enemyScript.lastHealth, currentEnemyHealth);
-                    enemyScript.lastHealth = currentEnemyHealth; // Update last health value
-                }
-            }
-        }*/
-
-    }
+  }
 
 
 
@@ -153,6 +135,11 @@ public class LubaUI : MonoBehaviour
         else
         {
             Debug.LogWarning("Text is null");
+        }
+
+        if (playerResources.baggedMaterials != 0)
+        {
+            playerResources.baggedMaterials -= 1;
         }
     }
 
@@ -245,6 +232,8 @@ public class LubaUI : MonoBehaviour
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
     }
+
+   
 
 
 
