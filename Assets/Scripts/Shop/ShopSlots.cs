@@ -19,6 +19,7 @@ public class ShopSlots : MonoBehaviour
     public TextMeshProUGUI t_itemClassifications;
     public TextMeshProUGUI t_itemCost;
     public TextMeshProUGUI t_itemDescription;
+    public TextMeshProUGUI t_locked;
 
     [SerializeField] private int itemCost;
 
@@ -40,6 +41,7 @@ public class ShopSlots : MonoBehaviour
         t_itemClassifications.text = itemBehaviour.WeaponData.WeaponClass.ToString();
         t_itemDescription.text = GenerateItemDescription();
         t_itemCost.text = $"$ {ShopManager.Instance.CalculateInflation(itemBehaviour.WeaponData.BasePricePerTier[(int)tier])}";
+        icon.sprite = item.GetComponent<SpriteRenderer>().sprite;
 
         panel.color = tierColours[(int)tier];
 
@@ -111,11 +113,13 @@ public class ShopSlots : MonoBehaviour
         {
             //make the slot available (to be rerolled)
             ShopManager.Instance.slotAvailability[gameObject] = true;
+            t_locked.text = "Locked";
         }
         else
         {
             //lock the slot
             ShopManager.Instance.slotAvailability[gameObject] = false;
+            t_locked.text = "Lock";
         }
     }
 

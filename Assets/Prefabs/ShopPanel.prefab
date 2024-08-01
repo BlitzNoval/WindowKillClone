@@ -108,6 +108,7 @@ MonoBehaviour:
   t_itemClassifications: {fileID: 6841320235493501769}
   t_itemCost: {fileID: 5750803244606928860}
   t_itemDescription: {fileID: 5281791875412970552}
+  t_locked: {fileID: 3539773935461487051}
   itemCost: 0
   itemLocked: 0
 --- !u!1 &2375275329432374658
