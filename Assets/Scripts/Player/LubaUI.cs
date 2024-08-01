@@ -55,6 +55,18 @@ public class LubaUI : MonoBehaviour
             Debug.LogError("PlayerResources singleton instance not found.");
         }
 
+        // Find the enemy component by tag
+        GameObject enemyObject = GameObject.FindGameObjectWithTag("Enemy");
+        if (enemyObject != null)
+        {
+            enemy = enemyObject.GetComponent<Enemy>();
+            lastHealth = enemyCrntHealth = enemy.health;
+        }
+        else
+        {
+  
+        }
+
         // Health Slider
         healthSlider.maxValue = MaxHealt;
         healthSlider.value = health;
@@ -98,10 +110,20 @@ public class LubaUI : MonoBehaviour
         if (health <= 0)
         {
             runPanel.SetActive(true);
+            Time.timeScale = 0;
             // Other Lose Panel Logic
         }
 
-
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (Time.timeScale == 0)
+            {
+                Resume();
+            } else
+            {
+                PauseGame();
+            }
+        }
 
 
        

@@ -31,7 +31,7 @@ public abstract class Enemy : MonoBehaviour
 
     public void TakeDamage(float amount) //MAKE A VIRTUAL CLASS IF IT NEEDS TO BE OVERRIDDEN
     {
-        health -= amount;
+        health -= PlayerResources.Instance.DealDamage(amount);
     }
 
     public void ApplyStatMultiplier(float multiplier)

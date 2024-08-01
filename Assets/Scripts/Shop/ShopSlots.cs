@@ -1,6 +1,7 @@
 using Enums;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,8 @@ using UnityEngine.UI;
 public class ShopSlots : MonoBehaviour
 {
     public GameObject item;
+    public Image panel;
+    public Color[] tierColours;
 
     public WeaponTier itemTier;
 
@@ -16,6 +19,11 @@ public class ShopSlots : MonoBehaviour
     public TextMeshProUGUI t_itemClassifications;
     public TextMeshProUGUI t_itemCost;
     public TextMeshProUGUI t_itemDescription;
+    public TextMeshProUGUI t_locked;
+
+    [SerializeField] private int itemCost;
+
+    [SerializeField] private bool itemLocked;
 
     private void Start()
     {
@@ -32,18 +40,14 @@ public class ShopSlots : MonoBehaviour
         t_itemName.text = item.name;
         t_itemClassifications.text = itemBehaviour.WeaponData.WeaponClass.ToString();
         t_itemDescription.text = GenerateItemDescription();
-        t_itemCost.text = $"$ {itemBehaviour.WeaponData.BasePricePerTier[(int)tier]}";
+        t_itemCost.text = $"$ {ShopManager.Instance.CalculateInflation(itemBehaviour.WeaponData.BasePricePerTier[(int)tier])}";
+        icon.sprite = item.GetComponent<SpriteRenderer>().sprite;
 
+        panel.color = tierColours[(int)tier];
+
+        itemCost = ShopManager.Instance.CalculateInflation(itemBehaviour.WeaponData.BasePricePerTier[(int)tier]);
 
         //get informaiton and plug it in here
-    }
-
-    public void BuyItem()
-    {
-        // if the player has enough money
-        //add to playerInventory
-        ShopManager.Instance.slotAvailability[gameObject] = true;
-        gameObject.SetActive(false);
     }
 
     public string GenerateItemDescription()
@@ -51,24 +55,72 @@ public class ShopSlots : MonoBehaviour
         Weapon itemData = item.GetComponent<WeaponBehaviour>().WeaponData;
 
 
-        string description = "";
+        List<string> description = new List<string>();
         int tier = (int)itemTier;
 
         //Damage
-        description += $"Damage : {itemData.DamagePerTier[tier]} \n";
+        description.Add($"Damage : {itemData.DamagePerTier[tier]}");
 
         //Critical
-        description += $"Critical : {itemData.CritDamagePerTier[tier]} ({itemData.CritChancePerTier[tier]}% chance) \n";
+        description.Add($"Critical : {itemData.CritDamagePerTier[tier]} ({itemData.CritChancePerTier[tier] * 100}% chance)");
 
         //Cooldown
-        description += $"Cooldown : {itemData.AttackSpeedPerTier[tier]} \n";
+        description.Add($"Cooldown : {itemData.AttackSpeedPerTier[tier]}");
 
         //Knockback
-        description += (itemData.KnockbackPerTier[tier] != 0) ? $"Knockback : {itemData.KnockbackPerTier[tier]} \n" : "";
+        if (itemData.KnockbackPerTier[tier] != 0)
+        {
+            description.Add($"Knockback : {itemData.KnockbackPerTier[tier]}");
+        }
 
         //Range
-        description += $"Range : {itemData.RangePerTier[tier]} ({itemData.WeaponType}) \n";
+        description.Add($"Range : {itemData.RangePerTier[tier]} ({itemData.WeaponType})");
 
-        return description;
+        //Lifesteal
+        if (itemData.LifestealPerTier[tier] != 0)
+        {
+            description.Add($"Lifesteal : {itemData.LifestealPerTier[tier]}%");
+        }
+
+        return string.Join("\n", description);
     }
+
+    public void BuyItem()
+    {
+        // if the player has enough money
+
+        //add to playerInventory
+        if (PlayerResources.Instance.materials >= itemCost)
+        {
+            //spawn the item and pass check if it can be added
+            GameObject new_item = Instantiate(item);
+
+
+            if (WeaponController.Instance.IsAddable(new_item))
+            {
+                PlayerResources.Instance.materials -= itemCost;
+                WeaponController.Instance.AddWeapon(new_item);
+
+                ShopManager.Instance.slotAvailability[gameObject] = true;
+                gameObject.SetActive(false);
+            }
+        }
+    }
+
+    public void LockItem()
+    {
+        if (itemLocked)
+        {
+            //make the slot available (to be rerolled)
+            ShopManager.Instance.slotAvailability[gameObject] = true;
+            t_locked.text = "Locked";
+        }
+        else
+        {
+            //lock the slot
+            ShopManager.Instance.slotAvailability[gameObject] = false;
+            t_locked.text = "Lock";
+        }
+    }
+
 }
