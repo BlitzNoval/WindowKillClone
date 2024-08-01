@@ -61,7 +61,7 @@ public abstract class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
-    protected void FlipSprite(Vector3 direction)
+    protected virtual void FlipSprite(Vector3 direction)
     {
         if (direction.x > 0)
         {
@@ -73,7 +73,7 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    protected void MoveTowardsPlayer()
+    protected virtual void MoveTowardsPlayer()
     {
         Vector3 direction = (player.position - transform.position).normalized;
         transform.position += direction * speed * Time.deltaTime;

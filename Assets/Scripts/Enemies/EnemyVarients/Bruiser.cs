@@ -6,10 +6,10 @@ public class Bruiser : Enemy
     public float minChargeCooldown = 2.5f;
     public float maxChargeCooldown = 3.5f;
     public float chargeSpeedMultiplier = 2.0f;
-    public float chargeDistance = 10.0f; // Increased charge distance
-    public float warningDuration = 0.25f; // Duration of each warning flash
-    public int warningFlashes = 2; // Number of warning flashes
-    public int damage = 10; // Damage dealt to the player on touch
+    public float chargeDistance = 10.0f;
+    public float warningDuration = 0.25f;
+    public int warningFlashes = 2;
+    // Remove the 'damage' field, use the one from the base class
 
     private float nextChargeTime;
     private bool isCharging;
@@ -19,10 +19,9 @@ public class Bruiser : Enemy
     {
         base.Start();
         SetNextChargeTime();
-
-        // Store the original color
         originalColor = spriteRenderer.color;
     }
+
 
     protected override void FixedUpdate()
     {
@@ -83,14 +82,14 @@ public class Bruiser : Enemy
         isCharging = false;
     }
 
-    private void MoveTowardsPlayer()
+    protected override void MoveTowardsPlayer()
     {
         Vector3 direction = (player.position - transform.position).normalized;
         transform.position += direction * speed * Time.deltaTime;
         FlipSprite(direction);
     }
 
-    private void FlipSprite(Vector3 direction)
+   protected override void FlipSprite(Vector3 direction)
     {
         // Flip the sprite based on the direction
         if (direction.x > 0)
