@@ -23,15 +23,21 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (health <= 0)
+        /*if (health <= 0)
         {
             Die();
-        }
+        }*/
     }
 
     public void TakeDamage(float amount) //MAKE A VIRTUAL CLASS IF IT NEEDS TO BE OVERRIDDEN
     {
+        GameObject uiManager = GameObject.FindWithTag("LubaUI");
+        uiManager.GetComponent<LubaUI>().displayEnemyDamage(this.gameObject, amount);
         health -= amount;
+        if (health <= 0)
+        {
+            Die();
+        }
     }
 
     public void ApplyStatMultiplier(float multiplier)

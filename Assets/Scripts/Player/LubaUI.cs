@@ -107,7 +107,7 @@ public class LubaUI : MonoBehaviour
        
       
         displayPlayerDamage();
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        /*GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
         foreach (GameObject enemyObject in enemies)
         {
@@ -123,7 +123,7 @@ public class LubaUI : MonoBehaviour
                     enemyScript.lastHealth = currentEnemyHealth; // Update last health value
                 }
             }
-        }
+        }*/
     
 }
 
@@ -133,11 +133,9 @@ public class LubaUI : MonoBehaviour
 
 
 
-    void displayEnemyDamage(GameObject enemyObject, float lastHealth, float currentHealth)
+    public void displayEnemyDamage(GameObject enemyObject, float damage)
 {
-    float damage = lastHealth - currentHealth;
-    if (damage != 0)
-    {
+        damage = Mathf.Abs(damage);
         Debug.Log($"Enemy at {enemyObject.name} lost {damage} health");
 
         // Instantiate the damage text at the enemy's position
@@ -153,7 +151,6 @@ public class LubaUI : MonoBehaviour
         {
             Debug.LogWarning("Text is null");
         }
-    }
 }
 
 
