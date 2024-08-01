@@ -3,80 +3,55 @@ using UnityEngine;
 
 public class Colossus : Enemy
 {
-    [Header("Movement")]
-    public float initialMoveSpeed = 5.0f;
-    public float moveSpeedMultiplier = 1.1f;
-    public float wanderRadius = 5f;
-
-    [Header("Attack")]
+    public float initialMoveSpeed = 2.0f;
+    public float moveSpeedMultiplier = 2.0f;
+    public float stopDistance = 5.0f;
     public float attackRange = 10.0f;
     public GameObject projectilePrefab;
-    public float fireRate = 3.0f;
+    public float fireRate = 6.0f;
     public Transform[] firePoints;
-
-    [Header("Visual Feedback")]
-    public Color phaseChangeColor = Color.yellow;
-    public Color buildUpColor = Color.red;
-    public float warningDuration = 0.5f;
-
-    [Header("Phases")]
+    public float warningDuration = 0.25f;
+    public int warningFlashes = 2;
     public float phaseDuration = 30.0f;
-    public float growthFactor = 1.2f;
-
-    [Header("Phase 1")]
-    public int phase1ProjectileCount = 3;
-    public float phase1SpreadAngle = 30f;
-
-    [Header("Phase 2")]
-    public int phase2ProjectileCount = 5;
-    public float phase2SpreadAngle = 45f;
-
-    [Header("Phase 3")]
-    public int phase3ProjectileCount = 7;
-    public float phase3SpreadAngle = 60f;
-    public float chargeSpeed = 15f;
-    public int chargeVolleyCount = 5;
 
     private Color originalColor;
-    private Transform player;
+    private Vector3 targetPosition;
+    public float wanderTime = 2.0f;
     private float phaseTimer;
     private int currentPhase = 1;
-    private bool isAttacking = false;
-    private Vector3 wanderTarget;
-    private float currentMoveSpeed;
 
     protected override void Start()
     {
         base.Start();
         originalColor = spriteRenderer.color;
+        targetPosition = transform.position;
         phaseTimer = phaseDuration;
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        currentMoveSpeed = initialMoveSpeed;
-        StartCoroutine(ManagePhases());
-        SetWanderTarget();
+        StartCoroutine(FireProjectiles());
+        ChooseNewTargetPosition();
     }
 
     protected override void Update()
     {
         base.Update();
-        Move();
+
+        phaseTimer -= Time.deltaTime;
+
+        if (phaseTimer <= 0)
+        {
+            AdvancePhase();
+            phaseTimer = phaseDuration;
+        }
+
+        MoveTowardsTarget();
     }
 
-    private void Move()
+    private void AdvancePhase()
     {
-        if (player != null)
+        currentPhase++;
+
+        if (currentPhase == 2)
         {
-            Vector3 targetPosition = Vector3.Distance(transform.position, player.position) <= attackRange
-                ? player.position
-                : wanderTarget;
-
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, currentMoveSpeed * Time.deltaTime);
-            FlipSprite((targetPosition - transform.position).normalized);
-
-            if (Vector3.Distance(transform.position, wanderTarget) < 0.1f)
-            {
-                SetWanderTarget();
-            }
+            ActivatePhase2();
         }
         else if (currentPhase == 3)
         {
@@ -100,124 +75,108 @@ public class Colossus : Enemy
         StartCoroutine(UnpredictableBehavior());
     }
 
-    private void SetWanderTarget()
+    private void ChooseNewTargetPosition()
     {
-        wanderTarget = transform.position + Random.insideUnitSphere * wanderRadius;
-        wanderTarget.z = 0;
+        targetPosition = transform.position + new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), 0);
     }
 
-    private IEnumerator ManagePhases()
+    private void MoveTowardsTarget()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, initialMoveSpeed * Time.deltaTime);
+
+        if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
+        {
+            ChooseNewTargetPosition();
+        }
+
+        FlipSprite((targetPosition - transform.position).normalized);
+    }
+
+    private IEnumerator FireProjectiles()
     {
         while (true)
         {
-            yield return new WaitForSeconds(phaseDuration);
-            AdvancePhase();
-        }
-    }
+            for (int i = 0; i < warningFlashes; i++)
+            {
+                spriteRenderer.color = Color.red;
+                yield return new WaitForSeconds(warningDuration);
+                spriteRenderer.color = originalColor;
+                yield return new WaitForSeconds(warningDuration);
+            }
 
-    private void AdvancePhase()
-    {
-        currentPhase++;
-        currentMoveSpeed *= moveSpeedMultiplier;
-        transform.localScale *= growthFactor;
-        StartCoroutine(PhaseChangeIndicator());
+            if (projectilePrefab != null && firePoints.Length > 0)
+            {
+                foreach (Transform firePoint in firePoints)
+                {
+                    GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+                    projectile.GetComponent<EnemyProjectile>().Initialize(player.position - firePoint.position);
+                }
+            }
 
-        switch (currentPhase)
-        {
-            case 2:
-                StartCoroutine(Phase2Behavior());
-                break;
-            case 3:
-                StartCoroutine(Phase3Behavior());
-                break;
-        }
-    }
-
-    private IEnumerator PhaseChangeIndicator()
-    {
-        spriteRenderer.color = phaseChangeColor;
-        yield return new WaitForSeconds(1.0f);
-        spriteRenderer.color = originalColor;
-    }
-
-    private IEnumerator Phase1Behavior()
-    {
-        while (currentPhase == 1)
-        {
-            yield return StartCoroutine(BuildUpBeforeAttack());
-            FireProjectilesInPattern(phase1ProjectileCount, phase1SpreadAngle);
             yield return new WaitForSeconds(fireRate);
         }
     }
 
-    private IEnumerator Phase2Behavior()
+    private IEnumerator EnhancedBehavior()
     {
         while (currentPhase == 2)
         {
-            yield return StartCoroutine(BuildUpBeforeAttack());
-            FireProjectilesInPattern(phase2ProjectileCount, phase2SpreadAngle);
-            yield return new WaitForSeconds(fireRate * 0.75f);
+            ChooseNewTargetPosition();
+            yield return new WaitForSeconds(wanderTime / moveSpeedMultiplier);
+
+            StartCoroutine(AoEAttack());
+            yield return new WaitForSeconds(phaseDuration / 2);
         }
     }
 
-    private IEnumerator Phase3Behavior()
+    private IEnumerator UnpredictableBehavior()
     {
         while (currentPhase == 3)
         {
-            yield return StartCoroutine(BuildUpBeforeAttack(true));
-            FireProjectilesInPattern(phase3ProjectileCount, phase3SpreadAngle);
-            yield return new WaitForSeconds(fireRate * 0.5f);
+            ChooseNewTargetPosition();
+            yield return new WaitForSeconds(wanderTime / (moveSpeedMultiplier * 2));
+
+            StartCoroutine(PowerfulAoEAttack());
+            yield return new WaitForSeconds(phaseDuration / 4);
         }
     }
 
-    private IEnumerator BuildUpBeforeAttack(bool chargeTowardsPlayer = false)
+    private IEnumerator AoEAttack()
     {
-        isAttacking = true;
-        spriteRenderer.color = new Color(buildUpColor.r, buildUpColor.g, buildUpColor.b, 1f / 3f);
-        yield return new WaitForSeconds(warningDuration);
-        spriteRenderer.color = new Color(buildUpColor.r, buildUpColor.g, buildUpColor.b, 2f / 3f);
-        yield return new WaitForSeconds(warningDuration);
-        spriteRenderer.color = buildUpColor;
-
-        if (chargeTowardsPlayer && player != null)
+        for (int i = 0; i < warningFlashes; i++)
         {
-            Vector3 chargeTarget = player.position;
-            float originalMoveSpeed = currentMoveSpeed;
-            currentMoveSpeed = chargeSpeed;
+            spriteRenderer.color = Color.blue;
+            yield return new WaitForSeconds(warningDuration);
+            spriteRenderer.color = originalColor;
+            yield return new WaitForSeconds(warningDuration);
+        }
 
-            while (Vector3.Distance(transform.position, chargeTarget) > 0.1f && isAttacking)
+        Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(transform.position, attackRange);
+        foreach (Collider2D player in hitPlayers)
+        {
+            if (player.CompareTag("Player"))
             {
-                transform.position = Vector3.MoveTowards(transform.position, chargeTarget, currentMoveSpeed * Time.deltaTime);
-                FlipSprite((chargeTarget - transform.position).normalized);
-                FireProjectilesInPattern(chargeVolleyCount, 360f);
-                yield return new WaitForSeconds(0.2f);
+                player.GetComponent<PlayerResources>().DamagePlayer(20);
             }
-
-            currentMoveSpeed = originalMoveSpeed;
         }
-
-        yield return new WaitForSeconds(warningDuration);
-        spriteRenderer.color = originalColor;
-        isAttacking = false;
     }
 
-    private void FireProjectilesInPattern(int projectileCount, float spreadAngle)
+    private IEnumerator PowerfulAoEAttack()
     {
-        if (projectilePrefab != null && firePoints.Length > 0)
+        for (int i = 0; i < warningFlashes; i++)
         {
-            foreach (Transform firePoint in firePoints)
-            {
-                Vector3 direction = (player.position - firePoint.position).normalized;
-                float angleStep = spreadAngle / (projectileCount - 1);
-                float startAngle = -spreadAngle / 2;
+            spriteRenderer.color = Color.magenta;
+            yield return new WaitForSeconds(warningDuration / 2);
+            spriteRenderer.color = originalColor;
+            yield return new WaitForSeconds(warningDuration / 2);
+        }
 
-                for (int i = 0; i < projectileCount; i++)
-                {
-                    float currentAngle = startAngle + angleStep * i;
-                    Vector3 projectileDirection = Quaternion.Euler(0, 0, currentAngle) * direction;
-                    GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
-                    projectile.GetComponent<EnemyProjectile>().Initialize(projectileDirection);
-                }
+        Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(transform.position, attackRange * 1.5f);
+        foreach (Collider2D player in hitPlayers)
+        {
+            if (player.CompareTag("Player"))
+            {
+                player.GetComponent<PlayerResources>().DamagePlayer(40);
             }
         }
     }
