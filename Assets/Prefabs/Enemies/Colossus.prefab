@@ -568,7 +568,7 @@ MonoBehaviour:
   stopDistance: 5
   attackRange: 10
   projectilePrefab: {fileID: 3996430138256230750, guid: cfcd0dbe7d7c0d042b9e4b4d312721ea, type: 3}
-  fireRate: 0.2
+  fireRate: 3
   firePoints:
   - {fileID: 1577942457304280931}
   - {fileID: 7905321263404051655}
@@ -588,6 +588,7 @@ MonoBehaviour:
   warningDuration: 0.25
   warningFlashes: 2
   phaseDuration: 30
+  wanderTime: 2
 --- !u!1 &8045256019048393423
 GameObject:
   m_ObjectHideFlags: 0

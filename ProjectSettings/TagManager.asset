@@ -7,14 +7,16 @@ TagManager:
   - Border
   - Enemy
   - WeaponPlug
+  - Material
+  - Hitbox
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
+  - Player Weapons
   - Enemies
   - 
   - 
