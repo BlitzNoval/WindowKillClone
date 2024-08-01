@@ -9222,6 +9222,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 643820007}
   damageTextPrefab: {fileID: 692673663182608160, guid: caa89c5f7e022ef45885cc99b912eba3, type: 3}
   floatingText: {fileID: 3835574242490135034, guid: 79f1fcd9c5b986a4a8d024da6d834a64, type: 3}
+  floatingTextEnemy: {fileID: 3835574242490135034, guid: b7c1dad2c6e686c4095afa555b340ea3, type: 3}
   enemyCrntHealth: 0
   dmgValue: 0
   gameObjects:

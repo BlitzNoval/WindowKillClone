@@ -26,6 +26,9 @@ public class LubaUI : MonoBehaviour
     public GameObject pauseMenu;
     public TMP_Text damageTextPrefab;
     public GameObject floatingText;
+    public GameObject floatingTextEnemy;
+
+
     #endregion
 
     private float lastHealth;
@@ -139,7 +142,7 @@ public class LubaUI : MonoBehaviour
 
         // Instantiate the damage text at the enemy's position
         Vector3 enemyPosition = enemyObject.transform.position;
-        GameObject damageText = Instantiate(floatingText, enemyPosition, Quaternion.identity);
+        GameObject damageText = Instantiate(floatingTextEnemy, enemyPosition, Quaternion.identity);
         TMP_Text tmpText = damageText.GetComponentInChildren<TMP_Text>();
 
         if (tmpText != null)
