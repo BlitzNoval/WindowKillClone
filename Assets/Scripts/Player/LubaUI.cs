@@ -147,7 +147,7 @@ public class LubaUI : MonoBehaviour
 
         if (tmpText != null)
         {
-            tmpText.text = $"-{damage}";
+            tmpText.text = $"-{(int)damage}";
         }
         else
         {
