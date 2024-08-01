@@ -46,7 +46,8 @@ public class CoinUI : MonoBehaviour
             Debug.Log("Player Collided wt Material");
             Destroy(gameObject);
            // playerResources.experience++;
-            playerResources.materials++;
+
+            playerResources.GainExperience(1);
 
         }
     }

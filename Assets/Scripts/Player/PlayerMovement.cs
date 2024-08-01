@@ -43,6 +43,5 @@ public class PlayerMovement : MonoBehaviour
     private void OnMove()
     {
         currentMovement = pInput.actions.FindAction("Move").ReadValue<Vector2>();
-        Debug.Log("Test");
     }
 }

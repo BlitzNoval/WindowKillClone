@@ -48,6 +48,7 @@ public class ThrustAttack : ShootingSuperclass
             currentTime += Time.deltaTime;
         } while (currentTime < extensionTime);
 
+    
         GameObject temp = new GameObject();
         temp.transform.position = transform.position;
         temp.transform.parent = parentTransform;

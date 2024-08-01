@@ -97,10 +97,20 @@ public class LubaUI : MonoBehaviour
         if (health <= 0)
         {
             runPanel.SetActive(true);
+            Time.timeScale = 0;
             // Other Lose Panel Logic
         }
 
-
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (Time.timeScale == 0)
+            {
+                Resume();
+            } else
+            {
+                PauseGame();
+            }
+        }
 
 
        
