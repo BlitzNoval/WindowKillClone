@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3c544a4b1167744599cfafb61d150f3, type: 3}
+  m_Name: Circular Saw
+  m_EditorClassIdentifier: 
+  weaponID: w006
+  weaponSprite: {fileID: 21300000, guid: d23a6c3c4829d9644afe2411241b7038, type: 3}
+  weaponType: 0
+  weaponClass: 257
+  attackType: 1
+  damagePerTier:
+  - 10
+  - 10
+  - 15
+  - 25
+  scalingPerTier:
+  - scalings:
+    - scalingAmount: 1
+      scalingType: 2
+  - scalings:
+    - scalingAmount: 1
+      scalingType: 2
+  - scalings:
+    - scalingAmount: 1
+      scalingType: 2
+  - scalings:
+    - scalingAmount: 1
+      scalingType: 2
+  attackSpeedPerTier:
+  - 0.78
+  - 0.72
+  - 0.67
+  - 0.62
+  critDamagePerTier:
+  - 2
+  - 2
+  - 2
+  - 2
+  critChancePerTier:
+  - 0
+  - 0.05
+  - 0.1
+  - 0.2
+  rangePerTier:
+  - 175
+  - 175
+  - 175
+  - 175
+  knockbackPerTier:
+  - 0
+  - 0
+  - 0
+  - 0
+  lifestealPerTier:
+  - 30
+  - 45
+  - 50
+  - 60
+  basePricePerTier: 1e0000002e00000056000000ad000000
+  numberOfProjectilesPerTier: 00000000000000000000000000000000
+  piercePerTier: 00000000000000000000000000000000

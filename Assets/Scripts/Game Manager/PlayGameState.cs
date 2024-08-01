@@ -6,6 +6,7 @@ public class PlayGameState : BaseGameState
     {
         Debug.Log("Play State");
         manager.upgradeUI.SetActive(false);
+        manager.staticCanvas.SetActive(false);
         WaveSpawner.Instance.StartNextWave();
 
         manager.lubaUI.LevelRestart();
