@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
+    public static WeaponController Instance { get; private set; }
+
     [SerializeField] private GameObject testAddPrefab;
     [SerializeField] private GameObject[] groupsArr;
 
@@ -19,6 +21,8 @@ public class WeaponController : MonoBehaviour
     private void Awake()
     {
         DoInventoryUpdate();
+
+        Instance = this;
     }
 
     private void Update()

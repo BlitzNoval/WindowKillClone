@@ -20,6 +20,8 @@ public class ShopSlots : MonoBehaviour
     public TextMeshProUGUI t_itemCost;
     public TextMeshProUGUI t_itemDescription;
 
+    [SerializeField] private int itemCost;
+
     private void Start()
     {
         // for debugging
@@ -39,6 +41,7 @@ public class ShopSlots : MonoBehaviour
 
         panel.color = tierColours[(int)tier];
 
+        itemCost = ShopManager.Instance.CalculateInflation(itemBehaviour.WeaponData.BasePricePerTier[(int)tier]);
 
         //get informaiton and plug it in here
     }
@@ -46,9 +49,26 @@ public class ShopSlots : MonoBehaviour
     public void BuyItem()
     {
         // if the player has enough money
+
         //add to playerInventory
-        ShopManager.Instance.slotAvailability[gameObject] = true;
-        gameObject.SetActive(false);
+        if (PlayerResources.Instance.materials >= itemCost)
+        {
+            //spawn the item and pass check if it can be added
+            GameObject new_item = Instantiate(item);
+
+
+            if (WeaponController.Instance.IsAddable(Instantiate(new_item)))
+            {
+                PlayerResources.Instance.materials -= itemCost;
+                ShopManager.Instance.slotAvailability[gameObject] = true;
+                WeaponController.Instance.AddWeapon(Instantiate(new_item));
+                gameObject.SetActive(false);
+            }
+
+
+
+
+        }
     }
 
     public string GenerateItemDescription()
@@ -63,7 +83,7 @@ public class ShopSlots : MonoBehaviour
         description.Add($"Damage : {itemData.DamagePerTier[tier]}");
 
         //Critical
-        description.Add($"Critical : {itemData.CritDamagePerTier[tier]} ({itemData.CritChancePerTier[tier]*100}% chance)");
+        description.Add($"Critical : {itemData.CritDamagePerTier[tier]} ({itemData.CritChancePerTier[tier] * 100}% chance)");
 
         //Cooldown
         description.Add($"Cooldown : {itemData.AttackSpeedPerTier[tier]}");
