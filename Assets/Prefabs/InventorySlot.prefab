@@ -121,7 +121,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2046316890363696286}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2776522283960796535}
+        m_TargetAssemblyTypeName: InventorySlots, Assembly-CSharp
+        m_MethodName: MergeItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2199145078160061022
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,7 +445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
-  detailPanel: {fileID: 0}
+  detailPanel: {fileID: 2421674246560402863}
   invSlotPanel: {fileID: 5880056830017102270}
   icon: {fileID: 4425102023042241533}
   invDetailPanel: {fileID: 5519996367991740676}
@@ -442,6 +454,7 @@ MonoBehaviour:
   invDetailName: {fileID: 6919642934931753258}
   invDetailClassification: {fileID: 4911129548279469526}
   invDetailSellPrice: {fileID: 1237157910596906584}
+  invDetailMerge: {fileID: 1532129192979055575}
   colors:
   - {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 0.8}
   - {r: 0.17661981, g: 0.28011304, b: 0.764151, a: 0.8}
@@ -635,7 +648,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4641639674339811344}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -780,9 +793,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ShopSlots, Assembly-CSharp
-        m_MethodName: BuyItem
+      - m_Target: {fileID: 2776522283960796535}
+        m_TargetAssemblyTypeName: InventorySlots, Assembly-CSharp
+        m_MethodName: SellItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

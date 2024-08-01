@@ -112,7 +112,7 @@ public class WeaponController : MonoBehaviour
     /// </summary>
     /// <param name="testWeapon"> The weapon that will be checked </param>
     /// <returns> Returns true if the weapon is able to be merged </returns>
-    private bool IsMergeable(GameObject testWeapon)
+    public bool IsMergeable(GameObject testWeapon)
     {
         //Getting the behaviour script
         WeaponBehaviour baseBehaviour = testWeapon.GetComponent<WeaponBehaviour>();

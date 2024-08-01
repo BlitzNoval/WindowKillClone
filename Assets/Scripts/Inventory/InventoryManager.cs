@@ -14,10 +14,17 @@ public class InventoryManager : MonoBehaviour
 
     public void UpdateSlots()
     {
-        for (int i = 0; i < WeaponController.Instance.WeaponInventory.Count; i++)
+        for (int i = 0; i < inventorySlots.Length; i++)
         {
-            GameObject weapon = WeaponController.Instance.WeaponInventory[i];
-            inventorySlots[i].GetComponent<InventorySlots>().SetInventorySlot(weapon);
+            if (i < WeaponController.Instance.WeaponInventory.Count)
+            {
+                GameObject weapon = WeaponController.Instance.WeaponInventory[i];
+                inventorySlots[i].GetComponent<InventorySlots>().SetInventorySlot(weapon);
+            }
+            else
+            {
+                inventorySlots[i].GetComponent<InventorySlots>().SetInventorySlot(null);
+            }
         }
     }
 }
