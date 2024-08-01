@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class CoinUI : MonoBehaviour
 {
-
     public PlayerResources playerResources;
+    public WaveSpawner waveSpawner;
 
-    public float range = 2.0f;
-    public float moveSpeed = 45f;
+    private float range = 8.0f; // Range within which the coin will move towards the player
+    public float moveSpeed = 35f; // Speed at which the coin moves towards the player
     public Transform playerTransform;
 
     private void Start()
     {
         playerResources = FindObjectOfType<PlayerResources>();
+        waveSpawner = FindAnyObjectByType<WaveSpawner>();
         if (playerResources == null)
         {
             Debug.LogError("PlayerResources script not found in the scene.");
@@ -26,31 +27,35 @@ public class CoinUI : MonoBehaviour
 
     private void Update()
     {
-
-        MoveToPlayer();
         if (playerTransform != null && Vector3.Distance(transform.position, playerTransform.position) <= range)
         {
             MoveToPlayer();
+            MoveToBag();
         }
     }
 
     void MoveToPlayer()
     {
+
+        Debug.Log("Move to player called coin is in range");
+        transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, moveSpeed * Time.deltaTime);
+    }
+
+    public void MoveToBag()
+    {
+        Debug.Log("MoveToBg is called");
+ 
         transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, moveSpeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            Debug.Log("Player Collided wt Material");
+            Debug.Log("Player Collided with Material");
             Destroy(gameObject);
-           // playerResources.experience++;
 
             playerResources.GainExperience(1);
-
         }
     }
-
 }
-

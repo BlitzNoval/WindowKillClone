@@ -17,6 +17,8 @@ public class LubaUI : MonoBehaviour
     public TMP_Text crntLvl;
     public TMP_Text coins;
     public TMP_Text baggedMaterials;
+    public float moveSpeed = 45f;
+    private WaveSpawner waveSpawner;
 
     public Slider healthSlider;
     public Slider levelSlider;
@@ -28,7 +30,7 @@ public class LubaUI : MonoBehaviour
     public GameObject floatingText;
     public GameObject floatingTextEnemy;
 
-
+    public Transform baggedMaterialsTrans;
     #endregion
 
     private float lastHealth;
@@ -42,7 +44,7 @@ public class LubaUI : MonoBehaviour
 
     void Start()
     {
-
+        waveSpawner = FindObjectOfType<WaveSpawner>();
         lastPlayerHealth = health;
         lastEnemyHealth = enemyHealth;
         playerResources = PlayerResources.Instance;
@@ -72,7 +74,7 @@ public class LubaUI : MonoBehaviour
     {
 
 
-
+        
         MaxHealt = playerResources.maxHealth;
         health = playerResources.health;
 
@@ -245,6 +247,8 @@ public class LubaUI : MonoBehaviour
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
     }
+
+   
 
 
 

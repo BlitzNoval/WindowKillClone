@@ -9617,6 +9617,7 @@ MonoBehaviour:
   crntLvl: {fileID: 397866418}
   coins: {fileID: 909702475}
   baggedMaterials: {fileID: 868906221}
+  moveSpeed: 45
   healthSlider: {fileID: 468233729}
   levelSlider: {fileID: 233718590}
   runPanel: {fileID: 1339512289}
@@ -9624,6 +9625,7 @@ MonoBehaviour:
   damageTextPrefab: {fileID: 692673663182608160, guid: caa89c5f7e022ef45885cc99b912eba3, type: 3}
   floatingText: {fileID: 3835574242490135034, guid: 79f1fcd9c5b986a4a8d024da6d834a64, type: 3}
   floatingTextEnemy: {fileID: 3835574242490135034, guid: b7c1dad2c6e686c4095afa555b340ea3, type: 3}
+  baggedMaterialsTrans: {fileID: 1979011764}
   enemyCrntHealth: 0
   dmgValue: 0
   gameObjects:
@@ -10229,6 +10231,7 @@ MonoBehaviour:
   waveText: {fileID: 870949057}
   timerText: {fileID: 404519025}
   currentWaveIndex: 0
+  waveTimer: 0
 --- !u!1 &1866420848
 GameObject:
   m_ObjectHideFlags: 3
