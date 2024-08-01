@@ -52,6 +52,7 @@ public class ShopManager : MonoBehaviour
             // if the slot is available in the dictionary (key, value)
             if (slotAvailability[shopSlots[i]])
             {
+                shopSlots[i].SetActive(true);
                 GameObject item = selectedItems[i];
                 shopSlots[i].GetComponent<ShopSlots>().item = item;
 
@@ -75,7 +76,7 @@ public class ShopManager : MonoBehaviour
                     shopSlots[i].GetComponent<ShopSlots>().SetShopSlot(WeaponTier.Legendary);
                 }
 
-                slotAvailability[shopSlots[i]] = false;
+                //slotAvailability[shopSlots[i]] = false;
             }
         }
     }
@@ -131,6 +132,8 @@ public class ShopManager : MonoBehaviour
             PlayerResources.Instance.materials -= currentRerollPrice;
             currentRerollPrice += rerollIncrease;
             // reroll the shop
+
+            ChooseShopItems();
             rerollButton.text = $"Reroll (${currentRerollPrice})";
         }
     }

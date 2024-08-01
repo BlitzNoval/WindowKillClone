@@ -22,6 +22,8 @@ public class ShopSlots : MonoBehaviour
 
     [SerializeField] private int itemCost;
 
+    [SerializeField] private bool itemLocked;
+
     private void Start()
     {
         // for debugging
@@ -44,28 +46,6 @@ public class ShopSlots : MonoBehaviour
         itemCost = ShopManager.Instance.CalculateInflation(itemBehaviour.WeaponData.BasePricePerTier[(int)tier]);
 
         //get informaiton and plug it in here
-    }
-
-    public void BuyItem()
-    {
-        // if the player has enough money
-
-        //add to playerInventory
-        if (PlayerResources.Instance.materials >= itemCost)
-        {
-            //spawn the item and pass check if it can be added
-            GameObject new_item = Instantiate(item);
-
-
-            if (WeaponController.Instance.IsAddable(new_item))
-            {
-                PlayerResources.Instance.materials -= itemCost;
-                WeaponController.Instance.AddWeapon(new_item);
-
-                ShopManager.Instance.slotAvailability[gameObject] = true;
-                gameObject.SetActive(false);
-            }
-        }
     }
 
     public string GenerateItemDescription()
@@ -101,6 +81,42 @@ public class ShopSlots : MonoBehaviour
         }
 
         return string.Join("\n", description);
+    }
+
+    public void BuyItem()
+    {
+        // if the player has enough money
+
+        //add to playerInventory
+        if (PlayerResources.Instance.materials >= itemCost)
+        {
+            //spawn the item and pass check if it can be added
+            GameObject new_item = Instantiate(item);
+
+
+            if (WeaponController.Instance.IsAddable(new_item))
+            {
+                PlayerResources.Instance.materials -= itemCost;
+                WeaponController.Instance.AddWeapon(new_item);
+
+                ShopManager.Instance.slotAvailability[gameObject] = true;
+                gameObject.SetActive(false);
+            }
+        }
+    }
+
+    public void LockItem()
+    {
+        if (itemLocked)
+        {
+            //make the slot available (to be rerolled)
+            ShopManager.Instance.slotAvailability[gameObject] = true;
+        }
+        else
+        {
+            //lock the slot
+            ShopManager.Instance.slotAvailability[gameObject] = false;
+        }
     }
 
 }
