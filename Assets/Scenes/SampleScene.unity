@@ -10211,24 +10211,16 @@ MonoBehaviour:
       amount: 30
     - enemyPrefab: {fileID: 7802492558257095922, guid: 6c35f644046ef0d40be4c88cd4a1dac5, type: 3}
       amount: 12
-  - duration: 60
+  - duration: 100
     enemiesToSpawn:
     - enemyPrefab: {fileID: 7802492558257095922, guid: 88ace6962e543f044836eb83aa2fbcc6, type: 3}
       amount: 1
-    - enemyPrefab: {fileID: 7802492558257095922, guid: 3f23babe6a4794b4da835c8d63f7849e, type: 3}
-      amount: 10
-    - enemyPrefab: {fileID: 7802492558257095922, guid: cef5397c36a36ee4282ce3c6421724e2, type: 3}
-      amount: 20
     - enemyPrefab: {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
-      amount: 20
-  - duration: 90
-    enemiesToSpawn:
-    - enemyPrefab: {fileID: 7802492558257095922, guid: 88ace6962e543f044836eb83aa2fbcc6, type: 3}
-      amount: 2
+      amount: 30
   enemySpawner: {fileID: 97402640}
   waveText: {fileID: 870949057}
   timerText: {fileID: 404519025}
-  currentWaveIndex: 2
+  currentWaveIndex: 0
 --- !u!1 &1866420848
 GameObject:
   m_ObjectHideFlags: 3

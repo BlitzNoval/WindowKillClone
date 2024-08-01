@@ -8,11 +8,14 @@ public class Colossus : Enemy
     public float stopDistance = 5.0f;
     public float attackRange = 10.0f;
     public GameObject projectilePrefab;
+    public GameObject spawnPrefab; // New prefab for spawning
     public float fireRate = 6.0f;
     public Transform[] firePoints;
     public float warningDuration = 0.25f;
     public int warningFlashes = 2;
     public float phaseDuration = 30.0f;
+    public float spawnInterval = 10.0f; // New interval for spawning prefabs
+    public float spawnRadius = 5.0f; // Radius around the Colossus to spawn prefabs
 
     private Color originalColor;
     private Vector3 targetPosition;
@@ -27,6 +30,7 @@ public class Colossus : Enemy
         targetPosition = transform.position;
         phaseTimer = phaseDuration;
         StartCoroutine(FireProjectiles());
+        StartCoroutine(SpawnPrefabs()); // Start the spawning coroutine
         ChooseNewTargetPosition();
     }
 
@@ -117,6 +121,24 @@ public class Colossus : Enemy
         }
     }
 
+    private IEnumerator SpawnPrefabs()
+    {
+        while (true)
+        {
+            SpawnPrefabInRadius();
+            yield return new WaitForSeconds(spawnInterval);
+        }
+    }
+
+    private void SpawnPrefabInRadius()
+    {
+        if (spawnPrefab != null)
+        {
+            Vector3 randomPosition = transform.position + new Vector3(Random.Range(-spawnRadius, spawnRadius), Random.Range(-spawnRadius, spawnRadius), 0);
+            Instantiate(spawnPrefab, randomPosition, Quaternion.identity);
+        }
+    }
+
     private IEnumerator EnhancedBehavior()
     {
         while (currentPhase == 2)
@@ -181,3 +203,4 @@ public class Colossus : Enemy
         }
     }
 }
+

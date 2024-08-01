@@ -561,17 +561,18 @@ MonoBehaviour:
   lastHealth: 0
   health: 750
   healthScaling: 1
-  speed: 30
+  speed: 10
   damage: 25
   damageScaling: 1
   dropObject: {fileID: 4214800325226193104, guid: fbe4453a278e5c7429a3cf5ff915aae7, type: 3}
   dropRate: 100
-  initialMoveSpeed: 30
+  initialMoveSpeed: 10
   moveSpeedMultiplier: 1.3
   stopDistance: 5
   attackRange: 10
   projectilePrefab: {fileID: 3996430138256230750, guid: cfcd0dbe7d7c0d042b9e4b4d312721ea, type: 3}
-  fireRate: 3
+  spawnPrefab: {fileID: 6642561839335077464, guid: 602b32562bca9a94d9ae67509660768a, type: 3}
+  fireRate: 6
   firePoints:
   - {fileID: 1577942457304280931}
   - {fileID: 7905321263404051655}
@@ -591,7 +592,9 @@ MonoBehaviour:
   warningDuration: 0.25
   warningFlashes: 2
   phaseDuration: 30
-  wanderTime: 2
+  spawnInterval: 10
+  spawnRadius: 5
+  wanderTime: 10
 --- !u!1 &8045256019048393423
 GameObject:
   m_ObjectHideFlags: 0
