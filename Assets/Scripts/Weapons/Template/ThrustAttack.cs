@@ -6,7 +6,7 @@ public class ThrustAttack : ShootingSuperclass
 {
     protected override void DoShootingEffect(Vector2 direction)
     {
-        StartCoroutine(DoThrust());
+        base.DoShootingEffect(direction);
     }
     
     public override void OnHitboxHit(Collider2D other)

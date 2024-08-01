@@ -24,7 +24,6 @@ public class Colossus : Enemy
     {
         base.Start();
         originalColor = spriteRenderer.color;
-        targetPosition = transform.position;
         phaseTimer = phaseDuration;
         StartCoroutine(FireProjectiles());
         ChooseNewTargetPosition();
@@ -75,7 +74,7 @@ public class Colossus : Enemy
         StartCoroutine(UnpredictableBehavior());
     }
 
-    private void ChooseNewTargetPosition()
+    private void SetWanderTarget()
     {
         targetPosition = transform.position + new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), 0);
     }
@@ -113,6 +112,30 @@ public class Colossus : Enemy
                 }
             }
 
+        switch (currentPhase)
+        {
+            case 2:
+                StartCoroutine(Phase2Behavior());
+                break;
+            case 3:
+                StartCoroutine(Phase3Behavior());
+                break;
+        }
+    }
+
+    private IEnumerator PhaseChangeIndicator()
+    {
+        spriteRenderer.color = phaseChangeColor;
+        yield return new WaitForSeconds(1.0f);
+        spriteRenderer.color = originalColor;
+    }
+
+    private IEnumerator Phase1Behavior()
+    {
+        while (currentPhase == 1)
+        {
+            yield return StartCoroutine(BuildUpBeforeAttack());
+            FireProjectilesInPattern(phase1ProjectileCount, phase1SpreadAngle);
             yield return new WaitForSeconds(fireRate);
         }
     }
