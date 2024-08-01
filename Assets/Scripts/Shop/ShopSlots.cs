@@ -104,6 +104,10 @@ public class ShopSlots : MonoBehaviour
                 ShopManager.Instance.slotAvailability[gameObject] = true;
                 gameObject.SetActive(false);
             }
+            else
+            {
+                Destroy(new_item);
+            }
         }
     }
 
