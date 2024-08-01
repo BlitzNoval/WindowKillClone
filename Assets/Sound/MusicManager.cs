@@ -14,7 +14,7 @@ public class MusicManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);  // Ensure this GameObject persists across scenes
+             // Ensure this GameObject persists across scenes
             LoadSettings();
         }
         else

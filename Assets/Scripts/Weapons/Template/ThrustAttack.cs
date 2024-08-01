@@ -1,18 +1,9 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ThrustAttack : ShootingSuperclass
 {
-    public float thrustRange = 1.0f;
-    public float thrustCooldown = 1.0f;
-    private bool isAttacking = false;
-    private Vector3 originalPosition;
-    
-    void Start()
-    {
-        originalPosition = transform.position;
-    }
-
     protected override void DoShootingEffect(Vector2 direction)
     {
         StartCoroutine(DoThrust());
@@ -48,6 +39,7 @@ public class ThrustAttack : ShootingSuperclass
             currentTime += Time.deltaTime;
         } while (currentTime < extensionTime);
 
+    
         GameObject temp = new GameObject();
         temp.transform.position = transform.position;
         temp.transform.parent = parentTransform;
