@@ -23,9 +23,9 @@ public class Bruiser : Enemy
         originalColor = spriteRenderer.color;
     }
 
-    protected override void Update()
+    protected override void FixedUpdate()
     {
-        base.Update();
+        base.FixedUpdate();
 
         if (player != null)
         {

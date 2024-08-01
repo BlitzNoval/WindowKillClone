@@ -26,7 +26,7 @@ public abstract class Enemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    protected virtual void Update()
+    protected virtual void FixedUpdate()
     {
         /*if (health <= 0)
         {

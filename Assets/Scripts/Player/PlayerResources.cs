@@ -67,10 +67,13 @@ public class PlayerResources : MonoBehaviour
             damage = Mathf.Round(damage);
             float damageAfterArmor = 1 / (1 + PlayerBase.Instance.primaryStats.armor / 15); //maths and armor
             int damageTaken = Mathf.RoundToInt(damage * damageAfterArmor);
+            GameObject uiManager = GameObject.FindWithTag("LubaUI");
+            uiManager.GetComponent<LubaUI>().displayEnemyDamage(this.gameObject, damageTaken);
             health -= damageTaken;
 
             if (health <= 0)
             {
+                Time.timeScale = 0;
                 Debug.Log("Player has died.");
                 Destroy(gameObject);
             }

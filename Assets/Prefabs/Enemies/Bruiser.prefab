@@ -144,7 +144,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -171,9 +171,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 295d572ce0ffd9c439ecede2811a7b4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastHealth: 0
   health: 15
+  healthScaling: 0
   speed: 20
   damage: 8
+  damageScaling: 0
   dropObject: {fileID: 4214800325226193104, guid: fbe4453a278e5c7429a3cf5ff915aae7, type: 3}
   dropRate: 100
   minChargeCooldown: 2.5

@@ -95,6 +95,7 @@ public class LubaUI : MonoBehaviour
         // Level Text
         crntLvl.text = "LV." + playerResources.level.ToString();
 
+
         if (health <= 0)
         {
             runPanel.SetActive(true);
@@ -103,10 +104,7 @@ public class LubaUI : MonoBehaviour
 
 
 
-
-
-
-        displayPlayerDamage();
+        //displayPlayerDamage();
         /*GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
         foreach (GameObject enemyObject in enemies)
@@ -136,12 +134,17 @@ public class LubaUI : MonoBehaviour
     public void displayEnemyDamage(GameObject enemyObject, float damage)
     {
         damage = Mathf.Abs(damage);
-        Debug.Log($"Enemy at {enemyObject.name} lost {damage} health");
+        //Debug.Log($"Enemy at {enemyObject.name} lost {damage} health");
 
         // Instantiate the damage text at the enemy's position
         Vector3 enemyPosition = enemyObject.transform.position;
-        GameObject damageText = Instantiate(floatingTextEnemy, enemyPosition, Quaternion.identity);
+        GameObject damageText = Instantiate(floatingTextEnemy, enemyPosition + new Vector3(0,0,-2), Quaternion.identity);
         TMP_Text tmpText = damageText.GetComponentInChildren<TMP_Text>();
+
+        if(enemyObject.CompareTag("Player"))
+        {
+            tmpText.color = Color.red;
+        }
 
         if (tmpText != null)
         {
@@ -242,4 +245,7 @@ public class LubaUI : MonoBehaviour
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
     }
+
+
+
 }

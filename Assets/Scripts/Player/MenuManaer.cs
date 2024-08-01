@@ -15,6 +15,8 @@ public class MenuManaer : MonoBehaviour
         }
     }
 
+
+
     public void loadMenu()
     {
         SceneManager.LoadScene("Menu");

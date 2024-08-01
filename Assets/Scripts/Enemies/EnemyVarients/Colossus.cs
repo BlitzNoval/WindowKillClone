@@ -30,9 +30,9 @@ public class Colossus : Enemy
         ChooseNewTargetPosition();
     }
 
-    protected override void Update()
+    protected override void FixedUpdate()
     {
-        base.Update();
+        base.FixedUpdate();
 
         phaseTimer -= Time.deltaTime;
 
