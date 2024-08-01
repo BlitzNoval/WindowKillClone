@@ -60,7 +60,6 @@ public class WeaponController : MonoBehaviour
         {
             weaponInventory[i].transform.SetParent(currentGroup.transform.GetChild(i).transform, false);
             weaponInventory[i].transform.position = currentGroup.transform.GetChild(i).transform.position;
-            weaponInventory[i].transform.parent = currentGroup.transform.GetChild(i).transform;
         }
     }
 

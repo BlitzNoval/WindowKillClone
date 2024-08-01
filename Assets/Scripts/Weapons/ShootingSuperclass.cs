@@ -8,7 +8,6 @@ using UnityEngine;
 public class ShootingSuperclass : MonoBehaviour
 {
     protected WeaponBehaviour parentBehaviour;
-    [SerializeField] protected GameObject hitBox;
 
     void Start()
     {

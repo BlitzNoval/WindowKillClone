@@ -15,9 +15,6 @@ public class HitboxSendBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (parentShooter)
-        {
-            parentShooter.OnHitboxHit(other);
-        }
+        parentShooter.OnHitboxHit(other);
     }
 }
