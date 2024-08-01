@@ -4,17 +4,18 @@ using UnityEngine;
 public class Spitter : Enemy
 {
     public float moveSpeed = 2.0f; // Speed at which the Spitter floats around
-    public float stopDistance = 5.0f;
-    public float attackRange = 10.0f;
+    public float stopDistance = 5.0f; // Distance at which the Spitter stops moving away from the player
+    public float runAwayDistance = 3.0f; // Distance at which the Spitter starts running away from the player
+    public float attackRange = 10.0f; // Range at which the Spitter can attack
     public GameObject projectilePrefab;
-    public float fireRate = 6.0f;
+    public float fireRate = 3.0f; // Rate of fire for projectiles
     public Transform[] firePoints; // Array of fire points
     public float warningDuration = 0.25f; // Duration of each warning flash
     public int warningFlashes = 2; // Number of warning flashes
 
     private Color originalColor;
     private Vector3 targetPosition;
-    private float wanderTime = 2.0f; // Time to wander before choosing a new direction
+    private float wanderTime = 0.3f; // Time to wander before choosing a new direction
     private float wanderTimer;
 
     protected override void Start()
@@ -32,12 +33,25 @@ public class Spitter : Enemy
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        if (distanceToPlayer > stopDistance)
+        if (distanceToPlayer < runAwayDistance)
+        {
+            RunAway();
+        }
+        else if (distanceToPlayer > stopDistance)
         {
             Wander();
         }
 
         // Optionally, you can add logic here if you want the Spitter to do something specific when close to the player
+    }
+
+    private void RunAway()
+    {
+        // Move away from the player
+        Vector3 directionAwayFromPlayer = (transform.position - player.position).normalized;
+        targetPosition = transform.position + directionAwayFromPlayer * moveSpeed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+        FlipSprite(directionAwayFromPlayer);
     }
 
     private void Wander()

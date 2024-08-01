@@ -6,9 +6,10 @@ public class Bruiser : Enemy
     public float minChargeCooldown = 2.5f;
     public float maxChargeCooldown = 3.5f;
     public float chargeSpeedMultiplier = 2.0f;
-    public float chargeRange = 5.0f; // Range within which the Bruiser starts charging
+    public float chargeDistance = 10.0f; // Increased charge distance
     public float warningDuration = 0.25f; // Duration of each warning flash
     public int warningFlashes = 2; // Number of warning flashes
+    public int damage = 10; // Damage dealt to the player on touch
 
     private float nextChargeTime;
     private bool isCharging;
@@ -29,11 +30,9 @@ public class Bruiser : Enemy
 
         if (player != null)
         {
-            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-
-            if (distanceToPlayer <= chargeRange && Time.time >= nextChargeTime)
+            if (Time.time >= nextChargeTime && !isCharging)
             {
-                StartCoroutine(ChargeTowardsPlayer(player.position));
+                StartCoroutine(ChargeTowardsPlayer());
                 SetNextChargeTime();
             }
             else if (!isCharging)
@@ -48,7 +47,7 @@ public class Bruiser : Enemy
         nextChargeTime = Time.time + Random.Range(minChargeCooldown, maxChargeCooldown);
     }
 
-    private IEnumerator ChargeTowardsPlayer(Vector3 targetPosition)
+    private IEnumerator ChargeTowardsPlayer()
     {
         isCharging = true;
 
@@ -64,10 +63,12 @@ public class Bruiser : Enemy
         float originalSpeed = speed;
         speed *= chargeSpeedMultiplier;
 
-        // Charge towards the locked position
-        while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
+        Vector3 direction = (player.position - transform.position).normalized;
+        Vector3 chargeTarget = transform.position + direction * chargeDistance;
+
+        // Charge towards the target position
+        while (Vector3.Distance(transform.position, chargeTarget) > 0.1f)
         {
-            Vector3 direction = (targetPosition - transform.position).normalized;
             transform.position += direction * speed * Time.deltaTime;
             FlipSprite(direction);
             yield return null;
@@ -75,10 +76,30 @@ public class Bruiser : Enemy
 
         // Stop for 0.5 seconds
         speed = 0;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
 
         // Resume normal behavior
         speed = originalSpeed;
         isCharging = false;
+    }
+
+    private void MoveTowardsPlayer()
+    {
+        Vector3 direction = (player.position - transform.position).normalized;
+        transform.position += direction * speed * Time.deltaTime;
+        FlipSprite(direction);
+    }
+
+    private void FlipSprite(Vector3 direction)
+    {
+        // Flip the sprite based on the direction
+        if (direction.x > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if (direction.x < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
     }
 }
