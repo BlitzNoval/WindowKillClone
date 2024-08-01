@@ -4365,7 +4365,7 @@ MonoBehaviour:
   - 1
   - 1
   upgradeUI: {fileID: 205289892}
-  rerollButton: {fileID: 0}
+  rerollButton: {fileID: 318782540}
   currentRerollPrice: 0
   rerollIncrease: 0
 --- !u!1 &628612907
@@ -8061,7 +8061,7 @@ MonoBehaviour:
   - {fileID: 2070500115}
   - {fileID: 839067686}
   - {fileID: 63360585}
-  rerollButton: {fileID: 0}
+  rerollButton: {fileID: 1966237647}
   currentRerollPrice: 0
   rerollIncrease: 0
 --- !u!1 &1504119564

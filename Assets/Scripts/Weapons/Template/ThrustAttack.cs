@@ -12,7 +12,6 @@ public class ThrustAttack : ShootingSuperclass
     public override void OnHitboxHit(Collider2D other)
     {
         other.gameObject.GetComponent<Enemy>()?.TakeDamage(parentBehaviour.CalculateDamage());
-        Debug.LogError($"----------------------------{parentBehaviour.CalculateDamage()}");
     }
 
     private IEnumerator DoThrust()
