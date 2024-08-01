@@ -10,60 +10,61 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3c544a4b1167744599cfafb61d150f3, type: 3}
-  m_Name: Cacti Club
+  m_Name: Knife
   m_EditorClassIdentifier: 
-  weaponID: w001
+  weaponID: w009
+  weaponSprite: {fileID: 21300000, guid: 317ccd3268e9189498e2ceb0debaf092, type: 3}
   weaponType: 0
-  weaponClass: 2112
+  weaponClass: 66
   attackType: 1
   damagePerTier:
-  - 10
+  - 6
+  - 9
+  - 12
   - 20
-  - 30
-  - 50
   scalingPerTier:
   - scalings:
-    - scalingAmount: 0.8
+    - scalingAmount: 1
       scalingType: 4
   - scalings:
-    - scalingAmount: 0.8
+    - scalingAmount: 1.5
       scalingType: 4
   - scalings:
-    - scalingAmount: 0.8
+    - scalingAmount: 1.75
       scalingType: 4
   - scalings:
-    - scalingAmount: 0.8
+    - scalingAmount: 2
       scalingType: 4
   attackSpeedPerTier:
-  - 1.66
-  - 1.58
-  - 1.51
-  - 1.36
+  - 1.6
+  - 1.57
+  - 1.59
+  - 0.15
   critDamagePerTier:
-  - 2
-  - 2
-  - 2
-  - 2
+  - 0
+  - 1.75
+  - 1.75
+  - 1.75
   critChancePerTier:
   - 0.03
   - 0.03
   - 0.03
   - 0.03
   rangePerTier:
-  - 200
-  - 200
-  - 200
-  - 200
+  - 175
+  - 175
+  - 175
+  - 175
   knockbackPerTier:
-  - 8
-  - 8
-  - 8
-  - 8
+  - 0
+  - 25
+  - 30
+  - 40
   lifestealPerTier:
   - 0
   - 0
   - 0
   - 0
-  basePricePerTier: 14000000270000004a00000095000000
+  basePricePerTier: 27000000330000005f000000be000000
   numberOfProjectilesPerTier: 00000000000000000000000000000000
   piercePerTier: 00000000000000000000000000000000
