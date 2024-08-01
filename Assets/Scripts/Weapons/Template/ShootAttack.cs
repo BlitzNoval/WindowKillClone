@@ -89,7 +89,7 @@ public class ShootAttack : ShootingSuperclass
         {
             
             //Instantiate a new bullet
-            GameObject newProj = Instantiate(projectileToShoot, projectilePlug.position, Quaternion.identity);
+            GameObject newProj = Instantiate(projectileToShoot, projectilePlug.position, transform.rotation);
             
             //Accessing the bullet's script
             ProjectileBehaviour projBehaviour = newProj.GetComponent<ProjectileBehaviour>();

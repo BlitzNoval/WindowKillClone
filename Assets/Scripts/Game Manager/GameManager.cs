@@ -64,6 +64,8 @@ public class GameManager : MonoBehaviour
         {
             player.GetComponent<PlayerMovement>().enabled = true;
         }
+
+        Debug.Log("Game Resumed");
     }
 }
 

@@ -8,7 +8,6 @@ public class ShopGameState : BaseGameState
     {
         //open the shop and run logic here
         Debug.Log("Shop State");
-        manager.upgradeUI.SetActive(false);
         manager.shopUI.SetActive(true);
 
         ShopManager.Instance.OpenShopPanel();
@@ -17,7 +16,7 @@ public class ShopGameState : BaseGameState
 
     public override void ExitState(GameManager manager)
     {
-       
+        manager.ResumeGame();
     }
 
     public override void UpdateState(GameManager manager)

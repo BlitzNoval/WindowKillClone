@@ -36,7 +36,7 @@ MonoBehaviour:
     - scalingAmount: 1
       scalingType: 2
   attackSpeedPerTier:
-  - 0
+  - 0.78
   - 0.72
   - 0.67
   - 0.62

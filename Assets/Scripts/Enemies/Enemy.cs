@@ -2,9 +2,13 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
+
+    public float lastHealth;
     public float health;
+    public float healthScaling;
     public float speed;
     public float damage;
+    public float damageScaling;
     public GameObject dropObject;
     [Range(0, 100)] public float dropRate = 100f;
 
@@ -14,6 +18,9 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Start()
     {
+        int currentWave = WaveSpawner.Instance.currentWaveIndex-1;
+        health += currentWave * healthScaling;
+        damage += currentWave * damageScaling;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         playerResources = PlayerResources.Instance;
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -21,15 +28,21 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (health <= 0)
+        /*if (health <= 0)
         {
             Die();
-        }
+        }*/
     }
 
     public void TakeDamage(float amount) //MAKE A VIRTUAL CLASS IF IT NEEDS TO BE OVERRIDDEN
     {
+        GameObject uiManager = GameObject.FindWithTag("LubaUI");
+        uiManager.GetComponent<LubaUI>().displayEnemyDamage(this.gameObject, amount);
         health -= amount;
+        if (health <= 0)
+        {
+            Die();
+        }
     }
 
     public void ApplyStatMultiplier(float multiplier)
@@ -74,7 +87,7 @@ public abstract class Enemy : MonoBehaviour
             int playerHealthBefore = playerResources.health;
 
             playerResources.DamagePlayer(Mathf.RoundToInt(damage)); // Convert float damage to int
-            
+
             Debug.Log($"Player hit by {gameObject.name}. Player health before: {playerHealthBefore}, after: {playerResources.health}");
 
             /*if (playerResources.health <= 0)

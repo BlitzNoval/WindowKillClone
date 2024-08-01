@@ -38,6 +38,11 @@ public class PlayerBase : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        primaryStats.maxHP = 10;
+    }
+
 
     /// <summary>
     /// use this function to update the players stats
@@ -117,7 +122,9 @@ public class PlayerBase : MonoBehaviour
         switch (stat)
         {
             case Stats.MaxHP:
-                calcPrimaryStats.maxHP = primaryStats.maxHP; 
+                calcPrimaryStats.maxHP = primaryStats.maxHP;
+                PlayerResources.Instance.maxHealth = (int)primaryStats.maxHP;
+                PlayerResources.Instance.health = (int)primaryStats.maxHP;
                 break;
             case Stats.HPRegen:
                 //formulas given on wiki

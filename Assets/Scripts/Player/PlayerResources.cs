@@ -44,6 +44,7 @@ public class PlayerResources : MonoBehaviour
     private void Start()
     {
         CalcEXPRequired();
+        PlayerBase.Instance.CalculateStat(Stats.HPRegen);
         StartCoroutine(HealthRegen());
     }
 
@@ -84,8 +85,14 @@ public class PlayerResources : MonoBehaviour
 
     public IEnumerator HealthRegen()
     {
-        yield return new WaitForSeconds(PlayerBase.Instance.calcPrimaryStats.HPRegen);
-        HealPlayer(1);
+        while (true)
+        {
+            yield return new WaitForSeconds(PlayerBase.Instance.calcPrimaryStats.HPRegen);
+            if (PlayerBase.Instance.calcPrimaryStats.HPRegen > 0)
+            {
+                HealPlayer(1);
+            }
+        }
     }
     #endregion
 
@@ -132,6 +139,7 @@ public class PlayerResources : MonoBehaviour
     public void GainExperience(int exp)
     {
         experience += exp;
+        materials += exp;
 
         if (experience >= experienceRequired)
         {
