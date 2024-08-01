@@ -11,9 +11,12 @@ public class LubaUI : MonoBehaviour
     public int lastPlayerHealth;
     public int MaxHealt;// Reminder, Player also loses health
 
+    public float enemyHealth;
+    public float lastEnemyHealth;
     public TMP_Text maxHealthTxt;
     public TMP_Text crntLvl;
     public TMP_Text coins;
+    public TMP_Text baggedMaterials;
 
     public Slider healthSlider;
     public Slider levelSlider;
@@ -21,14 +24,18 @@ public class LubaUI : MonoBehaviour
     #region
     public GameObject runPanel; // This is the Lose Panel
     public GameObject pauseMenu;
-    public GameObject damageTextPrefab;
+    public TMP_Text damageTextPrefab;
+    public GameObject floatingText;
+    public GameObject floatingTextEnemy;
+
+
     #endregion
 
     private float lastHealth;
 
     public float enemyCrntHealth;
 
-    private Enemy enemy;
+    private Enemy enemyScript;
 
     public int dmgValue;
 
@@ -37,6 +44,7 @@ public class LubaUI : MonoBehaviour
     {
 
         lastPlayerHealth = health;
+        lastEnemyHealth = enemyHealth;
         playerResources = PlayerResources.Instance;
         if (playerResources != null)
         {
@@ -75,10 +83,12 @@ public class LubaUI : MonoBehaviour
     void Update()
     {
 
-        GameObject enemyObject = GameObject.FindGameObjectWithTag("Enemy");
+        
+
         MaxHealt = playerResources.maxHealth;
         health = playerResources.health;
 
+        
         healthSlider.maxValue = MaxHealt;
         healthSlider.value = health;
 
@@ -90,6 +100,9 @@ public class LubaUI : MonoBehaviour
 
         // Coins Text
         coins.text = playerResources.materials.ToString();
+
+        //Bagged Materials
+        baggedMaterials.text = playerResources.baggedMaterials.ToString();
 
         // Level Text
         crntLvl.text = "LV." + playerResources.level.ToString();
@@ -114,25 +127,56 @@ public class LubaUI : MonoBehaviour
 
 
        
-      //  DisplayDamage();
+      
         displayPlayerDamage();
-    }
+        /*GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy") && collision.gameObject.CompareTag("Player"))
+        foreach (GameObject enemyObject in enemies)
         {
+            Enemy enemyScript = enemyObject.GetComponent<Enemy>();
+            if (enemyScript != null)
+            {
+                float currentEnemyHealth = enemyScript.health;
 
-            Debug.Log("Collsion Detectedin Luba Script");
-           // Vector2 collisionPoint = collision.contacts[0].point;
+                // Call displayEnemyDamage only if health has changed
+                if (enemyScript.lastHealth != currentEnemyHealth)
+                {
+                    displayEnemyDamage(enemyObject, enemyScript.lastHealth, currentEnemyHealth);
+                    enemyScript.lastHealth = currentEnemyHealth; // Update last health value
+                }
+            }
+        }*/
+    
+}
+
+   
+
+
+
+
+
+    public void displayEnemyDamage(GameObject enemyObject, float damage)
+{
+        damage = Mathf.Abs(damage);
+        Debug.Log($"Enemy at {enemyObject.name} lost {damage} health");
+
+        // Instantiate the damage text at the enemy's position
+        Vector3 enemyPosition = enemyObject.transform.position;
+        GameObject damageText = Instantiate(floatingTextEnemy, enemyPosition, Quaternion.identity);
+        TMP_Text tmpText = damageText.GetComponentInChildren<TMP_Text>();
+
+        if (tmpText != null)
+        {
+            tmpText.text = $"-{(int)damage}";
         }
-    }
+        else
+        {
+            Debug.LogWarning("Text is null");
+        }
+}
 
 
-
-
-
-    void  displayPlayerDamage()
+    void displayPlayerDamage()
     {
         if (health != lastPlayerHealth)
         {
@@ -140,21 +184,40 @@ public class LubaUI : MonoBehaviour
             Debug.Log($"player lost  {damage} health");
             lastPlayerHealth = health;
 
-
-            if(lastPlayerHealth != health)
+            GameObject player = GameObject.FindWithTag("Player");
+            if (player != null)
             {
-                Debug.LogError("Code for health display not functional");
+                // Instantiate the TMP_Text at the player's position
+                Vector3 playerPosition = player.transform.position;
+
+                Instantiate(floatingText, playerPosition, Quaternion.identity);
+                TMP_Text tmpText = floatingText.GetComponentInChildren<TMP_Text>();
+
+                // Check if the TMP component is found
+                if (tmpText != null)
+                {
+                    // Change the text value
+                    tmpText.text = $"-{damage}";
+                }
+                else
+                {
+                    Debug.LogWarning("Text is null");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Player GameObject with tag 'Player' not found");
             }
 
-            //instantiate text mesh at point of collision
+            if (lastPlayerHealth != health)
+            {
+                Debug.LogWarning("Code for health display not functional");
+            }
+
         }
     }
 
-    public void DisplayDamage() //Enemy
-    {
-        // Implement display damage logic here
-    }
-
+    
     // BELOW IS THE LOGIC FOR SHOWING THE LEVEL UP UI
 
     public GameObject[] gameObjects;

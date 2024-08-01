@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Border
   - Enemy
+  - Material
+  - LubaUI
+  - WeaponPlug
   - WeaponPlug
   - Material
   - Hitbox
