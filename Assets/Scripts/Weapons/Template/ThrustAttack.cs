@@ -12,6 +12,7 @@ public class ThrustAttack : ShootingSuperclass
     public override void OnHitboxHit(Collider2D other)
     {
         other.gameObject.GetComponent<Enemy>()?.TakeDamage(parentBehaviour.CalculateDamage());
+        Debug.LogError($"----------------------------{parentBehaviour.CalculateDamage()}");
     }
 
     private IEnumerator DoThrust()
@@ -34,7 +35,7 @@ public class ThrustAttack : ShootingSuperclass
             Vector2 movePos = Vector2.Lerp(parentTransform.position, parentTransform.position+transform.right * parentBehaviour.CalculateRange(),
                 currentTime / extensionTime);
             transform.position = movePos;
-            Debug.Log($"Extend. base is {parentTransform.position} and new is {movePos}");
+            //Debug.Log($"Extend. base is {parentTransform.position} and new is {movePos}");
             yield return new WaitForEndOfFrame();
             currentTime += Time.deltaTime;
         } while (currentTime < extensionTime);
@@ -50,7 +51,7 @@ public class ThrustAttack : ShootingSuperclass
             Vector2 movePos = Vector2.Lerp(temp.transform.position, parentTransform.position,currentTime / returnTime);
             transform.position = movePos;
             //Weapon Return code here
-            Debug.Log("Return");
+            //Debug.Log("Return");
             yield return new WaitForEndOfFrame();
             currentTime += Time.deltaTime;
         } while (currentTime < returnTime);

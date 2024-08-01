@@ -55,18 +55,6 @@ public class LubaUI : MonoBehaviour
             Debug.LogError("PlayerResources singleton instance not found.");
         }
 
-        // Find the enemy component by tag
-        GameObject enemyObject = GameObject.FindGameObjectWithTag("Enemy");
-        if (enemyObject != null)
-        {
-            enemy = enemyObject.GetComponent<Enemy>();
-            lastHealth = enemyCrntHealth = enemy.health;
-        }
-        else
-        {
-  
-        }
-
         // Health Slider
         healthSlider.maxValue = MaxHealt;
         healthSlider.value = health;
@@ -77,18 +65,18 @@ public class LubaUI : MonoBehaviour
 
         pauseMenu.SetActive(false);
 
-      
+
     }
 
     void Update()
     {
 
-        
+
 
         MaxHealt = playerResources.maxHealth;
         health = playerResources.health;
 
-        
+
         healthSlider.maxValue = MaxHealt;
         healthSlider.value = health;
 
@@ -110,24 +98,14 @@ public class LubaUI : MonoBehaviour
         if (health <= 0)
         {
             runPanel.SetActive(true);
-            Time.timeScale = 0;
             // Other Lose Panel Logic
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (Time.timeScale == 0)
-            {
-                Resume();
-            } else
-            {
-                PauseGame();
-            }
-        }
 
 
-       
-      
+
+
+
         displayPlayerDamage();
         /*GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
@@ -146,17 +124,17 @@ public class LubaUI : MonoBehaviour
                 }
             }
         }*/
-    
-}
 
-   
+    }
+
+
 
 
 
 
 
     public void displayEnemyDamage(GameObject enemyObject, float damage)
-{
+    {
         damage = Mathf.Abs(damage);
         Debug.Log($"Enemy at {enemyObject.name} lost {damage} health");
 
@@ -173,7 +151,7 @@ public class LubaUI : MonoBehaviour
         {
             Debug.LogWarning("Text is null");
         }
-}
+    }
 
 
     void displayPlayerDamage()
@@ -217,7 +195,7 @@ public class LubaUI : MonoBehaviour
         }
     }
 
-    
+
     // BELOW IS THE LOGIC FOR SHOWING THE LEVEL UP UI
 
     public GameObject[] gameObjects;
