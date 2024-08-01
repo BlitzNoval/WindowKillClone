@@ -12,34 +12,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3c544a4b1167744599cfafb61d150f3, type: 3}
   m_Name: Laser
   m_EditorClassIdentifier: 
-  weaponID: w002
-  weaponSprite: {fileID: 0}
+  weaponID: wr002
+  weaponSprite: {fileID: 21300000, guid: 4eac91b4b78e2ed46a8f34ea2ba0a479, type: 3}
   weaponType: 1
   weaponClass: 32
-  attackType: 1
+  attackType: 2
   damagePerTier:
-  - 3
-  - 6
-  - 9
-  - 9
+  - 40
+  - 55
+  - 70
+  - 100
   scalingPerTier:
   - scalings:
-    - scalingAmount: 80
+    - scalingAmount: 400
       scalingType: 5
   - scalings:
-    - scalingAmount: 85
+    - scalingAmount: 450
       scalingType: 5
   - scalings:
-    - scalingAmount: 90
+    - scalingAmount: 500
       scalingType: 5
   - scalings:
-    - scalingAmount: 100
+    - scalingAmount: 600
       scalingType: 5
   attackSpeedPerTier:
-  - 1.37
-  - 1.28
-  - 1.2
-  - 1.2
+  - 2.15
+  - 2.07
+  - 1.98
+  - 1.82
   critDamagePerTier:
   - 2
   - 2
@@ -51,20 +51,20 @@ MonoBehaviour:
   - 0.03
   - 0.03
   rangePerTier:
-  - 350
-  - 350
-  - 350
-  - 350
+  - 500
+  - 500
+  - 500
+  - 500
   knockbackPerTier:
-  - 8
-  - 8
-  - 8
-  - 8
+  - 0
+  - 0
+  - 0
+  - 0
   lifestealPerTier:
   - 0
   - 0
   - 0
   - 0
-  basePricePerTier: 14000000270000004a00000095000000
+  basePricePerTier: 0f0000001f0000003d0000007a000000
   numberOfProjectilesPerTier: 01000000010000000100000001000000
   piercePerTier: 00000000010000000200000003000000

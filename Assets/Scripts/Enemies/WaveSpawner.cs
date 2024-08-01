@@ -19,12 +19,13 @@ public class WaveSpawnInfo
 
 public class WaveSpawner : MonoBehaviour
 {
-     public static WaveSpawner Instance { get; private set; }
+    public static WaveSpawner Instance { get; private set; }
 
     public List<Wave> waves;
     public EnemySpawner enemySpawner;
     public TextMeshProUGUI waveText;
     public TextMeshProUGUI timerText;
+    public GameObject endGamePanel; // Reference to the end game panel
 
     public int currentWaveIndex;
     private float waveTimer;
@@ -43,7 +44,7 @@ public class WaveSpawner : MonoBehaviour
             Instance = this;
         }
     }
-    
+
     private void Start()
     {
         if (enemySpawner == null)
@@ -56,6 +57,7 @@ public class WaveSpawner : MonoBehaviour
         isWaveActive = false;
         UpdateWaveText();
         UpdateTimerText();
+        endGamePanel.SetActive(false); // Ensure the panel is initially inactive
     }
 
     private void Update()
@@ -76,37 +78,36 @@ public class WaveSpawner : MonoBehaviour
     private const float statIncreasePerWave = 1.006f; // 0.6% increase per wave
 
     private IEnumerator SpawnEnemies(Wave wave)
-{
-    // Get the total number of enemies to spawn
-    int totalEnemies = 0;
-    foreach (var spawnInfo in wave.enemiesToSpawn)
     {
-        totalEnemies += spawnInfo.amount;
-    }
-
-    // Calculate the interval for spawning enemies
-    float spawnInterval = wave.duration / totalEnemies;
-
-    // Spawn the enemies
-    foreach (var spawnInfo in wave.enemiesToSpawn)
-    {
-        for (int i = 0; i < spawnInfo.amount; i++)
+        // Get the total number of enemies to spawn
+        int totalEnemies = 0;
+        foreach (var spawnInfo in wave.enemiesToSpawn)
         {
-            if (spawnInfo.enemyPrefab.GetComponent<Chaser>() != null)
-            {
-                enemySpawner.SpawnGroup(spawnInfo.enemyPrefab, 5);
-            }
-            else
-            {
-                enemySpawner.SpawnEnemy(spawnInfo.enemyPrefab);
-            }
+            totalEnemies += spawnInfo.amount;
+        }
 
-            // Wait for the next spawn interval
-            yield return new WaitForSeconds(spawnInterval);
+        // Calculate the interval for spawning enemies
+        float spawnInterval = wave.duration / totalEnemies;
+
+        // Spawn the enemies
+        foreach (var spawnInfo in wave.enemiesToSpawn)
+        {
+            for (int i = 0; i < spawnInfo.amount; i++)
+            {
+                if (spawnInfo.enemyPrefab.GetComponent<Chaser>() != null)
+                {
+                    enemySpawner.SpawnGroup(spawnInfo.enemyPrefab, 5);
+                }
+                else
+                {
+                    enemySpawner.SpawnEnemy(spawnInfo.enemyPrefab);
+                }
+
+                // Wait for the next spawn interval
+                yield return new WaitForSeconds(spawnInterval);
+            }
         }
     }
-}
-
 
     public void StartNextWave()
     {
@@ -121,8 +122,8 @@ public class WaveSpawner : MonoBehaviour
         }
         else
         {
-            waveText.text = "All waves completed!";
-            // Optionally, you could disable further wave spawning or handle end-of-game logic here
+            // Handle completion of all waves
+            EndGame();
         }
     }
 
@@ -132,7 +133,13 @@ public class WaveSpawner : MonoBehaviour
         CoinUI coins = FindAnyObjectByType<CoinUI>();
         coins.MoveToBag();
         GameManager.Instance.SwitchState(GameManager.Instance.upgradeState);
-      
+    }
+
+    private void EndGame()
+    {
+        Time.timeScale = 0; // Freeze the game time
+        endGamePanel.SetActive(true); // Show the end game panel
+        waveText.text = "All waves completed!";
     }
 
     private void UpdateWaveText()
@@ -140,8 +147,6 @@ public class WaveSpawner : MonoBehaviour
         if (currentWaveIndex < waves.Count)
         {
             waveText.text = $"Wave: {currentWaveIndex + 1}";
-
-            
         }
     }
 

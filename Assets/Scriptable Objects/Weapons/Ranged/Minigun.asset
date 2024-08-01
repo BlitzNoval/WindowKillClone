@@ -10,61 +10,61 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3c544a4b1167744599cfafb61d150f3, type: 3}
-  m_Name: Double Barrel Shotgun
+  m_Name: Minigun
   m_EditorClassIdentifier: 
-  weaponID: wr002
-  weaponSprite: {fileID: 21300000, guid: 9f0b6ea0354cc304dab5c89f610c55bc, type: 3}
+  weaponID: wr005
+  weaponSprite: {fileID: 21300000, guid: 9ec7ec1aba566cd46a78c1a3f0671b47, type: 3}
   weaponType: 1
   weaponClass: 32
-  attackType: 1
+  attackType: 2
   damagePerTier:
+  - 1
+  - 2
   - 3
-  - 6
-  - 9
-  - 9
+  - 4
   scalingPerTier:
   - scalings:
-    - scalingAmount: 80
+    - scalingAmount: 10
       scalingType: 5
   - scalings:
-    - scalingAmount: 85
+    - scalingAmount: 20
       scalingType: 5
   - scalings:
-    - scalingAmount: 90
+    - scalingAmount: 50
       scalingType: 5
   - scalings:
-    - scalingAmount: 100
+    - scalingAmount: 75
       scalingType: 5
   attackSpeedPerTier:
-  - 1.37
-  - 1.28
-  - 1.2
-  - 1.2
+  - 0.12
+  - 0.1
+  - 0.09
+  - 0.07
   critDamagePerTier:
-  - 2
-  - 2
-  - 2
+  - 1.25
+  - 1.5
+  - 1.75
   - 2
   critChancePerTier:
+  - 0.01
+  - 0.02
   - 0.03
-  - 0.03
-  - 0.03
-  - 0.03
+  - 0.04
   rangePerTier:
-  - 350
-  - 350
-  - 350
-  - 350
+  - 400
+  - 400
+  - 400
+  - 450
   knockbackPerTier:
-  - 8
-  - 8
-  - 8
-  - 8
+  - 0
+  - 0
+  - 0
+  - 0
   lifestealPerTier:
   - 0
   - 0
   - 0
   - 0
-  basePricePerTier: 14000000270000004a00000095000000
-  numberOfProjectilesPerTier: 04000000040000000400000006000000
-  piercePerTier: 00000000010000000200000003000000
+  basePricePerTier: 59000000660000007f000000ff000000
+  numberOfProjectilesPerTier: 01000000010000000100000001000000
+  piercePerTier: 01000000020000000200000002000000
