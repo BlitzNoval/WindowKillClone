@@ -150,4 +150,7 @@ public class ShopManager : MonoBehaviour
         Debug.Log(Mathf.RoundToInt(basePrice + (WaveSpawner.Instance.currentWaveIndex + 1) + (basePrice * 0.1f * (WaveSpawner.Instance.currentWaveIndex + 1))));
         return Mathf.RoundToInt(basePrice + (WaveSpawner.Instance.currentWaveIndex + 1) + (basePrice * 0.1f * (WaveSpawner.Instance.currentWaveIndex + 1)));
     }
+
+    public void NextWave() => GameManager.Instance.SwitchState(GameManager.Instance.playState);
+
 }

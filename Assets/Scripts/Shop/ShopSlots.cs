@@ -57,17 +57,14 @@ public class ShopSlots : MonoBehaviour
             GameObject new_item = Instantiate(item);
 
 
-            if (WeaponController.Instance.IsAddable(Instantiate(new_item)))
+            if (WeaponController.Instance.IsAddable(new_item))
             {
                 PlayerResources.Instance.materials -= itemCost;
+                WeaponController.Instance.AddWeapon(new_item);
+
                 ShopManager.Instance.slotAvailability[gameObject] = true;
-                WeaponController.Instance.AddWeapon(Instantiate(new_item));
                 gameObject.SetActive(false);
             }
-
-
-
-
         }
     }
 
@@ -105,4 +102,5 @@ public class ShopSlots : MonoBehaviour
 
         return string.Join("\n", description);
     }
+
 }
