@@ -16,6 +16,8 @@ public class WeaponController : MonoBehaviour
 
     [SerializeField] private List<GameObject> weaponInventory;
 
+    public List<GameObject> WeaponInventory => weaponInventory;
+
     private int maxInventorySize = 6;
 
     private void Awake()
