@@ -405,7 +405,7 @@ PrefabInstance:
     - target: {fileID: 2880952694907086390, guid: 54933990294040447b2784c7666ce840, type: 3}
       propertyPath: testAddPrefab
       value: 
-      objectReference: {fileID: 6280638174765363319, guid: 5c22211a759fe124b89081944a214828, type: 3}
+      objectReference: {fileID: 1940817109679054993, guid: f13de22b39ba19a4db0bdfc68d35b18d, type: 3}
     - target: {fileID: 3018907856233814086, guid: 54933990294040447b2784c7666ce840, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1
@@ -8776,7 +8776,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allItems:
-  - {fileID: 1940817109679054993, guid: 91a544a35f142d84f9a35b78787eafac, type: 3}
   - {fileID: 699974415962575548, guid: 41bd3b14bab844f40b3421e3577cf9f4, type: 3}
   - {fileID: 5966777579858946412, guid: a42e791b3d829b94987831326a44fd8b, type: 3}
   - {fileID: 6016896546928572704, guid: 6e73d5bbcc66482418e7710070323226, type: 3}
@@ -8788,6 +8787,13 @@ MonoBehaviour:
   - {fileID: 6280638174765363319, guid: 5ff49042be5b68f4481e4a7e9181cb97, type: 3}
   - {fileID: 6280638174765363319, guid: 9df9565a5b3af10458a8c3529ed73b91, type: 3}
   - {fileID: 6280638174765363319, guid: 111624005fe939f479893fc11be96004, type: 3}
+  - {fileID: 1940817109679054993, guid: c94e1d5cca9a8e142a9d21ac01a7bc52, type: 3}
+  - {fileID: 1940817109679054993, guid: 91a544a35f142d84f9a35b78787eafac, type: 3}
+  - {fileID: 1940817109679054993, guid: e4786142063e6634c8c179d534ba0cc3, type: 3}
+  - {fileID: 1940817109679054993, guid: 769ee3c39e70c5d4cbef0b9c42980d13, type: 3}
+  - {fileID: 1940817109679054993, guid: 4e009419e02931345b10ea4d5afd7d7d, type: 3}
+  - {fileID: 1940817109679054993, guid: f13de22b39ba19a4db0bdfc68d35b18d, type: 3}
+  - {fileID: 1940817109679054993, guid: 6d2d5dac2b869bb42bda3abc2b934f79, type: 3}
   chanceThresholds:
   - 0
   - 0
@@ -10101,6 +10107,7 @@ MonoBehaviour:
   crntLvl: {fileID: 397866418}
   coins: {fileID: 909702475}
   baggedMaterials: {fileID: 868906221}
+  moveSpeed: 45
   healthSlider: {fileID: 468233729}
   levelSlider: {fileID: 233718590}
   runPanel: {fileID: 1339512289}
@@ -10108,6 +10115,7 @@ MonoBehaviour:
   damageTextPrefab: {fileID: 692673663182608160, guid: caa89c5f7e022ef45885cc99b912eba3, type: 3}
   floatingText: {fileID: 3835574242490135034, guid: 79f1fcd9c5b986a4a8d024da6d834a64, type: 3}
   floatingTextEnemy: {fileID: 3835574242490135034, guid: b7c1dad2c6e686c4095afa555b340ea3, type: 3}
+  baggedMaterialsTrans: {fileID: 0}
   enemyCrntHealth: 0
   dmgValue: 0
   gameObjects:
@@ -10712,6 +10720,7 @@ MonoBehaviour:
   enemySpawner: {fileID: 97402640}
   waveText: {fileID: 870949057}
   timerText: {fileID: 404519025}
+  endGamePanel: {fileID: 1339512289}
   currentWaveIndex: 0
 --- !u!1 &1866420848
 GameObject:
