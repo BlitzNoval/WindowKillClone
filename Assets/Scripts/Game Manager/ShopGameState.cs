@@ -11,6 +11,7 @@ public class ShopGameState : BaseGameState
         manager.shopUI.SetActive(true);
 
         ShopManager.Instance.OpenShopPanel();
+        InventoryManager.Instance.UpdateSlots();
         //manager.SwitchState(manager.playState);
     }
 

@@ -102,7 +102,12 @@ public class ShopSlots : MonoBehaviour
                 WeaponController.Instance.AddWeapon(new_item);
 
                 ShopManager.Instance.slotAvailability[gameObject] = true;
+                InventoryManager.Instance.UpdateSlots();
                 gameObject.SetActive(false);
+            }
+            else
+            {
+                Destroy(new_item);
             }
         }
     }
