@@ -27,6 +27,13 @@ public class WeaponController : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        GameObject test = Instantiate(testAddPrefab, transform);
+
+        AddWeapon(test);
+    }
+
     private void Update()
     {
         if (!Debug.isDebugBuild) return;
