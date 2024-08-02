@@ -120,6 +120,7 @@ public class WeaponBehaviour : MonoBehaviour
             // Getting the closest enemy
             foreach (var enemyInstance in enemiesInRange)
             {
+                if (!enemyInstance) continue;
                 float enemyDistance = Vector2.Distance(transform.position, enemyInstance.position);
                 if (closestDistance > enemyDistance)
                 {

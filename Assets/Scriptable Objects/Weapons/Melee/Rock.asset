@@ -18,7 +18,7 @@ MonoBehaviour:
   weaponClass: 2050
   attackType: 0
   damagePerTier:
-  - 40
+  - 20
   - 30
   - 40
   - 60

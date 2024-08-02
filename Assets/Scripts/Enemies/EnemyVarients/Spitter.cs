@@ -26,9 +26,9 @@ public class Spitter : Enemy
         StartCoroutine(FireProjectiles());
     }
 
-    protected override void Update()
+    protected override void FixedUpdate()
     {
-        base.Update();
+        base.FixedUpdate();
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 

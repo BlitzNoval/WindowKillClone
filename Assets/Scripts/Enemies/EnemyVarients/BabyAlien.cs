@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class BabyAlien : Enemy
 {
-    protected override void Update()
+    protected override void FixedUpdate()
     {
-        base.Update();
+        base.FixedUpdate();
         MoveTowardsPlayer();
     }
 }

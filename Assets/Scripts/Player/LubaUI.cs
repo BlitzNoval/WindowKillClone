@@ -17,6 +17,8 @@ public class LubaUI : MonoBehaviour
     public TMP_Text crntLvl;
     public TMP_Text coins;
     public TMP_Text baggedMaterials;
+    public float moveSpeed = 45f;
+    private WaveSpawner waveSpawner;
 
     public Slider healthSlider;
     public Slider levelSlider;
@@ -28,7 +30,7 @@ public class LubaUI : MonoBehaviour
     public GameObject floatingText;
     public GameObject floatingTextEnemy;
 
-
+    public Transform baggedMaterialsTrans;
     #endregion
 
     private float lastHealth;
@@ -42,7 +44,7 @@ public class LubaUI : MonoBehaviour
 
     void Start()
     {
-
+        waveSpawner = FindObjectOfType<WaveSpawner>();
         lastPlayerHealth = health;
         lastEnemyHealth = enemyHealth;
         playerResources = PlayerResources.Instance;
@@ -55,18 +57,6 @@ public class LubaUI : MonoBehaviour
             Debug.LogError("PlayerResources singleton instance not found.");
         }
 
-        // Find the enemy component by tag
-        GameObject enemyObject = GameObject.FindGameObjectWithTag("Enemy");
-        if (enemyObject != null)
-        {
-            enemy = enemyObject.GetComponent<Enemy>();
-            lastHealth = enemyCrntHealth = enemy.health;
-        }
-        else
-        {
-  
-        }
-
         // Health Slider
         healthSlider.maxValue = MaxHealt;
         healthSlider.value = health;
@@ -77,18 +67,18 @@ public class LubaUI : MonoBehaviour
 
         pauseMenu.SetActive(false);
 
-      
+
     }
 
     void Update()
     {
 
-        
 
+        
         MaxHealt = playerResources.maxHealth;
         health = playerResources.health;
 
-        
+
         healthSlider.maxValue = MaxHealt;
         healthSlider.value = health;
 
@@ -107,63 +97,36 @@ public class LubaUI : MonoBehaviour
         // Level Text
         crntLvl.text = "LV." + playerResources.level.ToString();
 
+
         if (health <= 0)
         {
             runPanel.SetActive(true);
-            Time.timeScale = 0;
             // Other Lose Panel Logic
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (Time.timeScale == 0)
-            {
-                Resume();
-            } else
-            {
-                PauseGame();
-            }
-        }
+
+  }
 
 
-       
-      
-        displayPlayerDamage();
-        /*GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-        foreach (GameObject enemyObject in enemies)
-        {
-            Enemy enemyScript = enemyObject.GetComponent<Enemy>();
-            if (enemyScript != null)
-            {
-                float currentEnemyHealth = enemyScript.health;
-
-                // Call displayEnemyDamage only if health has changed
-                if (enemyScript.lastHealth != currentEnemyHealth)
-                {
-                    displayEnemyDamage(enemyObject, enemyScript.lastHealth, currentEnemyHealth);
-                    enemyScript.lastHealth = currentEnemyHealth; // Update last health value
-                }
-            }
-        }*/
-    
-}
-
-   
 
 
 
 
 
     public void displayEnemyDamage(GameObject enemyObject, float damage)
-{
+    {
         damage = Mathf.Abs(damage);
-        Debug.Log($"Enemy at {enemyObject.name} lost {damage} health");
+        //Debug.Log($"Enemy at {enemyObject.name} lost {damage} health");
 
         // Instantiate the damage text at the enemy's position
         Vector3 enemyPosition = enemyObject.transform.position;
-        GameObject damageText = Instantiate(floatingTextEnemy, enemyPosition, Quaternion.identity);
+        GameObject damageText = Instantiate(floatingTextEnemy, enemyPosition + new Vector3(0,0,-2), Quaternion.identity);
         TMP_Text tmpText = damageText.GetComponentInChildren<TMP_Text>();
+
+        if(enemyObject.CompareTag("Player"))
+        {
+            tmpText.color = Color.red;
+        }
 
         if (tmpText != null)
         {
@@ -173,7 +136,12 @@ public class LubaUI : MonoBehaviour
         {
             Debug.LogWarning("Text is null");
         }
-}
+
+        if (playerResources.baggedMaterials != 0)
+        {
+            playerResources.baggedMaterials -= 1;
+        }
+    }
 
 
     void displayPlayerDamage()
@@ -217,7 +185,7 @@ public class LubaUI : MonoBehaviour
         }
     }
 
-    
+
     // BELOW IS THE LOGIC FOR SHOWING THE LEVEL UP UI
 
     public GameObject[] gameObjects;
@@ -264,4 +232,9 @@ public class LubaUI : MonoBehaviour
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
     }
+
+   
+
+
+
 }
