@@ -10713,7 +10713,7 @@ MonoBehaviour:
       amount: 20
     - enemyPrefab: {fileID: 7802492558257095922, guid: 7a67fbb4942ee6a478b1f8255d917393, type: 3}
       amount: 10
-  - duration: 90
+  - duration: 60
     enemiesToSpawn:
     - enemyPrefab: {fileID: 7802492558257095922, guid: 88ace6962e543f044836eb83aa2fbcc6, type: 3}
       amount: 1

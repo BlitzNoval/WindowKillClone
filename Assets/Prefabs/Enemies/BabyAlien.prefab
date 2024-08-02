@@ -148,7 +148,7 @@ MonoBehaviour:
   health: 3
   healthScaling: 2
   speed: 20
-  damage: 1
+  damage: 2
   damageScaling: 0.6
   dropObject: {fileID: 4214800325226193104, guid: fbe4453a278e5c7429a3cf5ff915aae7, type: 3}
   dropRate: 100
