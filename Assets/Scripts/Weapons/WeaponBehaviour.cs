@@ -22,7 +22,7 @@ public class WeaponBehaviour : MonoBehaviour
     [SerializeField] private float detectionRange;
     [SerializeField] private CircleCollider2D trackingArea;
 
-    private List<Transform> enemiesInRange = new List<Transform>();
+    [SerializeField] private List<Transform> enemiesInRange = new List<Transform>();
 
     public WeaponTier CurrentTier
     {
@@ -117,16 +117,35 @@ public class WeaponBehaviour : MonoBehaviour
         {
             float closestDistance = int.MaxValue;
             Transform closestEnemy = transform;
+            List<Transform> referenceRanges = enemiesInRange;
             // Getting the closest enemy
-            foreach (var enemyInstance in enemiesInRange)
+            try
             {
-                if (!enemyInstance) continue;
-                float enemyDistance = Vector2.Distance(transform.position, enemyInstance.position);
-                if (closestDistance > enemyDistance)
+                foreach (var enemyInstance in referenceRanges)
                 {
-                    closestDistance = enemyDistance;
-                    closestEnemy = enemyInstance;
+                    //Catching null references
+                    if (!enemyInstance)
+                    {
+                        enemiesInRange.Remove(enemyInstance);
+                        //If the only thing we had was null references, we don't need to execute any more code
+                        if (enemiesInRange.Count == 0)
+                        {
+                            return;
+                        }
+                        continue;
+                    }
+
+                    float enemyDistance = Vector2.Distance(transform.position, enemyInstance.position);
+                    if (closestDistance > enemyDistance)
+                    {
+                        closestDistance = enemyDistance;
+                        closestEnemy = enemyInstance;
+                    }
                 }
+            }
+            catch (InvalidOperationException)
+            {
+                //ignore this exception :)
             }
             
             //Logic to stop the weapon from rotating while attacking if it is melee
@@ -152,7 +171,7 @@ public class WeaponBehaviour : MonoBehaviour
             }
 
             //Auto shooting logic
-            if (canAttack)
+            if (canAttack && closestEnemy != transform)
             {
                 canAttack = false;
                 thisShootingEffect?.Invoke(closestEnemy.position - transform.position);
